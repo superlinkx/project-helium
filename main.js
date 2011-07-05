@@ -63,6 +63,12 @@ function keyListener(e){
 	if (e.keyCode == 39){
 		px += 5;
 	}
+	if (e.keyCode == 38){
+		py -= 5;
+	}
+	if (e.keyCode == 40){
+		py += 5;
+	}
 }
 
 function bounds(){
@@ -71,6 +77,12 @@ function bounds(){
 	}
 	if (px < 1){
 		px = 0;
+	}
+	if(py > (h-31)){
+		py = (h-30);
+	}
+	if (py < 1){
+		py = 0;
 	}
 }
 
