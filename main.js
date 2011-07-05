@@ -1,26 +1,48 @@
-const FPS = 30;// target frames per second
-const w = 240;
-const h = 480;
-const width = w - 150;
-const height = h - 150;
-var x = 0;
-var y = 0;
-var bgx = 0;
-var bg1y = -480;
-var bg2y = -1440;
-var px = (w/2)-30;
-var py = (h-30);
-var xDirection = 5;
-var yDirection = 5;
-var bg1 = new Image();
+// target frames per second
+const FPS = 30,
+//height/width constants 
+	  w = 240,
+	  h = 480,
+	  e1w = 30,
+	  e1h = 30;
+
+//x-y variables
+var	x = 0,
+	y = 0,
+	bgx = 0,
+	bg1y = -480,
+	bg2y = -1440,
+	px = (w/2)-30,
+	py = (h-30),
+	e1x = 50,
+	e1y = -45,
+//images and sprites
+	bg1 = new Image();
 	bg1.src = "images/background.png";
-var bg2 = new Image();
+var	bg2 = new Image();
 	bg2.src = "images/background.png";
-var pSprite = new Image();
+var	pSprite = new Image();
 	pSprite.src = "images/psprite.png";
-var canvas = null;
-var body = null;
-var context2D = null;
+//keys
+var	upKey = false,
+	downKey = false,
+	rightKey = false,
+	leftKey = false,
+//enemies
+	enemy1Total = 5,
+	enemies = [],
+	enemy1Speed = 3,
+//canvas element vars
+	canvas = null,
+	body = null,
+	context2D = null;
+	
+//enemy init
+
+for (var i = 0; i < enemy1Total; i++) {
+ enemies.push([e1x, e1y, e1w, e1h, enemy1Speed]);
+ e1x += e1w + 60;
+}
 
 window.onload = init;
 
@@ -30,8 +52,17 @@ function init(){
 	canvas.width = w;
 	canvas.height = h;
 	context2D.drawImage(bg1, 0, 0);
-	document.onkeydown = keyListener;
 	setInterval(draw, 1000 / FPS);
+	document.addEventListener('keydown', keyDown, false);
+	document.addEventListener('keyup', keyUp, false);
+}
+
+function draw(){
+	canvas.width = canvas.width;
+	backgroundDraw();
+	moveEnemy1();
+	drawEnemy1();
+	playerDraw();
 }
 
 function backgroundDraw(){
@@ -45,33 +76,32 @@ function backgroundDraw(){
 	if (bg2y == 480){
 		bg2y = -1440;
 	}
+}
 
+function keyDown(e) {
+  if (e.keyCode == 39) rightKey = true;
+  else if (e.keyCode == 37) leftKey = true;
+  if (e.keyCode == 38) upKey = true;
+  else if (e.keyCode == 40) downKey = true;
+}
+
+function keyUp(e) {
+  if (e.keyCode == 39) rightKey = false;
+  else if (e.keyCode == 37) leftKey = false;
+  if (e.keyCode == 38) upKey = false;
+  else if (e.keyCode == 40) downKey = false;
 }
 
 function playerDraw(){
-	bounds();
+	if (rightKey) px += 5;
+	else if (leftKey) px -= 5;
+	if (upKey) py -= 5;
+	else if (downKey) py += 5;
+	playerBounds();
 	context2D.drawImage(pSprite, px, py);
 }
 
-function keyListener(e){
-	if(!e){
-		e = window.event;
-	}
-	if (e.keyCode == 37){
-		px -= 5;
-	}
-	if (e.keyCode == 39){
-		px += 5;
-	}
-	if (e.keyCode == 38){
-		py -= 5;
-	}
-	if (e.keyCode == 40){
-		py += 5;
-	}
-}
-
-function bounds(){
+function playerBounds(){
 	if (px > (w-31)){
 		px = (w-30);
 	}
@@ -86,9 +116,19 @@ function bounds(){
 	}
 }
 
-function draw(){
-	canvas.width = canvas.width;
-	backgroundDraw();
-	playerDraw();
+function drawEnemy1(){
+	for (var i = 0; i < enemies.length; i++) {
+    	context2D.fillStyle = '#f00';
+    	context2D.fillRect(enemies[i][0], enemies[i][1], e1w, e1h);
+  }
 }
 
+function moveEnemy1(){
+	for (var i = 0; i < enemies.length; i++) {
+    	if (enemies[i][1] < h) {
+      		enemies[i][1] += enemies[i][4];
+    	} else if (enemies[i][1] > h - 1) {
+      		enemies[i][1] = -45;
+    	}
+  	}
+}
