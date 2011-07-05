@@ -14,6 +14,8 @@ var bg1 = new Image();
 	bg1.src = "images/background.png";
 var bg2 = new Image();
 	bg2.src = "images/background.png";
+var pSprite = new Image();
+	pSprite.src = "images/psprite.png";
 var canvas = null;
 var body = null;
 var context2D = null;
@@ -43,9 +45,14 @@ function backgroundDraw(){
 
 }
 
+function playerDraw(){
+	context2D.drawImage(pSprite, px, py);
+}
+
 
 function draw(){
 	canvas.width = canvas.width;
 	backgroundDraw();
+	playerDraw();
 }
 
