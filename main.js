@@ -1,11 +1,10 @@
 // target frames per second
 const FPS = 30,
 //height/width constants 
-	  w = 240,
-	  h = 480,
-	  e1w = 30,
-	  e1h = 30;
-
+      w = 240,
+      h = 480,
+      e1w = 30,
+      e1h = 30;
 //x-y variables
 var	x = 0,
 	y = 0,
@@ -36,16 +35,12 @@ var	upKey = false,
 	canvas = null,
 	body = null,
 	context2D = null;
-	
 //enemy init
-
 for (var i = 0; i < enemy1Total; i++) {
- enemies.push([e1x, e1y, e1w, e1h, enemy1Speed]);
- e1x += e1w + 60;
+	enemies.push([e1x, e1y, e1w, e1h, enemy1Speed]);
+	e1x += e1w + 60;
 }
-
 window.onload = init;
-
 function init(){
 	canvas = document.getElementById('helium');	
 	context2D = canvas.getContext('2d');
