@@ -1,0 +1,2 @@
+#!/bin/bash
+java -jar closure-compiler.jar --js $1 --compilation_level ADVANCED_OPTIMIZATIONS --js_output_file $2
