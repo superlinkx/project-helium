@@ -1,7 +1,7 @@
 //Root directory var
-var	root = "";
+if(!root) var root = "";
 // target frames per second
-	FPS = 30,
+var	FPS = 30,
 //height/width constants 
 	w = 240,
 	h = 480,
