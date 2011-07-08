@@ -74,17 +74,17 @@ function backgroundDraw(){
 }
 
 function keyDown(e) {
-  if (e.keyCode == 39) rightKey = true;
-  else if (e.keyCode == 37) leftKey = true;
-  if (e.keyCode == 38) upKey = true;
-  else if (e.keyCode == 40) downKey = true;
+  if (e.keyCode == 68) rightKey = true;
+  else if (e.keyCode == 65) leftKey = true;
+  if (e.keyCode == 87) upKey = true;
+  else if (e.keyCode == 83) downKey = true;
 }
 
 function keyUp(e) {
-  if (e.keyCode == 39) rightKey = false;
-  else if (e.keyCode == 37) leftKey = false;
-  if (e.keyCode == 38) upKey = false;
-  else if (e.keyCode == 40) downKey = false;
+  if (e.keyCode == 68) rightKey = false;
+  else if (e.keyCode == 65) leftKey = false;
+  if (e.keyCode == 87) upKey = false;
+  else if (e.keyCode == 83) downKey = false;
 }
 
 function playerDraw(){
