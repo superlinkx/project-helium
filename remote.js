@@ -1,1 +1,1 @@
-var root = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/"
+var b = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/"
