@@ -17,11 +17,11 @@ var	x = 0,
 	e1y = -45,
 //images and sprites
 	bg1 = new Image();
-	bg1.src = "apps/helium/images/background.png";
+	bg1.src = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/images/background.png";
 var	bg2 = new Image();
-	bg2.src = "apps/helium/images/background.png";
+	bg2.src = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/images/background.png";
 var	pSprite = new Image();
-	pSprite.src = "apps/helium/images/psprite.png";
+	pSprite.src = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/images/psprite.png";
 //keys
 var	upKey = false,
 	downKey = false,
