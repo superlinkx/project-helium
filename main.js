@@ -1,14 +1,14 @@
 //Root directory var
-const root = "";
+var	root = "";
 // target frames per second
-const FPS = 30,
+	FPS = 30,
 //height/width constants 
-      w = 240,
-      h = 480,
-      e1w = 30,
-      e1h = 30;
+	w = 240,
+	h = 480,
+	e1w = 30,
+	e1h = 30;
 //x-y variables
-var	x = 0,
+	x = 0,
 	y = 0,
 	bgx = 0,
 	bg1y = -480,
