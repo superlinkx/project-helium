@@ -1,3 +1,5 @@
+//Root directory var
+const root = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/";
 // target frames per second
 const FPS = 30,
 //height/width constants 
@@ -17,11 +19,11 @@ var	x = 0,
 	e1y = -45,
 //images and sprites
 	bg1 = new Image();
-	bg1.src = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/images/background.png";
+	bg1.src = root+"images/background.png";
 var	bg2 = new Image();
-	bg2.src = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/images/background.png";
+	bg2.src = root+"images/background.png";
 var	pSprite = new Image();
-	pSprite.src = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/images/psprite.png";
+	pSprite.src = root+"images/psprite.png";
 //keys
 var	upKey = false,
 	downKey = false,
