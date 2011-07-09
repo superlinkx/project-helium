@@ -40,6 +40,13 @@ margin: auto;
 padding: 10px;
 }
 
+#canvas
+{
+    width: 240px;
+    height: 480px;
+    margin: 0px auto;
+}
+
 h1
 {
 font-family: 'VT323', sans-serif;
