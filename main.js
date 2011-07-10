@@ -184,25 +184,25 @@ function reset(){
 
 function scoreTotal(){
 	ctx.font = 'bold 18px Arial';
-	ctx.fillStyle = '#fff';
-	ctx.fillRect(10,10,100,50)
-	ctx.fillStyle = '#0f0';
+	ctx.fillStyle = 'rgba(255,255,255,0.8)';
+	ctx.fillRect(0,0,w,60)
+	ctx.fillStyle = '#f00';
 	ctx.fillText('Score: ', 10, 55);
 	ctx.fillText(score, 70, 55);
 	ctx.fillText('Lives:', 10, 30);
 	ctx.fillText(lives, 68, 30);
 	if (!alive){
+		lives = 0;
 		ctx.fillText('Game Over!', (w/2)-55, h/2);
 		ctx.fillRect((w/2)-53, (h/2)+ 10,100,40);
 		ctx.fillStyle = '#000';
 		ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
 		canvas.addEventListener('click',continueButton,false);
-		score = 0;
 	}
 	if (!gameStarted){
-		ctx.fillStyle = '#fff';
+		ctx.fillStyle = 'rgba(255,255,255,0.7)';
 		ctx.fillRect(0,0,w,h);
-		ctx.fillStyle = '#0f0';
+		ctx.fillStyle = '#f00';
 		ctx.font = 'bold 32px Arial';
 		ctx.fillText('Project Helium', w/2 - 110, h/2);
 		ctx.font = 'bold 20px Arial';
@@ -238,8 +238,8 @@ function gameLoop(){
 		drawEnemy1();
 		playerDraw();
 		drawLaser();
-		shipCollision();
 		hitTest();
+		shipCollision();
 	}	
 	scoreTotal();
 	game = setTimeout(gameLoop, 1000 / FPS);
@@ -265,6 +265,7 @@ function continueButton(e){
 	if ((cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50) || e.keyCode == 13){
 		alive = true;
 		lives = 3;
+		score = 0;
 		reset();
 		canvas.removeEventListener('click',continueButton,false);
 	}
