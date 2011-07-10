@@ -2,7 +2,7 @@
 
 body
 {
-background-color: #c2c2c2;
+background-color: #929292;
 margin: 0px;
 padding: 5px 0px 5px 0px;
 }
@@ -14,19 +14,19 @@ display: block;
 width: 175px;
 text-align: center;
 border: 2px solid;
-border-color: teal;
+border-color: #e1e1e1;
 border-radius: 5px;
 -moz-border-radius: 5px;
-background-color: #9f9f9f;
+background-color: #7e3f3f;
 text-decoration: none;
-color: teal;
+color: #e1e1e1;
 margin-right: 10px;
 font-family: 'VT323', sans-serif;
 }
 
 a:hover
 {
-color: #00a0a0;
+color: #c2c2c2;
 }
 
 #body
@@ -34,17 +34,15 @@ color: #00a0a0;
 border: 2px solid;
 border-radius: 25px;
 -moz-border-radius: 25px;
-background-color: #e2e2e2;
+background-color: #c2c2c2;
 width: 800px;
 margin: auto;
 padding: 10px;
 }
 
-#canvas
+#sub
 {
-    width: 240px;
-    height: 480px;
-    margin: 0px auto;
+text-align: center;
 }
 
 h1
