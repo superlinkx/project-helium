@@ -1,7 +1,7 @@
 {
-  "name": "Project Helium",
+  "name": "Project Helium (Free)",
   "description": "A legendary 2D shooter!",
-  "version": "0.1",
+  "version": "0.1.1",
   "app": {
     "launch": {
       "local_path": "index.html"
