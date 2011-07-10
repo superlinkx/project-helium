@@ -40,6 +40,13 @@ margin: auto;
 padding: 10px;
 }
 
+#canvas
+{
+width: 240px;
+height: 480px;
+margin: 0px auto;
+}
+
 #sub
 {
 text-align: center;
@@ -56,3 +63,4 @@ p
 {
 font-family: 'Ubuntu', sans-serif;
 }
+
