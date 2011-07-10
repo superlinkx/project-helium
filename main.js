@@ -148,16 +148,16 @@ function shipCollision(){
 	var pxw = px + pw,
 	    pyh = py + ph;
 	for (var i = 0; i < enemies.length; i++){
-		if (px > enemies[i][0] && px < enemies[i][0] + e1w && py < enemies[i][1] + e1h){
+		if (px >= enemies[i][0] && px <= enemies[i][0] + e1w && py <= enemies[i][1] + e1h){
 			checkLives();
 		}
-		if (pxw < enemies[i][0] + e1w && pxw > enemies[i][0] && py > enemies[i][1] && py < enemies[i][1] + e1h){
+		if (pxw <= enemies[i][0] + e1w && pxw >= enemies[i][0] && py >= enemies[i][1] && py <= enemies[i][1] + e1h){
 			checkLives();
 		}
-		if (pyh > enemies[i][1] && pyh < enemies[i][1] + e1h && px > enemies[i][0] && px < enemies[i][0] + e1w){
+		if (pyh >= enemies[i][1] && pyh <= enemies[i][1] + e1h && px >= enemies[i][0] && px <= enemies[i][0] + e1w){
 			checkLives();
 		}
-		if (pyh > enemies[i][1] && pyh < enemies[i][1] + e1h && pxw < enemies[i][0] + e1w && pxw > enemies[i][0]){
+		if (pyh >= enemies[i][1] && pyh <= enemies[i][1] + e1h && pxw <= enemies[i][0] + e1w && pxw >= enemies[i][0]){
 			checkLives();
 		}
 	}
@@ -209,7 +209,6 @@ function scoreTotal(){
 		ctx.fillText('Click to Play', w/2 -56, h/2 + 30);
 		ctx.fillText('Use ASWD to move', w/2-100, h/2 + 60);
 		ctx.fillText('Use the j key to shoot', w/2-100, h/2+90);
-
 	}
 }
 
@@ -263,7 +262,7 @@ function keyUp(e) {
 
 function continueButton(e){
 	var cursorPos = getCursorPos(e);
-	if (cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50){
+	if ((cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50) || e.keyCode == 13){
 		alive = true;
 		lives = 3;
 		reset();
