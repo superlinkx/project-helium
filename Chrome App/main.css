@@ -7,9 +7,9 @@ margin: 0px;
 padding: 5px 0px 5px 0px;
 }
 
-/*a
+a
 {
-float: left;
+/*float: left;
 display: block;
 width: 175px;
 text-align: center;
@@ -21,8 +21,10 @@ background-color: #7e3f3f;
 text-decoration: none;
 color: #e1e1e1;
 margin-right: 10px;
-font-family: 'VT323', sans-serif;
-}*/
+font-family: 'VT323', sans-serif;*/
+text-decoration: none;
+color: black;
+}
 
 /*a:hover
 {
