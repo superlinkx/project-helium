@@ -15,7 +15,7 @@ var	FPS = 30,
 	bgx = 0,
 	bg1y = -480,
 	bg2y = -1440,
-	px = (w/2)-30,
+	px = (w/2)-15,
 	py = (h-30),
 	e1x = 25,
 	e1y = -45,
@@ -174,7 +174,7 @@ function checkLives(){
 
 function reset(){
 	var enemy_reset_x = 25;
-	px = (w/2) - 30, py = h - 30, pw = 30, ph = 30;
+	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
 	for (var i = 0; i < enemies.length; i++){
 		enemies[i][0] = enemy_reset_x;
 		enemies[i][1] = -45;
