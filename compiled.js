@@ -1,3 +1,9 @@
+/*
+ Copyright 2011
+ Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>.
+ All rights reserved.
+ Do not distribute without permission.
+*/
 if(!b)var b="";var FPS=30,w=240,h=480,pw=30,ph=30,e1w=30,e1h=30;bgx=y=x=0;bg1y=-480;bg2y=-1440;px=w/2-15;py=h-30;e1x=25;e1y=-45;bg1=new Image;bg1.src=b+"images/background.png";var bg2=new Image;bg2.src=b+"images/background.png";var pSprite=new Image;pSprite.src=b+"images/psprite.png";
 for(var upKey=!1,downKey=!1,rightKey=!1,leftKey=!1,enemy1Total=3,enemies=[],enemy1Speed=3,lasersTotal=9,lasers=[],score=0,alive=!0,lives=3,gameStarted=!1,canvas=null,body=null,ctx=null,i=0;i<enemy1Total;i++)enemies.push([e1x,e1y,e1w,e1h,enemy1Speed]),e1x+=e1w+50;function backgroundDraw(){ctx.drawImage(bg1,bgx,bg1y);ctx.drawImage(bg2,bgx,bg2y);bg1y+=2;bg2y+=2;bg1y==480&&(bg1y=-1440);bg2y==480&&(bg2y=-1440)}
 function playerDraw(){rightKey?px+=5:leftKey&&(px-=5);upKey?py-=5:downKey&&(py+=5);playerBounds();ctx.drawImage(pSprite,px,py)}function playerBounds(){px>w-31&&(px=w-30);px<1&&(px=0);py>h-31&&(py=h-30);py<1&&(py=0)}function drawEnemy1(){for(var a=0;a<enemies.length;a++)ctx.fillStyle="#f00",ctx.fillRect(enemies[a][0],enemies[a][1],e1w,e1h)}function moveEnemy1(){for(var a=0;a<enemies.length;a++)enemies[a][1]<h?enemies[a][1]+=enemies[a][4]:enemies[a][1]>h-1&&(enemies[a][1]=-45)}

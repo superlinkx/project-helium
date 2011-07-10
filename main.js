@@ -1,3 +1,12 @@
+/**
+* @preserve Copyright 2011
+* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>.
+* All rights reserved.
+* Do not distribute without permission.
+*/
+
+
+
 //Root directory var
 if(!b) var b = "";
 // target frames per second
