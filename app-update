@@ -1,0 +1,2 @@
+#!/bin/bash
+cp -r index.html scripts/cvars.js scripts/cengine.js scripts/cgame.js main.css images/ Chrome\ App/
