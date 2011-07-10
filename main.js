@@ -179,6 +179,7 @@ function reset(){
 		enemies[i][0] = enemy_reset_x;
 		enemies[i][1] = -45;
 		enemy_reset_x = enemy_reset_x + e1w + 50;
+		score = 0;
 	}
 }
 
