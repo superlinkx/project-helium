@@ -28,6 +28,7 @@ function gameLoop(){
 		drawLaser();
 		hitTest();
 		shipCollision();
+                lvlchecker();
 	}	
 	scoreTotal();
 	game = setTimeout(gameLoop, 1000 / FPS);

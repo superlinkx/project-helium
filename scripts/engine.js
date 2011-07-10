@@ -85,7 +85,7 @@ function hitTest(){
 			if (lasers[i][1] <= (enemies[j][1] + enemies[j][3]) && lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + enemies[j][2])){
 				remove = true;
 				enemies.splice(j,1);
-				score += 10;
+				score += (10*scoreMult);
 				enemies.push([(Math.random() * 200) + 25, -45, e1w, e1h, enemy1Speed]);
 			}
 		}
@@ -143,6 +143,8 @@ function scoreTotal(){
 	ctx.fillText(score, 70, 55);
 	ctx.fillText('Lives:', 10, 30);
 	ctx.fillText(lives, 68, 30);
+        ctx.fillText('Level:', (w-80), 30);
+	ctx.fillText(lvl, (w-20), 30);
 	if (!alive){
 		lives = 0;
 		ctx.fillText('Game Over!', (w/2)-55, h/2);

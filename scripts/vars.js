@@ -47,15 +47,17 @@ var	upKey = false,
 	lasers = [],
 //scoring
 	score = 0,
+        scoreMult = 1,
 	alive = true,
 	lives = 3,
 	gameStarted = false,
+        lvl = 1,
 //canvas element vars
 	canvas = null,
 	body = null,
 	ctx = null;
 //enemy init
 for (var i = 0; i < enemy1Total; i++) {
-	enemies.push([e1x, e1y, e1w, e1h, enemy1Speed]);
-	e1x += e1w + 50;
+    enemies.push([(Math.random() * 200) + 25, e1y, e1w, e1h, enemy1Speed]);
+    e1x += e1w + 50;
 }
