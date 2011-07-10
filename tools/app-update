@@ -1,2 +1,0 @@
-#!/bin/bash
-cp -r index.html compiled.js main.css images/ Chrome\ App/
