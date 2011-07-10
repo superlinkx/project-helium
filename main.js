@@ -179,7 +179,6 @@ function reset(){
 		enemies[i][0] = enemy_reset_x;
 		enemies[i][1] = -45;
 		enemy_reset_x = enemy_reset_x + e1w + 50;
-		score = 0;
 	}
 }
 
@@ -198,6 +197,7 @@ function scoreTotal(){
 		ctx.fillStyle = '#000';
 		ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
 		canvas.addEventListener('click',continueButton,false);
+		score = 0;
 	}
 	if (!gameStarted){
 		ctx.fillStyle = '#fff';
