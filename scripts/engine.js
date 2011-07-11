@@ -51,7 +51,7 @@ function drawEnemy1(){
 
 function moveEnemy1(){
 	for (var i = 0; i < enemies.length; i++) {
-		enemies[i][0] += e1xa*Math.sin(e1xf*(Math.PI/enemies[i][0]));
+		enemies[i][0] = e1xa*Math.sin((e1xf*enemies[i][0]))+enemies[i][5];
 		if (enemies[i][1] < h) {
 			enemies[i][1] += enemies[i][4];
 		} else if (enemies[i][1] > h - 1) {
@@ -62,9 +62,9 @@ function moveEnemy1(){
 
 function drawLaser(){
 	if (lasers.length){
-		for (var i=0; i< lasers.length; i++){
+		for (var i=0; i < lasers.length; i++){
 			ctx.fillStyle = '#f00';
-			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3],lasers[i][4],lasers[i][5],lasers[i][6],lasers[i][7],lasers[i][8],lasers[i][9],lasers[i][10])
+			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3])
 		}
 	}
 }
@@ -87,7 +87,8 @@ function hitTest(){
 				remove = true;
 				enemies.splice(j,1);
 				score += (10*scoreMult);
-				enemies.push([(Math.random() * 200) + 25, -45, e1w, e1h, enemy1Speed]);
+				enemies.push([(Math.random() * 200) + 25, -45, e1w, e1h, enemy1Speed, enemyInitX]);
+				enemies[j][5] = enemies[j][0];
 			}
 		}
 		if (remove == true){
@@ -126,12 +127,13 @@ function checkLives(){
 }
 
 function reset(){
-	var enemy_reset_x = 25;
+	var enemy_reset_x = (Math.random() * 200) + 25;
 	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
 	for (var i = 0; i < enemies.length; i++){
 		enemies[i][0] = enemy_reset_x;
 		enemies[i][1] = -45;
-		enemy_reset_x = enemy_reset_x + e1w + 50;
+		enemies[i][5] = enemy_reset_x;
+		enemy_reset_x = (Math.random() * 200) + 25;
 	}
 }
 

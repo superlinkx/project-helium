@@ -42,8 +42,9 @@ var	upKey = false,
 	enemy1Total = 3,
 	enemies = [],
 	enemy1Speed = 3,
-	e1xa = 500,	//amplitude
-	e1xf = .01,	//frequency
+	e1xa = 20,		//amplitude
+	e1xf = (2*Math.PI)/480	//frequency
+	enemyInitX = 10 	//initial x position
 //lasers
 	lasersTotal = 9,
 	lasers = [],
@@ -60,6 +61,9 @@ var	upKey = false,
 	ctx = null;
 //enemy init
 for (var i = 0; i < enemy1Total; i++) {
-    enemies.push([(Math.random() * 200) + 25, e1y, e1w, e1h, enemy1Speed]);
-    e1x += e1w + 50;
+    e1x = (Math.random() * 200) + 25;
+    enemies.push([e1x, e1y, e1w, e1h, enemy1Speed, enemyInitX]);
+}
+for (var i = 0; i < enemy1Total; i++) {
+    enemies[i][5] = enemies[i][0]
 }
