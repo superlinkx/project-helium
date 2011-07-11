@@ -42,6 +42,8 @@ var	upKey = false,
 	enemy1Total = 3,
 	enemies = [],
 	enemy1Speed = 3,
+	e1xa = 500,	//amplitude
+	e1xf = .01,	//frequency
 //lasers
 	lasersTotal = 9,
 	lasers = [],

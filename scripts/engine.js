@@ -51,11 +51,12 @@ function drawEnemy1(){
 
 function moveEnemy1(){
 	for (var i = 0; i < enemies.length; i++) {
-    	if (enemies[i][1] < h) {
-      		enemies[i][1] += enemies[i][4];
-    	} else if (enemies[i][1] > h - 1) {
-      		enemies[i][1] = -45;
-    	}
+		enemies[i][0] += e1xa*Math.sin(e1xf*(Math.PI/enemies[i][0]));
+		if (enemies[i][1] < h) {
+			enemies[i][1] += enemies[i][4];
+		} else if (enemies[i][1] > h - 1) {
+			enemies[i][1] = -45;
+		}
   	}
 }
 
