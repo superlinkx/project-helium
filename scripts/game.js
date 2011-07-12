@@ -39,7 +39,7 @@ function keyDown(e) {
 	else if (e.keyCode == 65) leftKey = true;
 	if (e.keyCode == 87) upKey = true;
 	else if (e.keyCode == 83) downKey = true;
-	if (e.keyCode == 74 && lasers.length <= lasersTotal) lasers.push([px + 15, py - 30, 4, 20]);
+	if (e.keyCode == 74) lasers.push([px + 15, py - 30, 4, 20]);
 }
 
 function keyUp(e) {

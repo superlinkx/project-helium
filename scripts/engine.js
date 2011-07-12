@@ -89,7 +89,6 @@ function hitTest(){
 				enemies.splice(j,1);
 				score += (10*scoreMult);
 				enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
-				enemies[j][5] = enemies[j][0];
 			}
 		}
 		if (remove == true){
@@ -132,9 +131,8 @@ function reset(){
 	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
 	for (var i = 0; i < enemies.length; i++){
 		enemies[i][0] = enemy_reset_x;
+                enemies[i][5] = enemy_reset_x;
 		enemies[i][1] = -45;
-		enemies[i][5] = enemy_reset_x;
-		enemy_reset_x = (Math.random() * 200) + 25;
 	}
 }
 

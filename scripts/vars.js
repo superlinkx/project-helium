@@ -43,9 +43,8 @@ var	upKey = false,
 	enemies = [],
 	enemy1Speed = 3,
 	e1xa = 50,		//amplitude
-	e1xf = (2*Math.PI)/240	//frequency
+	e1xf = (2*Math.PI)/240,	//frequency
 //lasers
-	lasersTotal = 9,
 	lasers = [],
 //scoring
 	score = 0,
