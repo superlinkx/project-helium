@@ -51,7 +51,7 @@ function drawEnemy1(){
 
 function moveEnemy1(){
 	for (var i = 0; i < enemies.length; i++) {
-		enemies[i][0] = e1xa*Math.sin((e1xf*enemies[i][0]))+enemies[i][5];
+		enemies[i][0] = e1xa*Math.sin((e1xf*enemies[i][1]))+enemies[i][5];
 		if (enemies[i][1] < h) {
 			enemies[i][1] += enemies[i][4];
 		} else if (enemies[i][1] > h - 1) {
@@ -84,10 +84,11 @@ function hitTest(){
 	for (var i = 0; i < lasers.length; i++){
 		for(var j = 0; j < enemies.length; j++){
 			if (lasers[i][1] <= (enemies[j][1] + enemies[j][3]) && lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + enemies[j][2])){
-				remove = true;
+				e1x = (Math.random() * 200) + 25;
+                                remove = true;
 				enemies.splice(j,1);
 				score += (10*scoreMult);
-				enemies.push([(Math.random() * 200) + 25, -45, e1w, e1h, enemy1Speed, enemyInitX]);
+				enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
 				enemies[j][5] = enemies[j][0];
 			}
 		}

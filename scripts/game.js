@@ -55,6 +55,7 @@ function continueButton(e){
 		alive = true;
 		lives = 3;
 		score = 0;
+                speed = 3;
 		reset();
 		canvas.removeEventListener('click',continueButton,false);
 	}
