@@ -1,2 +1,6 @@
 #!/bin/bash
-java -jar compiler.jar --js vars.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file cvars.js && java -jar compiler.jar --js engine.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file cengine.js && java -jar compiler.jar --js game.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file cgame.js && java -jar compiler.jar --js levels.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file clevels.js
+java -jar compiler.jar --js vars.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file cvars.js;
+java -jar compiler.jar --js engine.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file cengine.js;
+java -jar compiler.jar --js game.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file cgame.js;
+java -jar compiler.jar --js levels.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file clevels.js
+java -jar compiler.jar --js levels.js --compilation_level SIMPLE_OPTIMIZATIONS  --js_output_file plevels.js;
