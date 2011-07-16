@@ -87,7 +87,7 @@ function hitTest(){
 				e1x = (Math.random() * 200) + 25;
                                 remove = true;
 				enemies.splice(j,1);
-				score += (10*scoreMult);
+				sc0re += (10*scoreMult);
 				enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
 			}
 		}
@@ -142,7 +142,7 @@ function scoreTotal(){
 	ctx.fillRect(0,0,w,60)
 	ctx.fillStyle = '#f00';
 	ctx.fillText('Score: ', 10, 55);
-	ctx.fillText(score, 70, 55);
+	ctx.fillText(sc0re, 70, 55);
 	ctx.fillText('Lives:', 10, 30);
 	ctx.fillText(lives, 68, 30);
         ctx.fillText('Level:', (w-80), 30);

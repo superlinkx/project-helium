@@ -47,7 +47,7 @@ var	upKey = false,
 //lasers
 	lasers = [],
 //scoring
-	score = 0,
+	sc0re = 0,
         scoreMult = 1,
 	alive = true,
 	lives = 3,

@@ -54,7 +54,7 @@ function continueButton(e){
 	if ((cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50) || e.keyCode == 13){
 		alive = true;
 		lives = 3;
-		score = 0;
+		sc0re = 0;
                 speed = 3;
 		reset();
 		canvas.removeEventListener('click',continueButton,false);
