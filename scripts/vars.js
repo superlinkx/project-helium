@@ -46,6 +46,9 @@ var	upKey = false,
 	e1xf = (2*Math.PI)/240,	//frequency
 //lasers
 	lasers = [],
+        laserKey = false,
+        laserTime = 0,
+        laserWidth = 4,
 //scoring
 	sc0re = 0,
         scoreMult = 1,
