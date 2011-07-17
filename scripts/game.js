@@ -18,16 +18,16 @@ function init(){
 }
 
 function gameLoop(){
-	canvas.width = canvas.width;
+	ctx.clearRect(0,0,w,h)
 	backgroundDraw();
 	if (alive && gameStarted && lives > 0){
 		moveEnemy1();
 		moveLaser();
 		drawEnemy1();
-		playerDraw();
-		drawLaser();
                 laserFire();
-		hitTest();
+                drawLaser();
+		playerDraw();
+                hitTest();
 		shipCollision();
                 lvlchecker();
 	}	

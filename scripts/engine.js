@@ -104,18 +104,11 @@ function shipCollision(){
 	var pxw = px + pw,
 	    pyh = py + ph;
 	for (var i = 0; i < enemies.length; i++){
-		if (px >= enemies[i][0] && px <= enemies[i][0] + e1w && py <= enemies[i][1] + e1h){
-			checkLives();
-		}
-		if (pxw <= enemies[i][0] + e1w && pxw >= enemies[i][0] && py >= enemies[i][1] && py <= enemies[i][1] + e1h){
-			checkLives();
-		}
-		if (pyh >= enemies[i][1] && pyh <= enemies[i][1] + e1h && px >= enemies[i][0] && px <= enemies[i][0] + e1w){
-			checkLives();
-		}
-		if (pyh >= enemies[i][1] && pyh <= enemies[i][1] + e1h && pxw <= enemies[i][0] + e1w && pxw >= enemies[i][0]){
-			checkLives();
-		}
+	    if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
+                if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
+                    checkLives();
+                }
+            }
 	}
 }
 
@@ -130,6 +123,8 @@ function checkLives(){
 
 function reset(){
 	var enemy_reset_x = 0;
+        laserFireTracker = 0;
+        laserCount = 5;
 	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
 	for (var i = 0; i < enemies.length; i++){
             enemy_reset_x = (Math.random() * 200) + 25;
@@ -150,6 +145,8 @@ function scoreTotal(){
 	ctx.fillText(lives, 68, 30);
         ctx.fillText('Level:', (w-80), 30);
 	ctx.fillText(lvl, (w-20), 30);
+        ctx.fillText('Shots:', (w-80), 55);
+        ctx.fillText(laserCount, (w-20), 55);
 	if (!alive){
 		lives = 0;
 		ctx.fillText('Game Over!', (w/2)-55, h/2);
@@ -221,11 +218,16 @@ function cursorPosition(x,y){
 }
 
 function laserFire(){
-    if(laserKey == true && laserTime >= 5){
-        lasers.push([px + 15, py - 30, laserWidth, 20]);
+    if(laserKey == true && laserTime >= 5 && laserCount > 0){
+        lasers.push([px + (pw/2 - laserWidth/2), py, laserWidth, 20]);
         laserTime = 0;
+        laserCount--;
     }
     laserTime += 1;
+    if(laserCount < laserLimit && !(laserFireTracker++ % 50)){
+        laserCount++;
+    }
+    
 }
 
 function gameStart(){
