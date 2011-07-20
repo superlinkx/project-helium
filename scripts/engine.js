@@ -163,7 +163,7 @@ function scoreTotal(){
 		ctx.fillText('Project Helium', w/2 - 110, h/2);
 		ctx.font = 'bold 20px Arial';
 		ctx.fillText('Click to Play', w/2 -56, h/2 + 30);
-		ctx.fillText('Use ASWD to move', w/2-100, h/2 + 60);
+		ctx.fillText('Use WASD to move', w/2-100, h/2 + 60);
 		ctx.fillText('Use the j key to shoot', w/2-100, h/2+90);
 	}
 }
