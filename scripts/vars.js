@@ -19,20 +19,14 @@ var	FPS = 30,
 //x-y variables
 	x = 0,
 	y = 0,
-	bgx = 0,
-	bg1y = -480,
-	bg2y = -1440,
-	px = (w/2)-15,
-	py = (h-30),
+	bgpos = 0,
+	px = (w/2)-(pw/2),
+	py = (h-ph),
 	e1x = 25,
 	e1y = -45,
 //images and sprites
-	bg1 = new Image();
-	bg1.src = b+"images/background.png";
-var	bg2 = new Image();
-	bg2.src = b+"images/background.png";
-var	pSprite = new Image();
-	pSprite.src = b+"images/psprite.png";
+	pSprite = new Image();
+	pSprite.src = b+"images/heliumclass1.png";
 //keys
 var	upKey = false,
 	downKey = false,
