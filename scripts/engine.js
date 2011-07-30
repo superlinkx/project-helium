@@ -6,16 +6,19 @@
 */
 
 function backgroundDraw(){
-	ctx.drawImage(bg1, bgx, bg1y);
-	ctx.drawImage(bg2, bgx, bg2y);
-	bg1y += 2;
-	bg2y += 2;
-	if (bg1y == 480){
-		bg1y = -1440;
-	}
-	if (bg2y == 480){
-		bg2y = -1440;
-	}
+    if(bgpos==50){
+        bgpos = 0;
+    }
+    ctx.fillStyle = 'rgb(0,0,0)';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = 'rgb(0,255,0)';
+    for(i=50;i<=w;i+=50){
+        ctx.fillRect(i,0,1,h);
+    }
+    for(i=bgpos-50;i<=h;i+=50){
+        ctx.fillRect(0,i,w,1);
+    }
+    bgpos+=1;
 }
 
 function playerDraw(){
