@@ -10,7 +10,6 @@ function init(){
 	ctx = canvas.getContext('2d');
 	canvas.width = w;
 	canvas.height = h;
-	ctx.drawImage(bg1, 0, 0);
 	document.addEventListener('keydown', keyDown, false);
 	document.addEventListener('keyup', keyUp, false);
 	document.addEventListener('click', gameStart, false);
