@@ -49,6 +49,12 @@ height: 480px;
 margin: 0px auto;
 }
 
+#stats
+{
+    width: 100%;
+    text-align: center;
+}
+
 #sub
 {
 text-align: center;
@@ -64,5 +70,6 @@ font-size: 40px;
 p
 {
 font-family: 'Ubuntu', sans-serif;
+text-align: center;
 }
 
