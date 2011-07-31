@@ -91,6 +91,9 @@ function hitTest(){
 		for(var j = 0; j < enemies.length; j++){
                     if (lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + e1w) || ((lasers[i][0] + laserWidth) >= enemies[j][0] && (lasers[i][0] + laserWidth) <= (enemies[j][0] + e1w))){
 			if (lasers[i][1] >= enemies[j][1] && lasers[i][1] <= (enemies[j][1] + e1h)){
+                            explodeEffect.pause();
+                            explodeEffect.currentTime = 0;
+                            explodeEffect.play();
                             e1x = (Math.random() * 200) + 25;
                             remove = true;
                             enemies.splice(j,1);
@@ -112,6 +115,7 @@ function shipCollision(){
 	for (var i = 0; i < enemies.length; i++){
 	    if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
                 if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
+                    explodeEffect.play();
                     checkLives();
                 }
             }
@@ -225,6 +229,9 @@ function cursorPosition(x,y){
 
 function laserFire(){
     if(laserKey == true && laserTime >= 5 && laserCount > 0){
+        laserEffect.pause();
+        laserEffect.currentTime=0;
+        laserEffect.play();
         lasers.push([px + (pw/2 - laserWidth/2), py, laserWidth, 20]);
         laserTime = 0;
         laserCount--;

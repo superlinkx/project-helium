@@ -24,8 +24,10 @@ var	FPS = 30,
 	py = (h-ph),
 	e1x = 25,
 	e1y = -45,
-//images and sprites
-	pSprite = new Image();
+//sprites and sounds
+        laserEffect = new Audio(b+"sound/laserpulse.wav"),
+        explodeEffect = new Audio(b+"sound/explode.wav");
+	var pSprite = new Image();
 	pSprite.src = b+"images/heliumclass1.png";
 //keys
 var	upKey = false,
