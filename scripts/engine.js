@@ -159,11 +159,36 @@ function scoreTotal(){
         ctx.fillText(laserCount, (w-20), 55);
 	if (!alive){
 		lives = 0;
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                ctx.fillRect(0,0,w,h);
+                ctx.fillStyle = '#f00'
 		ctx.fillText('Game Over!', (w/2)-55, h/2);
+                ctx.fillText('Press Enter to Continue...',(w/2)-110,(h/2)+80);
 		ctx.fillRect((w/2)-53, (h/2)+ 10,100,40);
 		ctx.fillStyle = '#000';
 		ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
+                if(localStorage["topScore"]){
+                    if(parseInt(parseFloat(localStorage["topScore"])) < sc0re){
+                        localStorage["topScore"] = sc0re;
+                    }
+                }else{
+                    localStorage["topScore"] = sc0re;
+                }
+                localStorage["lastScore"] = sc0re;
+                var topScore = document.getElementById('topScore');
+                var lastScore = document.getElementById('lastScore');
+                topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
+                lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
+
 		canvas.addEventListener('click',continueButton,false);
+                if(enterKey){
+                    alive = true;
+                    lives = 3;
+                    sc0re = 0;
+                    speed = 3;
+                    reset();
+                    canvas.removeEventListener('click',continueButton,false);
+                }
 	}
 	if (!gameStarted){
 		ctx.fillStyle = 'rgba(255,255,255,0.7)';
@@ -178,12 +203,31 @@ function scoreTotal(){
 	}
 }
 
+function pauseGame(){
+    if(!gamePaused){
+        window.clearTimeout(game);
+        gamePaused = true;
+        ctx.fillStyle = 'rgba(255,255,255,0.7)'
+        ctx.fillRect(0,0,w,h);
+        ctx.fillStyle = '#f00';
+        ctx.font = 'bold 32px Arial';
+        ctx.fillText('Paused', w/2-56,h/2);
+        ctx.font = 'bold 20px Arial';
+        ctx.fillText('Press Esc to Continue',w/2-105,h/2+30)
+    }else if(gamePaused){
+        game = window.setTimeout(gameLoop, 1000/FPS);
+        gamePaused = false;
+    }
+}
+
 function keyDown(e) {
     if (e.keyCode == 68) rightKey = true;
     else if (e.keyCode == 65) leftKey = true;
     if (e.keyCode == 87) upKey = true;
     else if (e.keyCode == 83) downKey = true;
     if (e.keyCode == 74) laserKey = true;
+    if (e.keyCode == 13) enterKey = true;
+    if (e.keyCode == 27) pauseGame();
 }
 
 function keyUp(e) {
@@ -192,6 +236,7 @@ function keyUp(e) {
     if (e.keyCode == 87) upKey = false;
     else if (e.keyCode == 83) downKey = false;
     if (e.keyCode == 74) laserKey = false;
+    if (e.keyCode == 13) enterKey = false;
 }
 
 function continueButton(e){

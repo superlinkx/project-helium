@@ -30,10 +30,12 @@ var	FPS = 30,
 	var pSprite = new Image();
 	pSprite.src = b+"images/heliumclass1.png";
 //keys
-var	upKey = false,
+    var	upKey = false,
 	downKey = false,
 	rightKey = false,
 	leftKey = false,
+        enterKey = false,
+        gamePaused = false,
 //enemies
 	enemy1Total = 3,
 	enemies = [],

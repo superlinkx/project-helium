@@ -20,7 +20,15 @@ function init(){
         laserEffect.volume=1;
 	document.addEventListener('keydown', keyDown, false);
 	document.addEventListener('keyup', keyUp, false);
-	document.addEventListener('click', gameStart, false);
+	canvas.addEventListener('click', gameStart, false);
+        var topScore = document.getElementById('topScore');
+        var lastScore = document.getElementById('lastScore');
+        if(localStorage["topScore"]){
+            topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
+        }
+        if(localStorage["lastScore"]){
+            lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
+        }
 	gameLoop();
 }
 
@@ -39,7 +47,7 @@ function gameLoop(){
                 lvlchecker();
 	}	
 	scoreTotal();
-	game = setTimeout(gameLoop, 1000 / FPS);
+	game = window.setTimeout(gameLoop, 1000 / FPS);
 }
 
 window.onload = init;
