@@ -115,6 +115,8 @@ function shipCollision(){
 	for (var i = 0; i < enemies.length; i++){
 	    if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
                 if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
+                    explodeEffect.pause();
+                    explodeEffect.currentTime=0;
                     explodeEffect.play();
                     checkLives();
                 }
