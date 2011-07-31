@@ -57,6 +57,7 @@ var	FPS = 30,
 	lives = 3,
 	gameStarted = false,
         lvl = 1,
+        storageCalled = false,
 //canvas element vars
 	canvas = null,
 	body = null,
