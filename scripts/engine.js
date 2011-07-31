@@ -66,8 +66,11 @@ function moveEnemy1(){
 function drawLaser(){
 	if (lasers.length){
 		for (var i=0; i < lasers.length; i++){
-			ctx.fillStyle = '#f00';
-			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3])
+                        var laserGradient = ctx.createLinearGradient(lasers[i][0],lasers[i][1],lasers[i][0],lasers[i][1] + 20);
+			laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
+                        laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
+                        ctx.fillStyle = laserGradient;
+			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3]);
 		}
 	}
 }
