@@ -10,6 +10,14 @@ function init(){
 	ctx = canvas.getContext('2d');
 	canvas.width = w;
 	canvas.height = h;
+        explodeEffect.volume=0;
+        laserEffect.volume=0;
+        explodeEffect.play();
+        explodeEffect.pause();
+        laserEffect.play();
+        laserEffect.pause();
+        explodeEffect.volume=1;
+        laserEffect.volume=1;
 	document.addEventListener('keydown', keyDown, false);
 	document.addEventListener('keyup', keyUp, false);
 	document.addEventListener('click', gameStart, false);
