@@ -134,6 +134,7 @@ function checkLives(){
 }
 
 function reset(){
+        storageCalled = false;
 	var enemy_reset_x = 0;
         laserFireTracker = 0;
         laserCount = 5;
@@ -169,19 +170,7 @@ function scoreTotal(){
 		ctx.fillRect((w/2)-53, (h/2)+ 10,100,40);
 		ctx.fillStyle = '#000';
 		ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
-                if(localStorage["topScore"]){
-                    if(parseInt(parseFloat(localStorage["topScore"])) < sc0re){
-                        localStorage["topScore"] = sc0re;
-                    }
-                }else{
-                    localStorage["topScore"] = sc0re;
-                }
-                localStorage["lastScore"] = sc0re;
-                var topScore = document.getElementById('topScore');
-                var lastScore = document.getElementById('lastScore');
-                topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
-                lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
-
+                if(!storageCalled) updateStorage();
 		canvas.addEventListener('click',continueButton,false);
                 if(enterKey){
                     alive = true;
@@ -293,4 +282,20 @@ function laserFire(){
 function gameStart(){
     gameStarted = true;
     canvas.removeEventListener('click', gameStart, false);
+}
+
+function updateStorage(){
+    if(localStorage["topScore"]){
+        if(parseInt(parseFloat(localStorage["topScore"])) < sc0re){
+            localStorage["topScore"] = sc0re;
+        }
+    }else{
+        localStorage["topScore"] = sc0re;
+    }
+    localStorage["lastScore"] = sc0re;
+    var topScore = document.getElementById('topScore');
+    var lastScore = document.getElementById('lastScore');
+    topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
+    lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
+    storageCalled = true;
 }
