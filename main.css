@@ -1,14 +1,10 @@
 /*Main Stylesheet*/
-
-body
-{
+body{
 background-color: #929292;
 margin: 0px;
 padding: 5px 0px 5px 0px;
 }
-
-a
-{
+a{
 /*float: left;
 display: block;
 width: 175px;
@@ -25,14 +21,12 @@ font-family: 'VT323', sans-serif;*/
 text-decoration: none;
 color: black;
 }
-
 /*a:hover
 {
 color: #c2c2c2;
 }
 */
-#body
-{
+#body{
 border: 2px solid;
 border-radius: 25px;
 -moz-border-radius: 25px;
@@ -41,35 +35,38 @@ width: 800px;
 margin: auto;
 padding: 10px;
 }
-
-#canvas
-{
+#canvas{
 width: 240px;
 height: 480px;
 margin: 0px auto;
 }
-
-#stats
-{
+#stats{
     width: 100%;
     text-align: center;
 }
-
-#sub
-{
+#sub{
 text-align: center;
 }
-
-h1
-{
+h1{
 font-family: 'VT323', sans-serif;
 text-align: center;
 font-size: 40px;
 }
-
-p
-{
+p{
 font-family: 'Ubuntu', sans-serif;
 text-align: center;
 }
-
+#info{
+    display: block;
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+    -webkit-padding-start: 0;
+    padding: 0;
+}
+#info li{
+    display: inline;
+}
+#info li a{
+    color: blue;
+}
