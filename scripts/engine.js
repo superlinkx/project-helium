@@ -98,6 +98,7 @@ function hitTest(){
                             remove = true;
                             enemies.splice(j,1);
 			    sc0re += (10*scoreMult);
+                            laserCount += 1;
 			    enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
 			}
                     }
