@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>json load test</title>
+    </head>
+    <body>
+        <p id="result">
+        </p>
+        <script type="text/javascript">
+            var request = new XMLHttpRequest();
+            request.open('GET', 'level_1.json', false);
+            request.send();
+            console.log(request.responseText);
+        </script>
+    </body>
+</html>
