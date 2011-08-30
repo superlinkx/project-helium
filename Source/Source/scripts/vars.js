@@ -37,8 +37,8 @@ var	FPS = 30,
         gamePaused = false,
 //enemies
 	enemies = [],
-	enemy1Speed,
-	enemy1Total,
+	enemy1Speed = 3,
+	enemy1Total = 3,
 	e1xa = 50,		//amplitude
 	e1xf = (2*Math.PI)/240,	//frequency
 //lasers
