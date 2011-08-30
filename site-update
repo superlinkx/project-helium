@@ -1,3 +1,0 @@
-#!/bin/bash
-cp -r index.html main.css images/ sound/ /var/www/projects/helium/;
-cp -r scripts/c*.js scripts/jquery.min.js /var/www/projects/helium/scripts/
