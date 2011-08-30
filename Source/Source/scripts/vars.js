@@ -4,7 +4,6 @@
 * All rights reserved.
 * Do not distribute without permission.
 */
-
 //Root directory var
 if(!b) var b = "";
 // target frames per second
@@ -37,9 +36,9 @@ var	FPS = 30,
         enterKey = false,
         gamePaused = false,
 //enemies
-	enemy1Total = 3,
 	enemies = [],
-	enemy1Speed = 3,
+	enemy1Speed,
+	enemy1Total,
 	e1xa = 50,		//amplitude
 	e1xf = (2*Math.PI)/240,	//frequency
 //lasers
@@ -47,12 +46,12 @@ var	FPS = 30,
         laserKey = false,
         laserTime = 0,
         laserWidth = 4,
-        laserCount = 8,
-        laserLimit = 8,
+        laserCount = 4,
+        laserLimit = 4,
         laserFireTracker = 0,
 //scoring
 	sc0re = 0,
-        scoreMult = 1,
+	sc0reMult = 1,
 	alive = true,
 	lives = 3,
 	gameStarted = false,
@@ -62,8 +61,3 @@ var	FPS = 30,
 	canvas = null,
 	body = null,
 	ctx = null;
-//enemy init
-for (var i = 0; i < enemy1Total; i++) {
-    e1x = (Math.random() * 200) + 25;
-    enemies.push([e1x, e1y, e1w, e1h, enemy1Speed, e1x]);
-}
