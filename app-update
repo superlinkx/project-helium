@@ -1,5 +1,0 @@
-#!/bin/bash
-cp -r index.html main.css images/ sound/ Free\ App/;
-cp -r scripts/c*.js scripts/jquery.min.js Free\ App/scripts;
-rm Free\ App.zip;
-zip -r Free\ App.zip Free\ App/;
