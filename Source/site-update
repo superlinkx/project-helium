@@ -1,0 +1,3 @@
+#!/bin/bash
+cp -r Source/index.html Source/main.css Source/images/ Source/sound/ /var/www/projects/helium/;
+cp -r ../Compiled/scripts/c*.js /var/www/projects/helium/scripts/
