@@ -1,0 +1,7 @@
+#!/bin/bash
+cd Source/scripts;
+./game-compiler;
+cd ../..;
+./app-update;
+./site-update;
+hg commit
