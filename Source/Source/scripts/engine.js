@@ -4,7 +4,8 @@
 * All rights reserved.
 * Do not distribute without permission.
 */
-
+var level = new Level();
+//Begin Background
 function backgroundDraw(){
     if(bgpos==50){
         bgpos = 0;
@@ -20,7 +21,8 @@ function backgroundDraw(){
     }
     bgpos+=1;
 }
-
+//End Background
+//Begin Player
 function playerDraw(){
 	if (rightKey) px += 5;
 	else if (leftKey) px -= 5;
@@ -44,7 +46,22 @@ function playerBounds(){
 		py = 0;
 	}
 }
-
+function shipCollision(){
+	var pxw = px + pw,
+	    pyh = py + ph;
+	for (var i = 0; i < enemies.length; i++){
+	    if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
+                if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
+                    explodeEffect.pause();
+                    explodeEffect.currentTime=0;
+                    explodeEffect.play();
+                    checkLives();
+                }
+            }
+	}
+}
+//End Player
+//Begin Enemy
 function drawEnemy1(){
 	for (var i = 0; i < enemies.length; i++) {
     	ctx.fillStyle = '#f00';
@@ -62,29 +79,6 @@ function moveEnemy1(){
 		}
   	}
 }
-
-function drawLaser(){
-	if (lasers.length){
-		for (var i=0; i < lasers.length; i++){
-                        var laserGradient = ctx.createLinearGradient(lasers[i][0],lasers[i][1],lasers[i][0],lasers[i][1] + 20);
-			laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
-                        laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
-                        ctx.fillStyle = laserGradient;
-			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3]);
-		}
-	}
-}
-
-function moveLaser(){
-	for(var i = 0; i < lasers.length; i++){
-		if (lasers[i][1] > -11){
-			lasers[i][1] -= 10;
-		} else if (lasers[i][1] < -10){
-			lasers.splice(i,1);
-		}
-	}
-}
-
 function hitTest(){
 	var remove = false;
 	for (var i = 0; i < lasers.length; i++){
@@ -97,7 +91,7 @@ function hitTest(){
                             e1x = (Math.random() * 200) + 25;
                             remove = true;
                             enemies.splice(j,1);
-			    sc0re += (10*scoreMult);
+			    sc0re += (10*sc0reMult);
                             laserCount += 1;
 			    enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
 			}
@@ -109,46 +103,80 @@ function hitTest(){
 		}
 	}
 }
-
-function shipCollision(){
-	var pxw = px + pw,
-	    pyh = py + ph;
-	for (var i = 0; i < enemies.length; i++){
-	    if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
-                if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
-                    explodeEffect.pause();
-                    explodeEffect.currentTime=0;
-                    explodeEffect.play();
-                    checkLives();
-                }
-            }
+//End Enemy
+//Begin Laser
+function drawLaser(){
+	if (lasers.length){
+		for (var i=0; i < lasers.length; i++){
+                        var laserGradient = ctx.createLinearGradient(lasers[i][0],lasers[i][1],lasers[i][0],lasers[i][1] + 20);
+			laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
+                        laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
+                        ctx.fillStyle = laserGradient;
+			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3]);
+		}
 	}
 }
-
-function checkLives(){
-	lives -= 1;
-	if (lives > 0){
-		reset();
-	} else if (lives == 0){
-		alive = false;
-	}
+function laserFire(){
+    if(laserKey == true && laserTime >= 5 && laserCount > 0){
+        laserEffect.pause();
+        laserEffect.currentTime=0;
+        laserEffect.play();
+        lasers.push([px + (pw/2 - laserWidth/2), py, laserWidth, 20]);
+        laserTime = 0;
+        laserCount--;
+    }
+    laserTime += 1;
+    if(laserCount < laserLimit && !(laserFireTracker++ % 50)){
+        laserCount++;
+    }
+    
 }
-
-function reset(){
-        storageCalled = false;
-	var enemy_reset_x = 0;
-        laserFireTracker = 0;
-        laserCount = 5;
-	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
-	for (var i = 0; i < enemies.length; i++){
-            enemy_reset_x = (Math.random() * 200) + 25;
-	    enemies[i][0] = enemy_reset_x;
-            enemies[i][5] = enemy_reset_x;
-	    enemies[i][1] = -45;
+function moveLaser(){
+    for(var i = 0; i < lasers.length; i++){
+	if (lasers[i][1] > -11){
+	    lasers[i][1] -= 10;
+	} else if (lasers[i][1] < -10){
+	    lasers.splice(i,1);
 	}
+    }
 }
-
-function scoreTotal(){
+//End Laser
+//Begin Menu
+function intro(){
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#f00';
+    ctx.font = 'bold 32px Arial';
+    ctx.fillText('Project Helium', w/2 - 110, h/2);
+    ctx.font = 'bold 20px Arial';
+    ctx.fillText('Click to Play', w/2 -56, h/2 + 30);
+    ctx.fillText('Use WASD to move', w/2-100, h/2 + 60);
+    ctx.fillText('Use the j key to shoot', w/2-100, h/2+90);
+}
+function gameOver(){
+    lives = 0;
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#f00'
+    ctx.fillText('Game Over!', (w/2)-55, h/2);
+    ctx.fillText('Press Enter to Continue...',(w/2)-110,(h/2)+80);
+    ctx.fillRect((w/2)-53, (h/2)+ 10,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
+    if(!storageCalled) updateStorage();
+	canvas.addEventListener('click',continueButton,false);
+    if(enterKey){
+        alive = true;
+        lives = 3;
+        sc0re = 0;
+        speed = 3;
+        reset();
+        canvas.removeEventListener('click',continueButton,false);
+    }
+}
+//End Menu
+//Begin Score
+function scoreboard(){
 	ctx.font = 'bold 18px Arial';
 	ctx.fillStyle = 'rgba(255,255,255,0.8)';
 	ctx.fillRect(0,0,w,60)
@@ -161,40 +189,30 @@ function scoreTotal(){
 	ctx.fillText(lvl, (w-20), 30);
         ctx.fillText('Shots:', (w-80), 55);
         ctx.fillText(laserCount, (w-20), 55);
-	if (!alive){
-		lives = 0;
-                ctx.fillStyle = 'rgba(255,255,255,0.7)';
-                ctx.fillRect(0,0,w,h);
-                ctx.fillStyle = '#f00'
-		ctx.fillText('Game Over!', (w/2)-55, h/2);
-                ctx.fillText('Press Enter to Continue...',(w/2)-110,(h/2)+80);
-		ctx.fillRect((w/2)-53, (h/2)+ 10,100,40);
-		ctx.fillStyle = '#000';
-		ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
-                if(!storageCalled) updateStorage();
-		canvas.addEventListener('click',continueButton,false);
-                if(enterKey){
-                    alive = true;
-                    lives = 3;
-                    sc0re = 0;
-                    speed = 3;
-                    reset();
-                    canvas.removeEventListener('click',continueButton,false);
-                }
-	}
-	if (!gameStarted){
-		ctx.fillStyle = 'rgba(255,255,255,0.7)';
-		ctx.fillRect(0,0,w,h);
-		ctx.fillStyle = '#f00';
-		ctx.font = 'bold 32px Arial';
-		ctx.fillText('Project Helium', w/2 - 110, h/2);
-		ctx.font = 'bold 20px Arial';
-		ctx.fillText('Click to Play', w/2 -56, h/2 + 30);
-		ctx.fillText('Use WASD to move', w/2-100, h/2 + 60);
-		ctx.fillText('Use the j key to shoot', w/2-100, h/2+90);
+}
+//End Score
+//Begin Engine
+function checkLives(){
+	lives -= 1;
+	if (lives > 0){
+		reset();
+	} else if (lives == 0){
+		alive = false;
 	}
 }
-
+function reset(){
+        storageCalled = false;
+	var enemy_reset_x = 0;
+        laserFireTracker = 0;
+        laserCount = 4;
+	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
+	for (var i = 0; i < enemies.length; i++){
+            enemy_reset_x = (Math.random() * 200) + 25;
+	    enemies[i][0] = enemy_reset_x;
+            enemies[i][5] = enemy_reset_x;
+	    enemies[i][1] = -45;
+	}
+}
 function pauseGame(){
     if(!gamePaused){
         window.clearTimeout(game);
@@ -211,80 +229,10 @@ function pauseGame(){
         gamePaused = false;
     }
 }
-
-function keyDown(e) {
-    if (e.keyCode == 68) rightKey = true;
-    else if (e.keyCode == 65) leftKey = true;
-    if (e.keyCode == 87) upKey = true;
-    else if (e.keyCode == 83) downKey = true;
-    if (e.keyCode == 74) laserKey = true;
-    if (e.keyCode == 13) enterKey = true;
-    if (e.keyCode == 27) pauseGame();
-}
-
-function keyUp(e) {
-    if (e.keyCode == 68) rightKey = false;
-    else if (e.keyCode == 65) leftKey = false;
-    if (e.keyCode == 87) upKey = false;
-    else if (e.keyCode == 83) downKey = false;
-    if (e.keyCode == 74) laserKey = false;
-    if (e.keyCode == 13) enterKey = false;
-}
-
-function continueButton(e){
-    var cursorPos = getCursorPos(e);
-    if ((cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50) || e.keyCode == 13){
-	alive = true;
-	lives = 3;
-        sc0re = 0;
-        speed = 3;
-	reset();
-	canvas.removeEventListener('click',continueButton,false);
-    }
-}
-
-function getCursorPos(e){
-    var x;
-    var y;
-    if (e.pageX || e.pageY){
-	x = e.pageX;
-	y = e.pageY;
-    }else{
-        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-    	y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    }
-    x -= canvas.offsetLeft;
-    y -= canvas.offsetTop;
-    var cursorPos = new cursorPosition(x,y);
-    return cursorPos;
-}
-
-function cursorPosition(x,y){
-    this.x = x;
-    this.y = y;
-}
-
-function laserFire(){
-    if(laserKey == true && laserTime >= 5 && laserCount > 0){
-        laserEffect.pause();
-        laserEffect.currentTime=0;
-        laserEffect.play();
-        lasers.push([px + (pw/2 - laserWidth/2), py, laserWidth, 20]);
-        laserTime = 0;
-        laserCount--;
-    }
-    laserTime += 1;
-    if(laserCount < laserLimit && !(laserFireTracker++ % 50)){
-        laserCount++;
-    }
-    
-}
-
 function gameStart(){
     gameStarted = true;
     canvas.removeEventListener('click', gameStart, false);
 }
-
 function updateStorage(){
     if(localStorage["topScore"]){
         if(parseInt(parseFloat(localStorage["topScore"])) < sc0re){
@@ -300,3 +248,58 @@ function updateStorage(){
     lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
     storageCalled = true;
 }
+function Level(){
+    this.enemy1Speed;
+    this.enemy1Total;
+    this.sc0reMult;
+}
+//End Engine
+//Begin Controls
+function keyDown(e) {
+    if (e.keyCode == 68) rightKey = true;
+    else if (e.keyCode == 65) leftKey = true;
+    if (e.keyCode == 87) upKey = true;
+    else if (e.keyCode == 83) downKey = true;
+    if (e.keyCode == 74) laserKey = true;
+    if (e.keyCode == 13) enterKey = true;
+    if (e.keyCode == 27) pauseGame();
+}
+function keyUp(e) {
+    if (e.keyCode == 68) rightKey = false;
+    else if (e.keyCode == 65) leftKey = false;
+    if (e.keyCode == 87) upKey = false;
+    else if (e.keyCode == 83) downKey = false;
+    if (e.keyCode == 74) laserKey = false;
+    if (e.keyCode == 13) enterKey = false;
+}
+function continueButton(e){
+    var cursorPos = getCursorPos(e);
+    if ((cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50) || e.keyCode == 13){
+	alive = true;
+	lives = 3;
+        sc0re = 0;
+        speed = 3;
+	reset();
+	canvas.removeEventListener('click',continueButton,false);
+    }
+}
+function getCursorPos(e){
+    var x;
+    var y;
+    if (e.pageX || e.pageY){
+	x = e.pageX;
+	y = e.pageY;
+    }else{
+        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    	y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    x -= canvas.offsetLeft;
+    y -= canvas.offsetTop;
+    var cursorPos = new cursorPosition(x,y);
+    return cursorPos;
+}
+function cursorPosition(x,y){
+    this.x = x;
+    this.y = y;
+}
+//End Controls
