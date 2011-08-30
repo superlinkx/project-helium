@@ -3,4 +3,4 @@ cp -r Source/index.html Source/main.css Source/images/ Source/sound/ ../Chrome/F
 cp -r ../Compiled/scripts/c*.js ../Chrome/Free\ App/scripts;
 rm ../Chrome/Free\ App.zip;
 cd ../Chrome;
-zip Free\ App.zip Free\ App/;
+zip -r Free\ App.zip Free\ App/;
