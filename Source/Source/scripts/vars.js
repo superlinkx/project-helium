@@ -6,12 +6,14 @@
 */
 //Root directory var
 if(!b) var b = "";
+//error and debugging
+var err;
 // target frames per second
-var	FPS = 30,
+var	FPS = 30;
 //height/width constants 
-	w = 240,
-	h = 480,
-	pw = 30,
+var	w = 240;
+var	h = 480;
+var	pw = 30,
 	ph = 30,
 	e1w = 30,
 	e1h = 30;
@@ -39,6 +41,8 @@ var	FPS = 30,
 	enemies = [],
 	enemy1Speed = 3,
 	enemy1Total = 3,
+        path = null,
+        pathSize = null,
 	e1xa = 50,		//amplitude
 	e1xf = (2*Math.PI)/240,	//frequency
 //lasers
@@ -49,6 +53,7 @@ var	FPS = 30,
         laserCount = 4,
         laserLimit = 4,
         laserFireTracker = 0,
+        laserTimeout = 20,
 //scoring
 	sc0re = 0,
 	sc0reMult = 1,

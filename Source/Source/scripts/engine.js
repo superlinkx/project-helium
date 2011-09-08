@@ -24,97 +24,126 @@ function backgroundDraw(){
 //End Background
 //Begin Player
 function playerDraw(){
-	if (rightKey) px += 5;
-	else if (leftKey) px -= 5;
-	if (upKey) py -= 5;
-	else if (downKey) py += 5;
-	playerBounds();
-	ctx.drawImage(pSprite, px, py);
+    if (rightKey) px += 5;
+    else if (leftKey) px -= 5;
+    if (upKey) py -= 5;
+    else if (downKey) py += 5;
+    playerBounds();
+    ctx.drawImage(pSprite, px, py);
 }
 
 function playerBounds(){
-	if (px > (w-31)){
-		px = (w-30);
-	}
-	if (px < 1){
-		px = 0;
-	}
-	if(py > (h-31)){
-		py = (h-30);
-	}
-	if (py < 1){
-		py = 0;
-	}
+    if (px > (w-31)){
+	px = (w-30);
+    }
+    if (px < 1){
+    	px = 0;
+    }
+    if(py > (h-31)){
+	py = (h-30);
+    }
+    if (py < 1){
+	py = 0;
+    }
 }
 function shipCollision(){
-	var pxw = px + pw,
-	    pyh = py + ph;
-	for (var i = 0; i < enemies.length; i++){
-	    if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
-                if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
-                    explodeEffect.pause();
-                    explodeEffect.currentTime=0;
-                    explodeEffect.play();
-                    checkLives();
-                }
+    var pxw = px + pw,
+    pyh = py + ph;
+    for (var i = 0; i < enemies.length; i++){
+        if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
+            if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
+                explodeEffect.pause();
+                explodeEffect.currentTime=0;
+                explodeEffect.play();
+                checkLives();
             }
 	}
+    }
 }
 //End Player
 //Begin Enemy
 function drawEnemy1(){
-	for (var i = 0; i < enemies.length; i++) {
-    	ctx.fillStyle = '#f00';
-    	ctx.fillRect(enemies[i][0], enemies[i][1], e1w, e1h);
-  }
+    for (var i = 0; i < enemies.length; i++) {
+        ctx.fillStyle = '#f00';
+        ctx.fillRect(enemies[i][0], enemies[i][1], e1w, e1h);
+    }
 }
-
+function randomPath(){
+    var random = Math.ceil(Math.random() * 10);
+    return random;
+}
+function currentPath(path){
+    switch(path){
+	case 1: pathSize = (w/10);
+	    break;
+	case 2: pathSize = (w/10)*2;
+	    break;
+	case 3: pathSize = (w/10)*3;
+	    break;
+	case 4: pathSize = (w/10)*4;
+	    break;
+	case 5: pathSize = (w/10)*5;
+	    break;
+	case 6: pathSize = (w/10)*6;
+	    break;
+	case 7: pathSize = (w/10)*7;
+	    break;
+	case 8: pathSize = (w/10)*8;
+	    break;
+	case 9: pathSize = (w/10)*9;
+	    break;
+	case 10: pathSize = (w/10)*10;
+	    break;
+	default: return err;
+    }
+    return pathSize;
+}
 function moveEnemy1(){
-	for (var i = 0; i < enemies.length; i++) {
-		enemies[i][0] = e1xa*Math.sin((e1xf*enemies[i][1]))+enemies[i][5];
-		if (enemies[i][1] < h) {
-			enemies[i][1] += enemies[i][4];
-		} else if (enemies[i][1] > h - 1) {
-			enemies[i][1] = -45;
-		}
-  	}
+    for (var i = 0; i < enemies.length; i++) {
+	enemies[i][0] = e1xa*Math.sin((e1xf*enemies[i][1]))+enemies[i][5];
+	if (enemies[i][1] < h) {
+	    enemies[i][1] += enemies[i][4];
+	} else if (enemies[i][1] > h - 1) {
+	    enemies[i][1] = -45;
+	}
+    }
 }
 function hitTest(){
-	var remove = false;
-	for (var i = 0; i < lasers.length; i++){
-		for(var j = 0; j < enemies.length; j++){
-                    if (lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + e1w) || ((lasers[i][0] + laserWidth) >= enemies[j][0] && (lasers[i][0] + laserWidth) <= (enemies[j][0] + e1w))){
-			if (lasers[i][1] >= enemies[j][1] && lasers[i][1] <= (enemies[j][1] + e1h)){
-                            explodeEffect.pause();
-                            explodeEffect.currentTime = 0;
-                            explodeEffect.play();
-                            e1x = (Math.random() * 200) + 25;
-                            remove = true;
-                            enemies.splice(j,1);
-			    sc0re += (10*sc0reMult);
-                            laserCount += 1;
-			    enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
-			}
-                    }
+    var remove = false;
+    for (var i = 0; i < lasers.length; i++){
+	for(var j = 0; j < enemies.length; j++){
+            if (lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + e1w) || ((lasers[i][0] + laserWidth) >= enemies[j][0] && (lasers[i][0] + laserWidth) <= (enemies[j][0] + e1w))){
+		if (lasers[i][1] >= enemies[j][1] && lasers[i][1] <= (enemies[j][1] + e1h)){
+                    explodeEffect.pause();
+                    explodeEffect.currentTime = 0;
+                    explodeEffect.play();
+                    remove = true;
+                    enemies.splice(j,1);
+		    sc0re += (10*sc0reMult);
+		    path = randomPath();
+		    e1x = currentPath(path);
+		    enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
 		}
-		if (remove == true){
-			lasers.splice(i,1);
-			remove = false;
-		}
+            }
 	}
+	if (remove == true){
+	    lasers.splice(i,1);
+	    remove = false;
+	}
+    }
 }
 //End Enemy
 //Begin Laser
 function drawLaser(){
-	if (lasers.length){
-		for (var i=0; i < lasers.length; i++){
-                        var laserGradient = ctx.createLinearGradient(lasers[i][0],lasers[i][1],lasers[i][0],lasers[i][1] + 20);
-			laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
-                        laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
-                        ctx.fillStyle = laserGradient;
-			ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3]);
-		}
+    if (lasers.length){
+	for (var i=0; i < lasers.length; i++){
+	    var laserGradient = ctx.createLinearGradient(lasers[i][0],lasers[i][1],lasers[i][0],lasers[i][1] + 20);
+	    laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
+            laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
+            ctx.fillStyle = laserGradient;
+	    ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3]);
 	}
+    }
 }
 function laserFire(){
     if(laserKey == true && laserTime >= 5 && laserCount > 0){
@@ -126,7 +155,7 @@ function laserFire(){
         laserCount--;
     }
     laserTime += 1;
-    if(laserCount < laserLimit && !(laserFireTracker++ % 50)){
+    if(laserCount < laserLimit && !(laserFireTracker++ % laserTimeout)){
         laserCount++;
     }
     
@@ -177,41 +206,41 @@ function gameOver(){
 //End Menu
 //Begin Score
 function scoreboard(){
-	ctx.font = 'bold 18px Arial';
-	ctx.fillStyle = 'rgba(255,255,255,0.8)';
-	ctx.fillRect(0,0,w,60)
-	ctx.fillStyle = '#f00';
-	ctx.fillText('Score: ', 10, 55);
-	ctx.fillText(sc0re, 70, 55);
-	ctx.fillText('Lives:', 10, 30);
-	ctx.fillText(lives, 68, 30);
-        ctx.fillText('Level:', (w-80), 30);
-	ctx.fillText(lvl, (w-20), 30);
-        ctx.fillText('Shots:', (w-80), 55);
-        ctx.fillText(laserCount, (w-20), 55);
+    ctx.font = 'bold 18px Arial';
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillRect(0,0,w,60)
+    ctx.fillStyle = '#f00';
+    ctx.fillText('Score: ', 10, 55);
+    ctx.fillText(sc0re, 70, 55);
+    ctx.fillText('Lives:', 10, 30);
+    ctx.fillText(lives, 68, 30);
+    ctx.fillText('Level:', (w-80), 30);
+    ctx.fillText(lvl, (w-20), 30);
+    ctx.fillText('Shots:', (w-80), 55);
+    ctx.fillText(laserCount, (w-20), 55);
 }
 //End Score
 //Begin Engine
 function checkLives(){
-	lives -= 1;
-	if (lives > 0){
-		reset();
-	} else if (lives == 0){
-		alive = false;
-	}
+    lives -= 1;
+    if (lives > 0){
+	reset();
+    } else if (lives == 0){
+	alive = false;
+    }
 }
 function reset(){
-        storageCalled = false;
-	var enemy_reset_x = 0;
-        laserFireTracker = 0;
-        laserCount = 4;
-	px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
-	for (var i = 0; i < enemies.length; i++){
-            enemy_reset_x = (Math.random() * 200) + 25;
-	    enemies[i][0] = enemy_reset_x;
-            enemies[i][5] = enemy_reset_x;
-	    enemies[i][1] = -45;
-	}
+    storageCalled = false;
+    lasers.splice(0,lasers.length);
+    laserFireTracker = 0;
+    laserCount = 4;
+    px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
+    enemies.splice(0,enemies.length);
+    for(i=0;i<enemy1Total;i++){
+	path = randomPath();
+	e1x = currentPath(path);
+	enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
+    }
 }
 function pauseGame(){
     if(!gamePaused){
