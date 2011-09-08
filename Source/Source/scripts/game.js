@@ -107,7 +107,8 @@ function init(){
         }
 	//enemy init
 	for (var i = 0; i < enemy1Total; i++) {
-	    e1x = (Math.random() * 200) + 25;
+	    path = randomPath();
+	    e1x = currentPath(path);
 	    enemies.push([e1x, e1y, e1w, e1h, enemy1Speed, e1x]);
 	}
 	gameLoop();
