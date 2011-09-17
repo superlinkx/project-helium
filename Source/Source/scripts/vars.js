@@ -30,6 +30,8 @@ var	pw = 30,
         explodeEffect = new Audio(b+"sound/explode.wav");
 	var pSprite = new Image();
 	pSprite.src = b+"images/heliumclass1.png";
+        var e1Sprite = new Image();
+        e1Sprite.src = b+"images/enemy1.png"
 //keys
     var	upKey = false,
 	downKey = false,

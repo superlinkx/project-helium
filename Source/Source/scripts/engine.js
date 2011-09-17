@@ -4,7 +4,6 @@
 * All rights reserved.
 * Do not distribute without permission.
 */
-var level = new Level();
 //Begin Background
 function backgroundDraw(){
     if(bgpos==50){
@@ -64,8 +63,7 @@ function shipCollision(){
 //Begin Enemy
 function drawEnemy1(){
     for (var i = 0; i < enemies.length; i++) {
-        ctx.fillStyle = '#f00';
-        ctx.fillRect(enemies[i][0], enemies[i][1], e1w, e1h);
+        ctx.drawImage(e1Sprite,enemies[i][0],enemies[i][1]);
     }
 }
 function randomPath(){
