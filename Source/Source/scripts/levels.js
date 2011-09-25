@@ -5,26 +5,26 @@
 * Do not distribute without permission.
 */
 function lvlchecker(){
-	switch(sc0re){
+	switch(enemyKilled){
 		case 0: lvl = 1;
 			break;
-		case 1000: lvl = 2;
+		case 100: lvl = 2;
 			break;
-		case 2000: lvl = 3;
+		case 200: lvl = 3;
 			break;
-		case 3000: lvl = 4;
+		case 300: lvl = 4;
 			break;
-		case 4000: lvl = 5;
+		case 400: lvl = 5;
 			break;
-		case 5000: lvl = 6;
+		case 500: lvl = 6;
 			break;
-		case 6000: lvl = 7;
+		case 600: lvl = 7;
 			break;
-		case 7000: lvl = 8;
+		case 700: lvl = 8;
 			break;
-		case 8000: lvl = 9;
+		case 800: lvl = 9;
 			break;
-		case 9000: lvl = 10;
+		case 900: lvl = 10;
 			break;
 		default: break;
 	}
