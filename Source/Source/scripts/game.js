@@ -17,8 +17,8 @@ function init(){
         laserEffect.pause();
         explodeEffect.volume=1;
         laserEffect.volume=1;
-	document.addEventListener('keydown', keyDown, false);
-	document.addEventListener('keyup', keyUp, false);
+	canvas.addEventListener('keydown', keyDown, false);
+	canvas.addEventListener('keyup', keyUp, false);
 	canvas.addEventListener('click', gameStart, false);
         var topScore = document.getElementById('topScore');
         var lastScore = document.getElementById('lastScore');

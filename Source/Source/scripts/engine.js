@@ -33,9 +33,9 @@ function backgroundDraw(){
 //Begin Player
 function playerDraw(){
     if (rightKey) px += 5;
-    else if (leftKey) px -= 5;
+    if (leftKey) px -= 5;
     if (upKey) py -= 5;
-    else if (downKey) py += 5;
+    if (downKey) py += 5;
     playerBounds();
     ctx.drawImage(pSprite, px, py);
 }
@@ -207,8 +207,8 @@ function intro(){
     ctx.fillText('Project Helium', w/2 - 150, h/2);
     ctx.font = '36px VT323';
     ctx.fillText('Click to Play', w/2 - 95, h/2 + 50);
-    ctx.fillText('Use WASD to move', w/2 - 115, h/2 + 90);
-    ctx.fillText('Use the j key to shoot', w/2 - 160, h/2+130);
+    ctx.fillText('Use arrow keys to move', w/2 - 160, h/2 + 90);
+    ctx.fillText('Use space to shoot', w/2 - 125, h/2+130);
 }
 function gameOver(){
     lives = 0;
@@ -229,6 +229,13 @@ function gameOver(){
         speed = 3;
         reset();
         canvas.removeEventListener('click',continueButton,false);
+    }
+}
+function fullscreen(){
+    if (document.getElementById("helium").webkitRequestFullScreen){
+        document.getElementById("helium").webkitRequestFullScreen();
+    }else{
+        alert('Browser not supported. You need to install the latest WebKit (for example Chrome 15) in order to use the full-screen API.');
     }
 }
 //End Menu
@@ -309,20 +316,22 @@ function updateStorage(){
 //End Engine
 //Begin Controls
 function keyDown(e) {
-    if (e.keyCode == 68) rightKey = true;
-    else if (e.keyCode == 65) leftKey = true;
-    if (e.keyCode == 87) upKey = true;
-    else if (e.keyCode == 83) downKey = true;
-    if (e.keyCode == 74) laserKey = true;
+    e.preventDefault();
+    if (e.keyCode == 39) rightKey = true;
+    else if (e.keyCode == 37) leftKey = true;
+    if (e.keyCode == 38) upKey = true;
+    else if (e.keyCode == 40) downKey = true;
+    if (e.keyCode == 32) laserKey = true;
     if (e.keyCode == 13) enterKey = true;
     if (e.keyCode == 27) pauseGame();
 }
 function keyUp(e) {
-    if (e.keyCode == 68) rightKey = false;
-    else if (e.keyCode == 65) leftKey = false;
-    if (e.keyCode == 87) upKey = false;
-    else if (e.keyCode == 83) downKey = false;
-    if (e.keyCode == 74) laserKey = false;
+    e.preventDefault();
+    if (e.keyCode == 39) rightKey = false;
+    else if (e.keyCode == 37) leftKey = false;
+    if (e.keyCode == 38) upKey = false;
+    else if (e.keyCode == 40) downKey = false;
+    if (e.keyCode == 32) laserKey = false;
     if (e.keyCode == 13) enterKey = false;
 }
 function continueButton(e){
