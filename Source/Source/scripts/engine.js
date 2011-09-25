@@ -4,6 +4,15 @@
 * All rights reserved.
 * Do not distribute without permission.
 */
+//Begin Level
+function getLevelData(){
+    var request = new XMLHttpRequest();
+    request.open('GET', 'levels.json', false); 
+    request.send(null);
+    if (request.status == 200)
+	eval(request.responseText);
+}
+//End Level
 //Begin Background
 function backgroundDraw(){
     if(bgpos==50){
@@ -67,30 +76,50 @@ function drawEnemy1(){
     }
 }
 function randomPath(){
-    var random = Math.ceil(Math.random() * 10);
+    var random = Math.ceil(Math.random() * 20);
     return random;
 }
 function currentPath(path){
     switch(path){
-	case 1: pathSize = (w/10);
+	case 1: pathSize = (w/20);
 	    break;
-	case 2: pathSize = (w/10)*2;
+	case 2: pathSize = (w/20)*2;
 	    break;
-	case 3: pathSize = (w/10)*3;
+	case 3: pathSize = (w/20)*3;
 	    break;
-	case 4: pathSize = (w/10)*4;
+	case 4: pathSize = (w/20)*4;
 	    break;
-	case 5: pathSize = (w/10)*5;
+	case 5: pathSize = (w/20)*5;
 	    break;
-	case 6: pathSize = (w/10)*6;
+	case 6: pathSize = (w/20)*6;
 	    break;
-	case 7: pathSize = (w/10)*7;
+	case 7: pathSize = (w/20)*7;
 	    break;
-	case 8: pathSize = (w/10)*8;
+	case 8: pathSize = (w/20)*8;
 	    break;
-	case 9: pathSize = (w/10)*9;
+	case 9: pathSize = (w/20)*9;
 	    break;
-	case 10: pathSize = (w/10)*10;
+	case 10: pathSize = (w/20)*10;
+	    break;
+	case 11: pathSize = (w/20)*11;
+	    break;
+	case 12: pathSize = (w/20)*12;
+	    break;
+	case 13: pathSize = (w/20)*13;
+	    break;
+	case 14: pathSize = (w/20)*14;
+	    break;
+	case 15: pathSize = (w/20)*15;
+	    break;
+	case 16: pathSize = (w/20)*16;
+	    break;
+	case 17: pathSize = (w/20)*17;
+	    break;
+	case 18: pathSize = (w/20)*18;
+	    break;
+	case 19: pathSize = (w/20)*19;
+	    break;
+	case 20: pathSize = (w/20)*20;
 	    break;
 	default: return err;
     }
@@ -115,6 +144,7 @@ function hitTest(){
                     explodeEffect.pause();
                     explodeEffect.currentTime = 0;
                     explodeEffect.play();
+		    enemyKilled += 1;
                     remove = true;
                     enemies.splice(j,1);
 		    sc0re += (10*sc0reMult);
@@ -173,23 +203,23 @@ function intro(){
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillRect(0,0,w,h);
     ctx.fillStyle = '#f00';
-    ctx.font = 'bold 32px Arial';
-    ctx.fillText('Project Helium', w/2 - 110, h/2);
-    ctx.font = 'bold 20px Arial';
-    ctx.fillText('Click to Play', w/2 -56, h/2 + 30);
-    ctx.fillText('Use WASD to move', w/2-100, h/2 + 60);
-    ctx.fillText('Use the j key to shoot', w/2-100, h/2+90);
+    ctx.font = '54px VT323';
+    ctx.fillText('Project Helium', w/2 - 150, h/2);
+    ctx.font = '36px VT323';
+    ctx.fillText('Click to Play', w/2 - 95, h/2 + 50);
+    ctx.fillText('Use WASD to move', w/2 - 115, h/2 + 90);
+    ctx.fillText('Use the j key to shoot', w/2 - 160, h/2+130);
 }
 function gameOver(){
     lives = 0;
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillRect(0,0,w,h);
     ctx.fillStyle = '#f00'
-    ctx.fillText('Game Over!', (w/2)-55, h/2);
-    ctx.fillText('Press Enter to Continue...',(w/2)-110,(h/2)+80);
-    ctx.fillRect((w/2)-53, (h/2)+ 10,100,40);
+    ctx.fillText('Game Over!', (w/2)-60, h/2);
+    ctx.fillText('Press Enter to Continue...',(w/2)-130,(h/2)+80);
+    ctx.fillRect((w/2)-65, (h/2)+ 10,120,40);
     ctx.fillStyle = '#000';
-    ctx.fillText('Continue?', (w/2)-48, (h/2)+35);
+    ctx.fillText('Continue?', (w/2)-55, (h/2)+35);
     if(!storageCalled) updateStorage();
 	canvas.addEventListener('click',continueButton,false);
     if(enterKey){
@@ -204,17 +234,17 @@ function gameOver(){
 //End Menu
 //Begin Score
 function scoreboard(){
-    ctx.font = 'bold 18px Arial';
+    ctx.font = '26px VT323';
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
     ctx.fillRect(0,0,w,60)
     ctx.fillStyle = '#f00';
     ctx.fillText('Score: ', 10, 55);
-    ctx.fillText(sc0re, 70, 55);
-    ctx.fillText('Lives:', 10, 30);
-    ctx.fillText(lives, 68, 30);
-    ctx.fillText('Level:', (w-80), 30);
-    ctx.fillText(lvl, (w-20), 30);
-    ctx.fillText('Shots:', (w-80), 55);
+    ctx.fillText(sc0re, 170, 55);
+    ctx.fillText('Lives:', 10, 20);
+    ctx.fillText(lives, 170, 20);
+    ctx.fillText('Level:', (w-170), 20);
+    ctx.fillText(lvl, (w-20), 20);
+    ctx.fillText('Shots:', (w-170), 55);
     ctx.fillText(laserCount, (w-20), 55);
 }
 //End Score
@@ -229,6 +259,7 @@ function checkLives(){
 }
 function reset(){
     storageCalled = false;
+    enemyKilled = 0;
     lasers.splice(0,lasers.length);
     laserFireTracker = 0;
     laserCount = 4;
@@ -247,10 +278,10 @@ function pauseGame(){
         ctx.fillStyle = 'rgba(255,255,255,0.7)'
         ctx.fillRect(0,0,w,h);
         ctx.fillStyle = '#f00';
-        ctx.font = 'bold 32px Arial';
-        ctx.fillText('Paused', w/2-56,h/2);
-        ctx.font = 'bold 20px Arial';
-        ctx.fillText('Press Esc to Continue',w/2-105,h/2+30)
+        ctx.font = '54px VT323';
+        ctx.fillText('Paused', w/2-70,h/2);
+        ctx.font = '36px VT323';
+        ctx.fillText('Press Esc to Continue',w/2-160,h/2+60)
     }else if(gamePaused){
         game = window.setTimeout(gameLoop, 1000/FPS);
         gamePaused = false;
@@ -274,11 +305,6 @@ function updateStorage(){
     topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
     lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
     storageCalled = true;
-}
-function Level(){
-    this.enemy1Speed;
-    this.enemy1Total;
-    this.sc0reMult;
 }
 //End Engine
 //Begin Controls

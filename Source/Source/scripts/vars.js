@@ -11,8 +11,8 @@ var err;
 // target frames per second
 var	FPS = 30;
 //height/width constants 
-var	w = 240;
-var	h = 480;
+var	w = 480;
+var	h = 800;
 var	pw = 30,
 	ph = 30,
 	e1w = 30,
@@ -41,8 +41,9 @@ var	pw = 30,
         gamePaused = false,
 //enemies
 	enemies = [],
+        enemyKilled = 0,
 	enemy1Speed = 3,
-	enemy1Total = 3,
+	enemy1Total = 8,
         path = null,
         pathSize = null,
 	e1xa = 50,		//amplitude

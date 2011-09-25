@@ -1,0 +1,10 @@
+{
+  "name": "DummyApp",
+  "description": "A legendary 2D shooter!",
+  "version": "0",
+  "app": {
+    "launch": {
+      "local_path": "test.html"
+    }
+  }
+}
