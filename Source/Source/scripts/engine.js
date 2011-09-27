@@ -266,7 +266,6 @@ function checkLives(){
 }
 function reset(){
     storageCalled = false;
-    enemyKilled = 0;
     lasers.splice(0,lasers.length);
     laserFireTracker = 0;
     laserCount = 4;
@@ -340,6 +339,7 @@ function continueButton(e){
 	alive = true;
 	lives = 3;
         sc0re = 0;
+	enemyKilled = 0
         speed = 3;
 	reset();
 	canvas.removeEventListener('click',continueButton,false);
