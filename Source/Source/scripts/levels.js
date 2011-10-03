@@ -31,52 +31,62 @@ function lvlchecker(){
 	switch(lvl){
 		case 1:
 			enemy1Speed = 3;
-			enemy1Total = 8;
+                        enemy2Speed = 4;
+			enemyTotal = 8;
 			sc0reMult = 1;
 			break;
 		case 2:
 			enemy1Speed = 4;
-			enemy1Total = 9;
+                        enemy2Speed = 5;
+			enemyTotal = 9;
 			sc0reMult = 1;
 			break;
 		case 3:
 			enemy1Speed = 5;
-			enemy1Total = 10;
+                        enemy2Speed = 6;
+			enemyTotal = 10;
 			sc0reMult = 1;
 			break;
 		case 4:
 			enemy1Speed = 6;
-			enemy1Total = 11;
+                        enemy2Speed = 7;
+			enemyTotal = 11;
 			sc0reMult = 1;
 			break;
 		case 5:
 			enemy1Speed = 7;
-			enemy1Total = 12;
+                        enemy2Speed = 8;
+			enemyTotal = 12;
 			sc0reMult = 1;
 			break;
 		case 6:
 			enemy1Speed = 8;
-			enemy1Total = 13;
+                        enemy2Speed = 9;
+			enemyTotal = 13;
 			sc0reMult = 1;
 			break;
 		case 7:
 			enemy1Speed = 9;
-			enemy1Total = 14;
+                        enemy2Speed = 10;
+			enemyTotal = 14;
 			sc0reMult = 1;
 			break;
 		case 8:
 			enemy1Speed = 10;
-			enemy1Total = 15;
+                        enemy2Speed = 11;
+			enemyTotal = 15;
 			sc0reMult = 1;
 			break;
 		case 9:
 			enemy1Speed = 11;
-			enemy1Total = 16;
+                        enemy2Speed = 12;
+			enemyTotal = 16;
 			sc0reMult = 1;
 			break;
 		case 10:
 			enemy1Speed = 12;
-			enemy1Total = 17;
+                        enemy2Speed = 13;
+			enemyTotal = 17;
 			sc0reMult = 1;
 			break;
 	}

@@ -1,6 +1,6 @@
 /**
 * @preserve Copyright 2011
-* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>.
+* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>, unless otherwise noted.
 * All rights reserved.
 * Do not distribute without permission.
 */
@@ -31,7 +31,9 @@ var	pw = 30,
 	var pSprite = new Image();
 	pSprite.src = b+"images/heliumclass1.png";
         var e1Sprite = new Image();
-        e1Sprite.src = b+"images/enemy1.png"
+        e1Sprite.src = b+"images/enemy1.png";
+        var e2Sprite = new Image();
+        e2Sprite.src = b+"images/enemy2.png";
 //keys
     var	upKey = false,
 	downKey = false,
@@ -41,9 +43,12 @@ var	pw = 30,
         gamePaused = false,
 //enemies
 	enemies = [],
+        enemyLasers = [],
         enemyKilled = 0,
 	enemy1Speed = 3,
-	enemy1Total = 8,
+        enemy2Speed = 4,
+        enemyLaserTime = 0,
+	enemyTotal = 8,
         path = null,
         pathSize = null,
 	e1xa = 50,		//amplitude
