@@ -1,17 +1,10 @@
 /**
 * @preserve Copyright 2011
-* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>.
+* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>, unless otherwise noted.
 * All rights reserved.
 * Do not distribute without permission.
 */
 //Begin Level
-function getLevelData(){
-    var request = new XMLHttpRequest();
-    request.open('GET', 'levels.json', false); 
-    request.send(null);
-    if (request.status == 200)
-	eval(request.responseText);
-}
 //End Level
 //Begin Background
 function backgroundDraw(){
@@ -76,17 +69,87 @@ function shipCollision(){
 }
 //End Player
 //Begin Enemy
-function Enemy(x,y,w,h,speed,initx){
+function Enemy(x,y,w,h,speed,initx,type){
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.speed = speed;
     this.initx = initx;
+    this.type = type;
 }
-function drawEnemy1(){
+function drawEnemy(){
     for (var i = 0; i < enemies.length; i++) {
-        ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
+	switch (enemies[i].type){
+	    case 1: ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
+		    break;
+	    case 2: ctx.drawImage(e2Sprite,enemies[i].x,enemies[i].y);
+		    break;
+	    default: ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
+	}
+    }
+}
+function enemyFire(){
+    for (var i = 0; i < enemies.length; i++) {
+	switch (enemies[i].type){
+	    case 1: break;
+	    case 2:
+		if(enemyLaserTimeout()){
+		    laserEffect.pause();
+		    laserEffect.currentTime=0;
+		    laserEffect.play();
+		    enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, 20));
+		}
+		break;
+	    default: break;
+	}
+    }
+    if(enemyLaserTimeout()){
+	enemyLaserTime = 30;
+    }
+    enemyLaserTime -= 1;    
+}
+function drawEnemyLaser(){
+    if (enemyLasers.length){
+	for (var i=0; i < lasers.length; i++){
+	    var laserGradient = ctx.createLinearGradient(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].x,enemyLasers[i].y + 20);
+	    laserGradient.addColorStop(0,'rgba(255,0,0,0.2)');
+            laserGradient.addColorStop(1,'rgba(255,0,0,0.8)')
+            ctx.fillStyle = laserGradient;
+	    ctx.fillRect(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].w,enemyLasers[i].h);
+	}
+    }
+}
+function moveEnemyLaser(){
+    for(var i = 0; i < enemyLasers.length; i++){
+	enemyLasers[i].y += 10
+	if (enemyLasers[i].y > 810){
+	    enemyLasers.splice(i,1);
+	}
+    }
+}
+function enemyLaserTimeout(){
+    if (enemyLaserTime == 0){
+	return true;
+    }else{
+	return false;
+    }
+}
+function randomType(){
+    var random = Math.ceil(Math.random() * 2);
+    if(random == 0){
+	random = 1;
+    }
+    return random;
+}
+function typeSpeed(type){
+    switch(type){
+	case 1: return enemy1Speed;
+		break;
+	case 2: return enemy2Speed;
+		break;
+	default: return enemy1Speed;
+		break;
     }
 }
 function randomPath(){
@@ -139,13 +202,31 @@ function currentPath(path){
     }
     return pathSize;
 }
-function moveEnemy1(){
+function moveEnemy(){
     for (var i = 0; i < enemies.length; i++) {
-	enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
-	if (enemies[i].y < h) {
-	    enemies[i].y += enemies[i].speed;
-	} else if (enemies[i].y > h - 1) {
-	    enemies[i].y = -45;
+	switch(enemies[i].type){
+	    case 1:
+		enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
+		if (enemies[i].y < h) {
+		    enemies[i].y += enemies[i].speed;
+		} else if (enemies[i].y > h - 1) {
+		    enemies[i].y = -45;
+		}
+		break;
+	    case 2:
+		if (enemies[i].y < h){
+		    enemies[i].y += enemies[i].speed;
+		} else if (enemies[i].y > h - 1){
+		    enemies[i].y = -45;
+		}
+		break;
+	    default:
+	    	enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
+		if (enemies[i].y < h) {
+		    enemies[i].y += enemies[i].speed;
+		} else if (enemies[i].y > h - 1) {
+		    enemies[i].y = -45;
+		}
 	}
     }
 }
@@ -164,7 +245,9 @@ function hitTest(){
 		    sc0re += (10*sc0reMult);
 		    path = randomPath();
 		    e1x = currentPath(path);
-		    enemies.push(new Enemy(e1x, -45, e1w, e1h, enemy1Speed, e1x));
+		    type = randomType();
+		    var speed = typeSpeed(type);
+		    enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
 		}
             }
 	}
@@ -226,7 +309,7 @@ function intro(){
     ctx.font = '54px VT323';
     ctx.fillText('Project Helium', w/2 - 150, h/2);
     ctx.font = '36px VT323';
-    ctx.fillText('Click to Play', w/2 - 95, h/2 + 50);
+    ctx.fillText('Press Enter to Play', w/2 - 135, h/2 + 50);
     ctx.fillText('Use arrow keys to move', w/2 - 160, h/2 + 90);
     ctx.fillText('Use space to shoot', w/2 - 125, h/2+130);
 }
@@ -237,18 +320,15 @@ function gameOver(){
     ctx.fillStyle = '#f00'
     ctx.fillText('Game Over!', (w/2)-60, h/2);
     ctx.fillText('Press Enter to Continue...',(w/2)-130,(h/2)+80);
-    ctx.fillRect((w/2)-65, (h/2)+ 10,120,40);
-    ctx.fillStyle = '#000';
-    ctx.fillText('Continue?', (w/2)-55, (h/2)+35);
     if(!storageCalled) updateStorage();
-	canvas.addEventListener('click',continueButton,false);
-    if(enterKey){
-        alive = true;
-        lives = 3;
+    if (enterKey){
+	alive = true;
+	lives = 3;
         sc0re = 0;
-        speed = 3;
-        reset();
-        canvas.removeEventListener('click',continueButton,false);
+	enemyKilled = 0
+        enemy1Speed = 3;
+	enemy2Speed = 4;
+	reset();
     }
 }
 function fullscreen(){
@@ -291,10 +371,12 @@ function reset(){
     laserCount = 4;
     player.x = (w/2) - 15, player.y = h - 30, player.w = 30, player.h = 30;
     enemies.splice(0,enemies.length);
-    for(i=0;i<enemy1Total;i++){
+    for(i=0;i<enemyTotal;i++){
 	path = randomPath();
 	e1x = currentPath(path);
-	enemies.push(new Enemy(e1x, -45, e1w, e1h, enemy1Speed, e1x));
+	type = randomType();
+	var speed = typeSpeed(type);
+	enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
     }
 }
 function pauseGame(){
@@ -307,7 +389,7 @@ function pauseGame(){
         ctx.font = '54px VT323';
         ctx.fillText('Paused', w/2-70,h/2);
         ctx.font = '36px VT323';
-        ctx.fillText('Press Esc to Continue',w/2-160,h/2+60)
+        ctx.fillText('Press p to Continue',w/2-160,h/2+60)
     }else if(gamePaused){
         game = window.setTimeout(gameLoop, 1000/FPS);
         gamePaused = false;
@@ -352,36 +434,5 @@ function keyUp(e) {
     else if (e.keyCode == 40) downKey = false;
     if (e.keyCode == 32) laserKey = false;
     if (e.keyCode == 13) enterKey = false;
-}
-function continueButton(e){
-    var cursorPos = getCursorPos(e);
-    if ((cursorPos.x > (w/2)-53 && cursorPos.x < (w/2)+47 && cursorPos.y > (h/2)+10 && cursorPos.y < (h/2)+50) || e.keyCode == 13){
-	alive = true;
-	lives = 3;
-        sc0re = 0;
-	enemyKilled = 0
-        speed = 3;
-	reset();
-	canvas.removeEventListener('click',continueButton,false);
-    }
-}
-function getCursorPos(e){
-    var x;
-    var y;
-    if (e.pageX || e.pageY){
-	x = e.pageX;
-	y = e.pageY;
-    }else{
-        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-    	y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    }
-    x -= canvas.offsetLeft;
-    y -= canvas.offsetTop;
-    var cursorPos = new cursorPosition(x,y);
-    return cursorPos;
-}
-function cursorPosition(x,y){
-    this.x = x;
-    this.y = y;
 }
 //End Controls
