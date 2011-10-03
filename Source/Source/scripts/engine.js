@@ -31,35 +31,41 @@ function backgroundDraw(){
 }
 //End Background
 //Begin Player
+function Player(x,y){
+    this.x = x;
+    this.y = y;
+    this.w = 30;
+    this.h = 30;
+}
 function playerDraw(){
-    if (rightKey) px += 5;
-    if (leftKey) px -= 5;
-    if (upKey) py -= 5;
-    if (downKey) py += 5;
+    if (rightKey) player.x += 5;
+    if (leftKey) player.x -= 5;
+    if (upKey) player.y -= 5;
+    if (downKey) player.y += 5;
     playerBounds();
-    ctx.drawImage(pSprite, px, py);
+    ctx.drawImage(pSprite, player.x, player.y);
 }
 
 function playerBounds(){
-    if (px > (w-31)){
-	px = (w-30);
+    if (player.x > (w-31)){
+	player.x = (w-30);
     }
-    if (px < 1){
-    	px = 0;
+    if (player.x < 1){
+    	player.x = 0;
     }
-    if(py > (h-31)){
-	py = (h-30);
+    if(player.y > (h-31)){
+	player.y = (h-30);
     }
-    if (py < 1){
-	py = 0;
+    if (player.y < 1){
+	player.y = 0;
     }
 }
 function shipCollision(){
-    var pxw = px + pw,
-    pyh = py + ph;
+    var pxw = player.x + player.w,
+    pyh = player.y + player.h;
     for (var i = 0; i < enemies.length; i++){
-        if((px >= enemies[i][0] && px <= (enemies[i][0] + e1w)) || ((px + pw) >= enemies[i][0] && (px + pw) <= (enemies[i][0] + e1w))){
-            if((py >= enemies[i][1] && py <= (enemies[i][1] + e1h)) || ((py + ph) >= enemies[i][1] && (py + ph) <= (enemies[i][1] + e1h))){
+        if((player.x >= enemies[i].x && player.x <= (enemies[i].x + enemies[i].w)) || ((player.x + player.w) >= enemies[i].x && (player.x + player.w) <= (enemies[i].x + enemies[i].w))){
+            if((player.y >= enemies[i].y && player.y <= (enemies[i].y + enemies[i].h)) || ((player.y + player.h) >= enemies[i].y && (player.y + player.h) <= (enemies[i].y + enemies[i].h))){
                 explodeEffect.pause();
                 explodeEffect.currentTime=0;
                 explodeEffect.play();
@@ -70,9 +76,17 @@ function shipCollision(){
 }
 //End Player
 //Begin Enemy
+function Enemy(x,y,w,h,speed,initx){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.speed = speed;
+    this.initx = initx;
+}
 function drawEnemy1(){
     for (var i = 0; i < enemies.length; i++) {
-        ctx.drawImage(e1Sprite,enemies[i][0],enemies[i][1]);
+        ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
     }
 }
 function randomPath(){
@@ -127,11 +141,11 @@ function currentPath(path){
 }
 function moveEnemy1(){
     for (var i = 0; i < enemies.length; i++) {
-	enemies[i][0] = e1xa*Math.sin((e1xf*enemies[i][1]))+enemies[i][5];
-	if (enemies[i][1] < h) {
-	    enemies[i][1] += enemies[i][4];
-	} else if (enemies[i][1] > h - 1) {
-	    enemies[i][1] = -45;
+	enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
+	if (enemies[i].y < h) {
+	    enemies[i].y += enemies[i].speed;
+	} else if (enemies[i].y > h - 1) {
+	    enemies[i].y = -45;
 	}
     }
 }
@@ -139,8 +153,8 @@ function hitTest(){
     var remove = false;
     for (var i = 0; i < lasers.length; i++){
 	for(var j = 0; j < enemies.length; j++){
-            if (lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + e1w) || ((lasers[i][0] + laserWidth) >= enemies[j][0] && (lasers[i][0] + laserWidth) <= (enemies[j][0] + e1w))){
-		if (lasers[i][1] >= enemies[j][1] && lasers[i][1] <= (enemies[j][1] + e1h)){
+            if (lasers[i].x >= enemies[j].x && lasers[i].x <= (enemies[j].x + enemies[j].w) || ((lasers[i].x + lasers[i].w) >= enemies[j].x && (lasers[i].x + lasers[i].w) <= (enemies[j].x + enemies[j].w))){
+		if (lasers[i].y >= enemies[j].y && lasers[i].y <= (enemies[j].y + enemies[j].h)){
                     explodeEffect.pause();
                     explodeEffect.currentTime = 0;
                     explodeEffect.play();
@@ -150,7 +164,7 @@ function hitTest(){
 		    sc0re += (10*sc0reMult);
 		    path = randomPath();
 		    e1x = currentPath(path);
-		    enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
+		    enemies.push(new Enemy(e1x, -45, e1w, e1h, enemy1Speed, e1x));
 		}
             }
 	}
@@ -162,14 +176,20 @@ function hitTest(){
 }
 //End Enemy
 //Begin Laser
+function Laser(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+}
 function drawLaser(){
     if (lasers.length){
 	for (var i=0; i < lasers.length; i++){
-	    var laserGradient = ctx.createLinearGradient(lasers[i][0],lasers[i][1],lasers[i][0],lasers[i][1] + 20);
+	    var laserGradient = ctx.createLinearGradient(lasers[i].x,lasers[i].y,lasers[i].x,lasers[i].y + 20);
 	    laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
             laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
             ctx.fillStyle = laserGradient;
-	    ctx.fillRect(lasers[i][0],lasers[i][1],lasers[i][2],lasers[i][3]);
+	    ctx.fillRect(lasers[i].x,lasers[i].y,lasers[i].w,lasers[i].h);
 	}
     }
 }
@@ -178,7 +198,7 @@ function laserFire(){
         laserEffect.pause();
         laserEffect.currentTime=0;
         laserEffect.play();
-        lasers.push([px + (pw/2 - laserWidth/2), py, laserWidth, 20]);
+        lasers.push(new Laser(player.x + (player.w/2 - laserWidth/2), player.y, laserWidth, 20));
         laserTime = 0;
         laserCount--;
     }
@@ -190,9 +210,9 @@ function laserFire(){
 }
 function moveLaser(){
     for(var i = 0; i < lasers.length; i++){
-	if (lasers[i][1] > -11){
-	    lasers[i][1] -= 10;
-	} else if (lasers[i][1] < -10){
+	if (lasers[i].y > -11){
+	    lasers[i].y -= 10;
+	} else if (lasers[i].y < -10){
 	    lasers.splice(i,1);
 	}
     }
@@ -269,12 +289,12 @@ function reset(){
     lasers.splice(0,lasers.length);
     laserFireTracker = 0;
     laserCount = 4;
-    px = (w/2) - 15, py = h - 30, pw = 30, ph = 30;
+    player.x = (w/2) - 15, player.y = h - 30, player.w = 30, player.h = 30;
     enemies.splice(0,enemies.length);
     for(i=0;i<enemy1Total;i++){
 	path = randomPath();
 	e1x = currentPath(path);
-	enemies.push([e1x, -45, e1w, e1h, enemy1Speed, e1x]);
+	enemies.push(new Enemy(e1x, -45, e1w, e1h, enemy1Speed, e1x));
     }
 }
 function pauseGame(){
@@ -322,7 +342,7 @@ function keyDown(e) {
     else if (e.keyCode == 40) downKey = true;
     if (e.keyCode == 32) laserKey = true;
     if (e.keyCode == 13) enterKey = true;
-    if (e.keyCode == 27) pauseGame();
+    if (e.keyCode == 80) pauseGame();
 }
 function keyUp(e) {
     e.preventDefault();

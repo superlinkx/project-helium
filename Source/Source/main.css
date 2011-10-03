@@ -83,13 +83,12 @@ text-align: center;
     color: blue;
 }
 .button {
-	border: solid;
-	border-color: #09C;
-        background-color: #09C;
-        color: #f00;
-	border-radius: 4px;
-	width: 120px;
-	height: 45px;
-        margin: 0 auto;
-        
+    border: solid;
+    border-color: #09C;
+    background-color: #09C;
+    color: #f00;
+    border-radius: 4px;
+    width: 120px;
+    height: 45px;
+    margin: 0 auto;
 }

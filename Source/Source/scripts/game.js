@@ -32,8 +32,9 @@ function init(){
 	for (var i = 0; i < enemy1Total; i++) {
 	    path = randomPath();
 	    e1x = currentPath(path);
-	    enemies.push([e1x, e1y, e1w, e1h, enemy1Speed, e1x]);
+	    enemies.push(new Enemy(e1x, e1y, e1w, e1h, enemy1Speed, e1x));
 	}
+	player = new Player(px,py);
 	gameLoop();
 }
 function gameLoop(){
@@ -55,6 +56,6 @@ function gameLoop(){
 		gameOver();
 	}
 	scoreboard();
-	game = window.setTimeout(gameLoop, 1000 / FPS);
+	game = window.setTimeout("gameLoop()", 1000 / FPS);
 }
 window.onload = init;
