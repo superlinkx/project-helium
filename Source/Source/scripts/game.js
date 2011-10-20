@@ -51,11 +51,15 @@ function gameLoop(){
 		lvlchecker();
 		moveEnemy();
 		moveLaser();
+		moveEnemyLaser();
 		drawEnemy();
                 laserFire();
                 drawLaser();
+		enemyFire();
+		drawEnemyLaser();		
 		playerDraw();
                 hitTest();
+		enemyLaserTest();
 		shipCollision();
 	}
 	if (!alive){

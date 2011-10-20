@@ -77,6 +77,7 @@ function Enemy(x,y,w,h,speed,initx,type){
     this.speed = speed;
     this.initx = initx;
     this.type = type;
+    this.fired = 0;
 }
 function drawEnemy(){
     for (var i = 0; i < enemies.length; i++) {
@@ -94,24 +95,21 @@ function enemyFire(){
 	switch (enemies[i].type){
 	    case 1: break;
 	    case 2:
-		if(enemyLaserTimeout()){
-		    laserEffect.pause();
-		    laserEffect.currentTime=0;
-		    laserEffect.play();
-		    enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, 20));
+		if(!enemies[i].fired){
+		   laserEffect.pause();
+		   laserEffect.currentTime=0;
+		   laserEffect.play();
+		   enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, 20));
+		   enemies[i].fired = 1;
+		   break;
 		}
-		break;
 	    default: break;
 	}
-    }
-    if(enemyLaserTimeout()){
-	enemyLaserTime = 30;
-    }
-    enemyLaserTime -= 1;    
+    } 
 }
 function drawEnemyLaser(){
     if (enemyLasers.length){
-	for (var i=0; i < lasers.length; i++){
+	for (var i=0; i < enemyLasers.length; i++){
 	    var laserGradient = ctx.createLinearGradient(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].x,enemyLasers[i].y + 20);
 	    laserGradient.addColorStop(0,'rgba(255,0,0,0.2)');
             laserGradient.addColorStop(1,'rgba(255,0,0,0.8)')
@@ -126,13 +124,6 @@ function moveEnemyLaser(){
 	if (enemyLasers[i].y > 810){
 	    enemyLasers.splice(i,1);
 	}
-    }
-}
-function enemyLaserTimeout(){
-    if (enemyLaserTime == 0){
-	return true;
-    }else{
-	return false;
     }
 }
 function randomType(){
@@ -227,6 +218,24 @@ function moveEnemy(){
 		} else if (enemies[i].y > h - 1) {
 		    enemies[i].y = -45;
 		}
+	}
+    }
+}
+function enemyLaserTest(){
+    var remove = false;
+    for (var i = 0; i < enemyLasers.length; i++){
+        if (enemyLasers[i].x >= player.x && enemyLasers[i].x <= (player.x + player.w) || ((enemyLasers[i].x + enemyLasers[i].w) >= player.x && (enemyLasers[i].x + enemyLasers[i].w) <= (player.x + player.w))){
+	    if (enemyLasers[i].y >= player.y && enemyLasers[i].y <= (player.y + player.h)){
+                explodeEffect.pause();
+                explodeEffect.currentTime = 0;
+                explodeEffect.play();
+		remove = true;
+		checkLives();
+	    }
+	}
+	if (remove == true){
+	    enemyLasers.splice(i,1);
+	    remove = false;
 	}
     }
 }
