@@ -41,16 +41,16 @@ function playerDraw(){
 
 function playerBounds(){
     if (player.x > (w-31)){
-	player.x = (w-30);
+    	player.x = (w-30);
     }
     if (player.x < 1){
     	player.x = 0;
     }
     if(player.y > (h-31)){
-	player.y = (h-30);
+    	player.y = (h-30);
     }
     if (player.y < 1){
-	player.y = 0;
+    	player.y = 0;
     }
 }
 function shipCollision(){
@@ -64,7 +64,7 @@ function shipCollision(){
                 explodeEffect.play();
                 checkLives();
             }
-	}
+        }
     }
 }
 //End Player
