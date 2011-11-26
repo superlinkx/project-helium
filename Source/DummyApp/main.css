@@ -1,4 +1,16 @@
 /*Main Stylesheet*/
+@font-face{
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ubuntu Regular'), local('Ubuntu'), url('fonts/ubuntu/ubuntu-regular.ttf') format('truetype');
+}
+@font-face{
+    font-family: "VT323";
+    font-style: normal;
+    font-weight: normal;
+    src: local('VT323'), local('VT-323'), url('fonts/vt323/vt323.ttf') format('truetype');
+}
 body{
 background-color: #929292;
 margin: 0px;
@@ -36,8 +48,8 @@ margin: auto;
 padding: 10px;
 }
 #canvas{
-width: 240px;
-height: 480px;
+width: 480px;
+height: 800px;
 margin: 0px auto;
 }
 #stats{
@@ -48,7 +60,7 @@ margin: 0px auto;
 text-align: center;
 }
 h1{
-font-family: 'VT323', sans-serif;
+font-family: 'VT323', serif;
 text-align: center;
 font-size: 40px;
 }
@@ -69,4 +81,14 @@ text-align: center;
 }
 #info li a{
     color: blue;
+}
+.button {
+    border: solid;
+    border-color: #09C;
+    background-color: #09C;
+    color: #f00;
+    border-radius: 4px;
+    width: 120px;
+    height: 45px;
+    margin: 0 auto;
 }

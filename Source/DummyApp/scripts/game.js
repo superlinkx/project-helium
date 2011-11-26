@@ -1,102 +1,25 @@
-/**
-* @preserve Copyright 2011
-* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>.
-* All rights reserved.
-* Do not distribute without permission.
+/*
+*@preserve Copyright 2011 Steven Holms <superlinkx@gmail.com>
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
-function lvlchecker(){
-	switch(sc0re){
-		case 0: lvl = 1;
-			break;
-		case 1000: lvl = 2;
-			break;
-		case 2000: lvl = 3;
-			break;
-		case 3000: lvl = 4;
-			break;
-		case 4000: lvl = 5;
-			break;
-		case 5000: lvl = 6;
-			break;
-		case 6000: lvl = 7;
-			break;
-		case 7000: lvl = 8;
-			break;
-		case 8000: lvl = 9;
-			break;
-		case 9000: lvl = 10;
-			break;
-		default: break;
-	}
-	switch(lvl){
-		case 1:
-			enemy1Speed = 3;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 2:
-			enemy1Speed = 4;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 3:
-			enemy1Speed = 5;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 4:
-			enemy1Speed = 6;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 5:
-			enemy1Speed = 7;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 6:
-			enemy1Speed = 8;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 7:
-			enemy1Speed = 9;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 8:
-			enemy1Speed = 10;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 9:
-			enemy1Speed = 11;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-		case 10:
-			enemy1Speed = 12;
-			enemy1Total = 3;
-			sc0reMult = 1;
-			break;
-	}
-}
 function init(){
 	canvas = document.getElementById('helium');	
 	ctx = canvas.getContext('2d');
 	canvas.width = w;
 	canvas.height = h;
-        explodeEffect.volume=0;
-        laserEffect.volume=0;
-        explodeEffect.play();
-        explodeEffect.pause();
-        laserEffect.play();
-        laserEffect.pause();
-        explodeEffect.volume=1;
-        laserEffect.volume=1;
-	document.addEventListener('keydown', keyDown, false);
-	document.addEventListener('keyup', keyUp, false);
-	canvas.addEventListener('click', gameStart, false);
+	canvas.addEventListener('keydown', keyDown, false);
+	canvas.addEventListener('keyup', keyUp, false);
         var topScore = document.getElementById('topScore');
         var lastScore = document.getElementById('lastScore');
         if(localStorage["topScore"]){
@@ -106,32 +29,44 @@ function init(){
             lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
         }
 	//enemy init
-	for (var i = 0; i < enemy1Total; i++) {
+	for (var i = 0; i < enemyTotal; i++) {
 	    path = randomPath();
 	    e1x = currentPath(path);
-	    enemies.push([e1x, e1y, e1w, e1h, enemy1Speed, e1x]);
+	    type = randomType();
+	    var speed = typeSpeed(type);
+	    enemies.push(new Enemy(e1x, e1y, e1w, e1h, speed, e1x, type));
 	}
+	player = new Player(px,py);
 	gameLoop();
 }
 function gameLoop(){
 	ctx.clearRect(0,0,w,h)
 	backgroundDraw();
+	if (enterKey){
+		gameStart();
+	}
+	if (!gameStarted){
+		intro();
+	}
 	if (alive && gameStarted && lives > 0){
-		moveEnemy1();
+		lvlchecker();
+		moveEnemy();
 		moveLaser();
-		drawEnemy1();
+		moveEnemyLaser();
+		drawEnemy();
                 laserFire();
                 drawLaser();
+		enemyFire();
+		drawEnemyLaser();		
 		playerDraw();
                 hitTest();
+		enemyLaserTest();
 		shipCollision();
-                lvlchecker();
-	}else if (!gameStarted){
-		intro();
-	}else if (!alive){
+	}
+	if (!alive){
 		gameOver();
 	}
 	scoreboard();
-	game = window.setTimeout(gameLoop, 1000 / FPS);
+	game = window.setTimeout("gameLoop()", 1000 / FPS);
 }
 window.onload = init;

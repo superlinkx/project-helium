@@ -3,10 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <title>SLX Shooter</title>
-        <!--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">-->
         <link rel="stylesheet" type="text/css" href="main.css" />
         <script type="text/javascript" src="scripts/vars.js"></script>
+	<script type="text/javascript" src="scripts/levels.js"></script>
 	<script type="text/javascript" src="scripts/engine.js"></script>
 	<script type="text/javascript" src="scripts/game.js"></script>
     </head>
@@ -17,8 +16,11 @@
                 Welcome to Project Helium. Use up,down,left,right to control the ship.
             </p>
             <br />
-	    <canvas id="helium" tabindex="1"></canvas>
+	    <div id="canvas">
+		<canvas id="helium" tabindex="1"></canvas>
+	    </div>
 	    <div id="stats">
+		<p class="button"><a onclick="javascript:fullscreen()">Full Screen (experimental)</a></p>
 		<p id="topScore"></p>
 		<p id="lastScore"></p>
 	    </div>
