@@ -1,3 +1,2 @@
 #!/bin/bash
 cp -r ../Source/Source/index.html ../Source/Source/main.css ../Source/Source/images/ ../Source/Source/fonts/ ../Web\ App/;
-cp -r ../Web\ App/
