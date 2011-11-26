@@ -1,22 +1,23 @@
-/**
-* @preserve Copyright 2011
-* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>, unless otherwise noted.
-* All rights reserved.
-* Do not distribute without permission.
+/*
+@preserve Copyright 2011 Steven Holms <superlinkx@gmail.com>
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 */
 function init(){
 	canvas = document.getElementById('helium');	
 	ctx = canvas.getContext('2d');
 	canvas.width = w;
 	canvas.height = h;
-        explodeEffect.volume=0;
-        laserEffect.volume=0;
-        explodeEffect.play();
-        explodeEffect.pause();
-        laserEffect.play();
-        laserEffect.pause();
-        explodeEffect.volume=1;
-        laserEffect.volume=1;
 	canvas.addEventListener('keydown', keyDown, false);
 	canvas.addEventListener('keyup', keyUp, false);
         var topScore = document.getElementById('topScore');
