@@ -1,8 +1,17 @@
-/**
-* @preserve Copyright 2011
-* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>, unless otherwise noted.
-* All rights reserved.
-* Do not distribute without permission.
+/*
+@preserve Copyright 2011 Steven Holms <superlinkx@gmail.com>
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 */
 //Root directory var
 if(!b) var b = "";
@@ -26,9 +35,7 @@ var	pw = 30,
 	e1x = 25,
 	e1y = -45,
 //sprites and sounds
-        laserEffect = new Audio(b+"sound/laserpulse.wav"),
-        explodeEffect = new Audio(b+"sound/explode.wav");
-	var pSprite = new Image();
+	pSprite = new Image();
 	pSprite.src = b+"images/heliumclass1.png";
         var e1Sprite = new Image();
         e1Sprite.src = b+"images/enemy1.png";

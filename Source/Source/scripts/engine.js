@@ -1,8 +1,17 @@
-/**
-* @preserve Copyright 2011
-* Project Helium and all its contents are copyrighted by Steven Holms <superlinkx>, unless otherwise noted.
-* All rights reserved.
-* Do not distribute without permission.
+/*
+@preserve Copyright 2011 Steven Holms <superlinkx@gmail.com>
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 */
 //Begin Level
 //End Level
@@ -59,9 +68,6 @@ function shipCollision(){
     for (var i = 0; i < enemies.length; i++){
         if((player.x >= enemies[i].x && player.x <= (enemies[i].x + enemies[i].w)) || ((player.x + player.w) >= enemies[i].x && (player.x + player.w) <= (enemies[i].x + enemies[i].w))){
             if((player.y >= enemies[i].y && player.y <= (enemies[i].y + enemies[i].h)) || ((player.y + player.h) >= enemies[i].y && (player.y + player.h) <= (enemies[i].y + enemies[i].h))){
-                explodeEffect.pause();
-                explodeEffect.currentTime=0;
-                explodeEffect.play();
                 checkLives();
             }
         }
@@ -96,9 +102,6 @@ function enemyFire(){
 	    case 1: break;
 	    case 2:
 		if(!enemies[i].fired){
-		   laserEffect.pause();
-		   laserEffect.currentTime=0;
-		   laserEffect.play();
 		   enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, 20));
 		   enemies[i].fired = 1;
 		   break;
@@ -226,9 +229,6 @@ function enemyLaserTest(){
     for (var i = 0; i < enemyLasers.length; i++){
         if (enemyLasers[i].x >= player.x && enemyLasers[i].x <= (player.x + player.w) || ((enemyLasers[i].x + enemyLasers[i].w) >= player.x && (enemyLasers[i].x + enemyLasers[i].w) <= (player.x + player.w))){
 	    if (enemyLasers[i].y >= player.y && enemyLasers[i].y <= (player.y + player.h)){
-                explodeEffect.pause();
-                explodeEffect.currentTime = 0;
-                explodeEffect.play();
 		remove = true;
 		checkLives();
 	    }
@@ -245,9 +245,6 @@ function hitTest(){
 	for(var j = 0; j < enemies.length; j++){
             if (lasers[i].x >= enemies[j].x && lasers[i].x <= (enemies[j].x + enemies[j].w) || ((lasers[i].x + lasers[i].w) >= enemies[j].x && (lasers[i].x + lasers[i].w) <= (enemies[j].x + enemies[j].w))){
 		if (lasers[i].y >= enemies[j].y && lasers[i].y <= (enemies[j].y + enemies[j].h)){
-                    explodeEffect.pause();
-                    explodeEffect.currentTime = 0;
-                    explodeEffect.play();
 		    enemyKilled += 1;
                     remove = true;
                     enemies.splice(j,1);
@@ -287,9 +284,6 @@ function drawLaser(){
 }
 function laserFire(){
     if(laserKey == true && laserTime >= 5 && laserCount > 0){
-        laserEffect.pause();
-        laserEffect.currentTime=0;
-        laserEffect.play();
         lasers.push(new Laser(player.x + (player.w/2 - laserWidth/2), player.y, laserWidth, 20));
         laserTime = 0;
         laserCount--;
