@@ -1,6 +1,5 @@
 #!/bin/bash
-cp -r ../Source/Source/index.html ../Source/Source/main.css ../Source/Source/images/ ../Source/Source/fonts/ ../Chrome/Free\ App/;
-cp -r ../Web\ App/scripts/c*.js ../Chrome/Free\ App/scripts;
-rm ../Chrome/Free\ App.zip;
+cp -r ../Source/Source/css ../Source/Source/sound ../Source/Source/index.html ../Source/Source/main.css ../Source/Source/images/ ../Source/Source/fonts/ ../Source/Source/scripts/ ../Chrome/Free\ App/;
+rm -rf ../Chrome/Free\ App.zip;
 cd ../Chrome;
 zip -r Free\ App.zip Free\ App/;
