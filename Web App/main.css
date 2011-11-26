@@ -1,0 +1,94 @@
+/*Main Stylesheet*/
+@font-face{
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ubuntu Regular'), local('Ubuntu'), url('fonts/ubuntu/ubuntu-regular.ttf') format('truetype');
+}
+@font-face{
+    font-family: "VT323";
+    font-style: normal;
+    font-weight: normal;
+    src: local('VT323'), local('VT-323'), url('fonts/vt323/vt323.ttf') format('truetype');
+}
+body{
+background-color: #929292;
+margin: 0px;
+padding: 5px 0px 5px 0px;
+}
+a{
+/*float: left;
+display: block;
+width: 175px;
+text-align: center;
+border: 2px solid;
+border-color: #e1e1e1;
+border-radius: 5px;
+-moz-border-radius: 5px;
+background-color: #7e3f3f;
+text-decoration: none;
+color: #e1e1e1;
+margin-right: 10px;
+font-family: 'VT323', sans-serif;*/
+text-decoration: none;
+color: black;
+}
+/*a:hover
+{
+color: #c2c2c2;
+}
+*/
+#body{
+border: 2px solid;
+border-radius: 25px;
+-moz-border-radius: 25px;
+background-color: #c2c2c2;
+width: 800px;
+margin: auto;
+padding: 10px;
+}
+#canvas{
+width: 480px;
+height: 800px;
+margin: 0px auto;
+}
+#stats{
+    width: 100%;
+    text-align: center;
+}
+#sub{
+text-align: center;
+}
+h1{
+font-family: 'VT323', serif;
+text-align: center;
+font-size: 40px;
+}
+p{
+font-family: 'Ubuntu', sans-serif;
+text-align: center;
+}
+#info{
+    display: block;
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+    -webkit-padding-start: 0;
+    padding: 0;
+}
+#info li{
+    display: inline;
+}
+#info li a{
+    color: blue;
+}
+.button {
+    border: solid;
+    border-color: #09C;
+    background-color: #09C;
+    color: #f00;
+    border-radius: 4px;
+    width: 120px;
+    height: 45px;
+    margin: 0 auto;
+}
