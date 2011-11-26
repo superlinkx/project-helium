@@ -383,19 +383,19 @@ function reset(){
     }
 }
 function pauseGame(){
-    if(!gamePaused){
-        window.clearTimeout(game);
-        gamePaused = true;
-        ctx.fillStyle = 'rgba(255,255,255,0.7)'
-        ctx.fillRect(0,0,w,h);
-        ctx.fillStyle = '#f00';
-        ctx.font = '54px VT323';
-        ctx.fillText('Paused', w/2-70,h/2);
-        ctx.font = '36px VT323';
-        ctx.fillText('Press p to Continue',w/2-160,h/2+60)
-    }else if(gamePaused){
+    if(gamePaused){
         game = window.setTimeout(gameLoop, 1000/FPS);
         gamePaused = false;
+    }else{
+	window.clearTimeout(game);
+	gamePaused = true;
+	ctx.fillStyle = 'rgba(255,255,255,0.7)';
+	ctx.fillRect(0,0,w,h);
+	ctx.fillStyle = '#f00';
+	ctx.font = '54px VT323';
+	ctx.fillText('Paused', w/2-70,h/2);
+	ctx.font = '36px VT323';
+	ctx.fillText('Press / to Continue',w/2-160,h/2+60)
     }
 }
 function gameStart(){
@@ -427,7 +427,7 @@ function keyDown(e) {
     else if (e.keyCode == 40) downKey = true;
     if (e.keyCode == 32) laserKey = true;
     if (e.keyCode == 13) enterKey = true;
-    if (e.keyCode == 80) pauseGame();
+    if (e.keyCode == 191) pauseGame();
 }
 function keyUp(e) {
     e.preventDefault();
