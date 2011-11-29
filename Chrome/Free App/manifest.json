@@ -8,6 +8,7 @@
     }
   },
   "icons": {
+    "16": "16logo.png",
     "128": "images/128logo.png"
   }
 }
