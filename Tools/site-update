@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -r ../Source/Source/sound ../Source/Source/css ../Source/Source/index.html ../Source/Source/main.css ../Source/Source/images/ ../Source/Source/fonts/ ../Web\ App/;
+cp -r ../Source/Source/sound ../Source/Source/css ../Source/Source/index.html ../Source/Source/images/ ../Source/Source/fonts/ ../Web\ App/;
