@@ -1,3 +1,18 @@
+/*
+ Copyright 2011 Steven Holms <superlinkx@gmail.com>
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
 function backgroundDraw(){50==bgpos&&(bgpos=0);ctx.fillStyle="rgb(0,0,0)";ctx.fillRect(0,0,w,h);ctx.fillStyle="rgb(0,255,0)";for(i=50;i<=w;i+=50)ctx.fillRect(i,0,1,h);for(i=bgpos-50;i<=h;i+=50)ctx.fillRect(0,i,w,1);bgpos+=1}function Player(a,b){this.x=a;this.y=b;this.h=this.w=30}function playerDraw(){rightKey&&(player.x+=5);leftKey&&(player.x-=5);upKey&&(player.y-=5);downKey&&(player.y+=5);playerBounds();ctx.drawImage(pSprite,player.x,player.y)}
 function playerBounds(){if(player.x>w-31)player.x=w-30;if(1>player.x)player.x=0;if(player.y>h-31)player.y=h-30;if(1>player.y)player.y=0}function shipCollision(){for(var a=0;a<enemies.length;a++)if(player.x>=enemies[a].x&&player.x<=enemies[a].x+enemies[a].w||player.x+player.w>=enemies[a].x&&player.x+player.w<=enemies[a].x+enemies[a].w)(player.y>=enemies[a].y&&player.y<=enemies[a].y+enemies[a].h||player.y+player.h>=enemies[a].y&&player.y+player.h<=enemies[a].y+enemies[a].h)&&checkLives()}
 function Enemy(a,b,c,d,e,f,g){this.x=a;this.y=b;this.w=c;this.h=d;this.speed=e;this.initx=f;this.type=g;this.fired=0}function drawEnemy(){for(var a=0;a<enemies.length;a++)switch(enemies[a].type){case 1:ctx.drawImage(e1Sprite,enemies[a].x,enemies[a].y);break;case 2:ctx.drawImage(e2Sprite,enemies[a].x,enemies[a].y);break;default:ctx.drawImage(e1Sprite,enemies[a].x,enemies[a].y)}}
