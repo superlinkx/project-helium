@@ -36,7 +36,7 @@ var pw = 30,
     e1y = -45,
 //sprites and sounds
     pSprite = new Image();
-    pSprite.src = b+"images/ProjectHeliumLogo.svg";
+    pSprite.src = b+"images/heliumclass1.png";
 var e1Sprite = new Image();
     e1Sprite.src = b+"images/enemy1.png";
 var e2Sprite = new Image();
