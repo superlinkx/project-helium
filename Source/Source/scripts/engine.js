@@ -17,16 +17,16 @@
 //End Level
 //Begin Background
 function backgroundDraw(){
-    if(bgpos==50){
+    if(bgpos==60){
         bgpos = 0;
     }
     ctx.fillStyle = 'rgb(0,0,0)';
     ctx.fillRect(0,0,w,h);
     ctx.fillStyle = 'rgb(0,255,0)';
-    for(i=50;i<=w;i+=50){
+    for(i=60;i<=w;i+=60){
         ctx.fillRect(i,0,1,h);
     }
-    for(i=bgpos-50;i<=h;i+=50){
+    for(i=bgpos-60;i<=h;i+=60){
         ctx.fillRect(0,i,w,1);
     }
     bgpos+=1;
@@ -309,20 +309,20 @@ function intro(){
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillRect(0,0,w,h);
     ctx.fillStyle = '#f00';
-    ctx.font = '54px VT323';
-    ctx.fillText('Project Helium', w/2 - 150, h/2);
-    ctx.font = '36px VT323';
-    ctx.fillText('Press Enter to Play', w/2 - 135, h/2 + 50);
-    ctx.fillText('Use arrow keys to move', w/2 - 160, h/2 + 90);
-    ctx.fillText('Use space to shoot', w/2 - 125, h/2+130);
+    ctx.font = '54px "Times New Roman"';
+    ctx.fillText('Project Helium', w/2 - 160, h/2);
+    ctx.font = '36px "Times New Roman"';
+    ctx.fillText('Press Enter to Play', w/2 - 130, h/2 + 50);
+    ctx.fillText('Use arrow keys to move', w/2 - 175, h/2 + 90);
+    ctx.fillText('Use space to shoot', w/2 - 130, h/2+130);
 }
 function gameOver(){
     lives = 0;
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillRect(0,0,w,h);
     ctx.fillStyle = '#f00'
-    ctx.fillText('Game Over!', (w/2)-60, h/2);
-    ctx.fillText('Press Enter to Continue...',(w/2)-130,(h/2)+80);
+    ctx.fillText('Game Over!', (w/2)-63, h/2);
+    ctx.fillText('Press Enter to Continue...',(w/2)-133,(h/2)+80);
     if(!storageCalled) updateStorage();
     if (enterKey){
 	alive = true;
@@ -344,7 +344,7 @@ function fullscreen(){
 //End Menu
 //Begin Score
 function scoreboard(){
-    ctx.font = '26px VT323';
+    ctx.font = '26px "Times New Roman"';
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
     ctx.fillRect(0,0,w,60)
     ctx.fillStyle = '#f00';
@@ -361,15 +361,16 @@ function scoreboard(){
 //Begin Engine
 function checkLives(){
     lives -= 1;
-    if (lives > 0){
 	reset();
-    } else if (lives == 0){
-	alive = false;
+    if (lives == 0){
+		alive = false;
     }
 }
 function reset(){
     storageCalled = false;
     lasers.splice(0,lasers.length);
+	enemyLasers.splice(0,lasers.length);
+	enemyLasers.length = 0;
     laserFireTracker = 0;
     laserCount = 4;
     player.x = (w/2) - 15, player.y = h - 30, player.w = 30, player.h = 30;
@@ -392,10 +393,10 @@ function pauseGame(){
 	ctx.fillStyle = 'rgba(255,255,255,0.7)';
 	ctx.fillRect(0,0,w,h);
 	ctx.fillStyle = '#f00';
-	ctx.font = '54px VT323';
+	ctx.font = '54px "Times New Roman"';
 	ctx.fillText('Paused', w/2-70,h/2);
-	ctx.font = '36px VT323';
-	ctx.fillText('Press / to Continue',w/2-160,h/2+60)
+	ctx.font = '36px "Times New Roman"';
+	ctx.fillText('Press / to Continue',w/2-130,h/2+60)
     }
 }
 function gameStart(){
