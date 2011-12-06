@@ -53,13 +53,11 @@ color: #c2c2c2;
 }
 */
 #body{
-border: 2px solid;
-border-radius: 25px;
--moz-border-radius: 25px;
 background-color: #c2c2c2;
 width: 800px;
 margin: auto;
 padding: 10px;
+box-shadow: rgba(0,0,0,1) 0px 15px 60px 0px;
 }
 #canvas{
 width: 480px;
