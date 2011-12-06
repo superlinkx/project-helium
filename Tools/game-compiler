@@ -1,0 +1,5 @@
+#!/bin/bash
+java -jar compiler.jar --js ../Source/Source/scripts/vars.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file ../Web\ App/scripts/cvars.js;
+java -jar compiler.jar --js ../Source/Source/scripts/engine.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file ../Web\ App/scripts/cengine.js;
+java -jar compiler.jar --js ../Source/Source/scripts/game.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file ../Web\ App/scripts/cgame.js;
+java -jar compiler.jar --js ../Source/Source/scripts/levels.js --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file ../Web\ App/scripts/clevels.js

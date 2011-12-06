@@ -1,0 +1,6 @@
+#!/bin/bash
+./game-compiler;
+./app-update;
+./site-update;
+hg add;
+hg commit
