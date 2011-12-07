@@ -34,6 +34,9 @@ var pw = 30,
     py = (h-ph),
     e1x = 25,
     e1y = -45,
+//level variables
+    bgcolor = "rgb(0,0,0)",
+    bgline = "rgb(0,255,0)",
 //sprites and sounds
     pSprite = new Image();
     pSprite.src = b+"images/heliumclass1.png";

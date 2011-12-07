@@ -13,6 +13,32 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 */
+var lvl1 = new Level([3,4,8,1,"rgb(0,0,0)","rgb(0,255,0)"]);
+var lvl2 = new Level([4,5,9,1,"rgb(0,0,0)","rgb(0,0,255)"]);
+var lvl3 = new Level([5,6,10,1,"rgb(0,0,0)","rgb(255,0,0)"]);
+var lvl4 = new Level([6,7,11,1,"rgb(0,0,0)","rgb(0,255,255)"]);
+var lvl5 = new Level([7,8,12,1,"rgb(0,0,0)","rgb(255,255,0)"]);
+var lvl6 = new Level([8,9,13,1,"rgb(0,0,0)","rgb(255,0,255)"]);
+var lvl7 = new Level([9,10,14,1,"rgb(0,0,0)","rgb(255,255,255)"]);
+var lvl8 = new Level([10,11,15,1,"rgb(255,255,255)","rgb(0,0,0)"]);
+var lvl9 = new Level([11,12,16,1,"rgb(255,255,255)","rgb(0,255,0)"]);
+var lvl10 = new Level([12,13,17,1,"rgb(255,255,255)","rgb(255,0,0)"]);
+function Level(params){
+	this.enemy1Speed = params[0];
+	this.enemy2Speed = params[1];
+	this.enemyTotal = params[2];
+	this.sc0reMult = params[3];
+	this.bgcolor = params[4];
+	this.bgline = params[5];
+}
+function lvlReader(){
+	enemy1Speed = currentLevel.enemy1Speed;
+	enemy2Speed = currentLevel.enemy2Speed;
+	enemyTotal = currentLevel.enemyTotal;
+	sc0reMult = currentLevel.sc0reMult;
+	bgcolor = currentLevel.bgcolor;
+	bgline = currentLevel.bgline;
+}
 function lvlchecker(){
 	switch(enemyKilled){
 		case 0: lvl = 1;
@@ -38,65 +64,25 @@ function lvlchecker(){
 		default: break;
 	}
 	switch(lvl){
-		case 1:
-			enemy1Speed = 3;
-                        enemy2Speed = 4;
-			enemyTotal = 8;
-			sc0reMult = 1;
-			break;
-		case 2:
-			enemy1Speed = 4;
-                        enemy2Speed = 5;
-			enemyTotal = 9;
-			sc0reMult = 1;
-			break;
-		case 3:
-			enemy1Speed = 5;
-                        enemy2Speed = 6;
-			enemyTotal = 10;
-			sc0reMult = 1;
-			break;
-		case 4:
-			enemy1Speed = 6;
-                        enemy2Speed = 7;
-			enemyTotal = 11;
-			sc0reMult = 1;
-			break;
-		case 5:
-			enemy1Speed = 7;
-                        enemy2Speed = 8;
-			enemyTotal = 12;
-			sc0reMult = 1;
-			break;
-		case 6:
-			enemy1Speed = 8;
-                        enemy2Speed = 9;
-			enemyTotal = 13;
-			sc0reMult = 1;
-			break;
-		case 7:
-			enemy1Speed = 9;
-                        enemy2Speed = 10;
-			enemyTotal = 14;
-			sc0reMult = 1;
-			break;
-		case 8:
-			enemy1Speed = 10;
-                        enemy2Speed = 11;
-			enemyTotal = 15;
-			sc0reMult = 1;
-			break;
-		case 9:
-			enemy1Speed = 11;
-                        enemy2Speed = 12;
-			enemyTotal = 16;
-			sc0reMult = 1;
-			break;
-		case 10:
-			enemy1Speed = 12;
-                        enemy2Speed = 13;
-			enemyTotal = 17;
-			sc0reMult = 1;
-			break;
+		case 1: currentLevel = lvl1;
+				break;
+		case 2: currentLevel = lvl2;
+				break;
+		case 3: currentLevel = lvl3;
+				break;
+		case 4: currentLevel = lvl4;
+				break;
+		case 5: currentLevel = lvl5;
+				break;
+		case 6: currentLevel = lvl6;
+				break;
+		case 7: currentLevel = lvl7;
+				break;
+		case 8: currentLevel = lvl8;
+				break;
+		case 9: currentLevel = lvl9;
+				break;
+		case 10: currentLevel = lvl10;
+				break;
 	}
 }

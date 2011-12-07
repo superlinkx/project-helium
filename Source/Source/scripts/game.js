@@ -40,7 +40,8 @@ function init(){
 	gameLoop();
 }
 function gameLoop(){
-	ctx.clearRect(0,0,w,h)
+	ctx.clearRect(0,0,w,h);
+	//canvas.width = w;	
 	backgroundDraw();
 	if (enterKey){
 		gameStart();
@@ -50,6 +51,7 @@ function gameLoop(){
 	}
 	if (alive && gameStarted && lives > 0){
 		lvlchecker();
+		lvlReader();
 		moveEnemy();
 		moveLaser();
 		moveEnemyLaser();
