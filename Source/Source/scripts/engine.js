@@ -20,15 +20,19 @@ function backgroundDraw(){
     if(bgpos==60){
         bgpos = 0;
     }
-    ctx.fillStyle = 'rgb(0,0,0)';
+    ctx.fillStyle = bgcolor;
     ctx.fillRect(0,0,w,h);
-    ctx.fillStyle = 'rgb(0,255,0)';
+    ctx.beginPath();
+    ctx.strokeStyle = bgline;
     for(i=60;i<=w;i+=60){
-        ctx.fillRect(i,0,1,h);
+        ctx.moveTo(i,0);
+	ctx.lineTo(i,h);
     }
-    for(i=bgpos-60;i<=h;i+=60){
-        ctx.fillRect(0,i,w,1);
+    for(i=bgpos;i<=h;i+=60){
+        ctx.moveTo(0,i);
+	ctx.lineTo(w,i);
     }
+    ctx.stroke();
     bgpos+=1;
 }
 //End Background
@@ -138,12 +142,12 @@ function randomType(){
 }
 function typeSpeed(type){
     switch(type){
-	case 1: return enemy1Speed;
-		break;
-	case 2: return enemy2Speed;
-		break;
-	default: return enemy1Speed;
-		break;
+		case 1: return enemy1Speed;
+			break;
+		case 2: return enemy2Speed;
+			break;
+		default: return enemy1Speed;
+			break;
     }
 }
 function randomPath(){
@@ -353,7 +357,8 @@ function scoreboard(){
     ctx.fillText('Lives:', 10, 20);
     ctx.fillText(lives, 170, 20);
     ctx.fillText('Level:', (w-170), 20);
-    ctx.fillText(lvl, (w-20), 20);
+    if(lvl < 10) ctx.fillText(lvl, (w-20), 20);
+    if(lvl >= 10) ctx.fillText(lvl, (w-30), 20);
     ctx.fillText('Shots:', (w-170), 55);
     ctx.fillText(laserCount, (w-20), 55);
 }
@@ -401,6 +406,7 @@ function pauseGame(){
 }
 function gameStart(){
     gameStarted = true;
+    reset();
     canvas.removeEventListener('click', gameStart, false);
 }
 function updateStorage(){
