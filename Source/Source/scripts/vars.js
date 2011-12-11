@@ -63,6 +63,8 @@ var upKey = false,
     pathSize = null,
     e1xa = 50,		//amplitude
     e1xf = (2*Math.PI)/240,	//frequency
+//player
+	pspeed = 5;
 //lasers
     lasers = [],
     laserKey = false,
