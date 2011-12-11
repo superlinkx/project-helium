@@ -292,7 +292,7 @@ function laserFire(){
         laserCount--;
     }
     laserTime += 1;
-    if(laserCount < laserLimit && !(laserFireTracker++ % laserTimeout)){
+    if(laserCount < laserLimit && !(laserFireTracker++ % (laserTimeout/speedMult))){
         laserCount++;
     }
     
