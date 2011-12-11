@@ -18,7 +18,7 @@ if(!b) var b = "";
 //error and debugging
 var err;
 // target frames per second
-var FPS = 30;
+var FPS = 60;
 //height/width constants 
 var w = 480;
 var h = 800;
