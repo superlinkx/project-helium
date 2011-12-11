@@ -13,16 +13,16 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 */
-var lvl1 = new Level([3,4,8,1,"rgb(0,0,0)","rgb(0,255,0)"]);
-var lvl2 = new Level([4,5,9,1,"rgb(0,0,0)","rgb(0,0,255)"]);
-var lvl3 = new Level([5,6,10,1,"rgb(0,0,0)","rgb(255,0,0)"]);
-var lvl4 = new Level([6,7,11,1,"rgb(0,0,0)","rgb(0,255,255)"]);
-var lvl5 = new Level([7,8,12,1,"rgb(0,0,0)","rgb(255,255,0)"]);
-var lvl6 = new Level([8,9,13,1,"rgb(0,0,0)","rgb(255,0,255)"]);
-var lvl7 = new Level([9,10,14,1,"rgb(0,0,0)","rgb(255,255,255)"]);
-var lvl8 = new Level([10,11,15,1,"rgb(255,255,255)","rgb(0,0,0)"]);
-var lvl9 = new Level([11,12,16,1,"rgb(255,255,255)","rgb(0,255,0)"]);
-var lvl10 = new Level([12,13,17,1,"rgb(255,255,255)","rgb(255,0,0)"]);
+var lvl1 = new Level([1,2,8,1,"rgb(0,0,0)","rgb(0,255,0)"]);
+var lvl2 = new Level([2,3,9,1,"rgb(0,0,0)","rgb(0,0,255)"]);
+var lvl3 = new Level([3,4,10,1,"rgb(0,0,0)","rgb(255,0,0)"]);
+var lvl4 = new Level([4,5,11,1,"rgb(0,0,0)","rgb(0,255,255)"]);
+var lvl5 = new Level([5,6,12,1,"rgb(0,0,0)","rgb(255,255,0)"]);
+var lvl6 = new Level([6,7,13,1,"rgb(0,0,0)","rgb(255,0,255)"]);
+var lvl7 = new Level([7,8,14,1,"rgb(0,0,0)","rgb(255,255,255)"]);
+var lvl8 = new Level([8,9,15,1,"rgb(255,255,255)","rgb(0,0,0)"]);
+var lvl9 = new Level([9,10,16,1,"rgb(255,255,255)","rgb(0,255,0)"]);
+var lvl10 = new Level([10,11,17,1,"rgb(255,255,255)","rgb(255,0,0)"]);
 function Level(params){
 	this.enemy1Speed = params[0];
 	this.enemy2Speed = params[1];

@@ -20,14 +20,14 @@ function init(){
 	canvas.height = h;
 	canvas.addEventListener('keydown', keyDown, false);
 	canvas.addEventListener('keyup', keyUp, false);
-        var topScore = document.getElementById('topScore');
-        var lastScore = document.getElementById('lastScore');
-        if(localStorage["topScore"]){
-            topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
-        }
-        if(localStorage["lastScore"]){
-            lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
-        }
+    var topScore = document.getElementById('topScore');
+    var lastScore = document.getElementById('lastScore');
+    if(localStorage["topScore"]){
+        topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
+    }
+    if(localStorage["lastScore"]){
+        lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
+    }
 	//enemy init
 	for (var i = 0; i < enemyTotal; i++) {
 	    path = randomPath();
@@ -41,7 +41,6 @@ function init(){
 }
 function gameLoop(){
 	ctx.clearRect(0,0,w,h);
-	//canvas.width = w;	
 	backgroundDraw();
 	if (enterKey){
 		gameStart();
@@ -56,12 +55,12 @@ function gameLoop(){
 		moveLaser();
 		moveEnemyLaser();
 		drawEnemy();
-                laserFire();
-                drawLaser();
+        laserFire();
+        drawLaser();
 		enemyFire();
 		drawEnemyLaser();		
 		playerDraw();
-                hitTest();
+        hitTest();
 		enemyLaserTest();
 		shipCollision();
 	}

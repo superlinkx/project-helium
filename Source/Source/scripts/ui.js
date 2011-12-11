@@ -33,13 +33,13 @@ function gameOver(){
     ctx.fillText('Press Enter to Continue...',(w/2)-133,(h/2)+80);
     if(!storageCalled) updateStorage();
     if (enterKey){
-	alive = true;
-	lives = 3;
-        sc0re = 0;
-	enemyKilled = 0
+		alive = true;
+		lives = 3;
+	    sc0re = 0;
+		enemyKilled = 0
         enemy1Speed = 3;
-	enemy2Speed = 4;
-	reset();
+		enemy2Speed = 4;
+		reset();
     }
 }
 function fullscreen(){
@@ -69,15 +69,15 @@ function pauseGame(){
         game = window.setTimeout(gameLoop, 1000/FPS);
         gamePaused = false;
     }else{
-	window.clearTimeout(game);
-	gamePaused = true;
-	ctx.fillStyle = 'rgba(255,255,255,0.7)';
-	ctx.fillRect(0,0,w,h);
-	ctx.fillStyle = '#f00';
-	ctx.font = '54px "Times New Roman"';
-	ctx.fillText('Paused', w/2-70,h/2);
-	ctx.font = '36px "Times New Roman"';
-	ctx.fillText('Press / to Continue',w/2-130,h/2+60)
+		window.clearTimeout(game);
+		gamePaused = true;
+		ctx.fillStyle = 'rgba(255,255,255,0.7)';
+		ctx.fillRect(0,0,w,h);
+		ctx.fillStyle = '#f00';
+		ctx.font = '54px "Times New Roman"';
+		ctx.fillText('Paused', w/2-70,h/2);
+		ctx.font = '36px "Times New Roman"';
+		ctx.fillText('Press / to Continue',w/2-130,h/2+60)
     }
 }
 function gameStart(){
