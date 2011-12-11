@@ -59,8 +59,9 @@ height: 800px;
 margin: 0px auto;
 }
 #stats{
-    width: 100%;
+    width: 480px;
     text-align: center;
+    margin: 0 auto;
 }
 #sub{
 text-align: center;
@@ -89,6 +90,7 @@ text-align: center;
     color: blue;
 }
 .button {
+    float: left;
     border: solid;
     border-color: #09C;
     background-color: #09C;
@@ -96,5 +98,5 @@ text-align: center;
     border-radius: 4px;
     width: 120px;
     height: 45px;
-    margin: 0 auto;
+    margin: 0 57px;
 }

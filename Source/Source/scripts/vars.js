@@ -37,6 +37,16 @@ var pw = 30,
 //level variables
     bgcolor = "rgb(0,0,0)",
     bgline = "rgb(0,255,0)",
+	lvl1 = null,
+	lvl2 = null,
+	lvl3 = null,
+	lvl4 = null,
+	lvl5 = null,
+	lvl6 = null,
+	lvl7 = null,
+	lvl8 = null,
+	lvl9 = null,
+	lvl10 = null,
 //sprites and sounds
     pSprite = new Image();
     pSprite.src = b+"images/heliumclass1.svg";
@@ -74,6 +84,7 @@ var upKey = false,
     laserLimit = 4,
     laserFireTracker = 0,
     laserTimeout = 20,
+	laserSpeed = 10,
 //scoring
     sc0re = 0,
     sc0reMult = 1,
@@ -85,4 +96,7 @@ var upKey = false,
 //canvas element vars
     canvas = null,
     body = null,
-    ctx = null;
+    ctx = null,
+//fallback
+	fallback = false,
+	speedMult = 1;

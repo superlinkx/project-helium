@@ -44,10 +44,10 @@ function Player(x,y){
     this.h = 30;
 }
 function playerDraw(){
-    if (rightKey) player.x += pspeed;
-    if (leftKey) player.x -= pspeed;
-    if (upKey) player.y -= pspeed;
-    if (downKey) player.y += pspeed;
+    if (rightKey) player.x += pspeed * speedMult;
+    if (leftKey) player.x -= pspeed * speedMult;
+    if (upKey) player.y -= pspeed * speedMult;
+    if (downKey) player.y += pspeed * speedMult;
     playerBounds();
     ctx.drawImage(pSprite, player.x, player.y);
 }
@@ -126,7 +126,7 @@ function drawEnemyLaser(){
 }
 function moveEnemyLaser(){
     for(var i = 0; i < enemyLasers.length; i++){
-		enemyLasers[i].y += 10
+		enemyLasers[i].y += laserSpeed * speedMult;
 		if (enemyLasers[i].y > 810){
 		    enemyLasers.splice(i,1);
 		}
@@ -205,14 +205,14 @@ function moveEnemy(){
 		    case 1:
 				enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
 				if (enemies[i].y < h) {
-				    enemies[i].y += enemies[i].speed;
+				    enemies[i].y += enemies[i].speed * speedMult;
 				} else if (enemies[i].y > h - 1) {
 				    enemies[i].y = -45;
 				}
 				break;
 			case 2:
 				if (enemies[i].y < h){
-					enemies[i].y += enemies[i].speed;
+					enemies[i].y += enemies[i].speed * speedMult;
 				} else if (enemies[i].y > h - 1){
 				    enemies[i].y = -45;
 				}
@@ -220,7 +220,7 @@ function moveEnemy(){
 			default:
 				enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
 				if (enemies[i].y < h) {
-				    enemies[i].y += enemies[i].speed;
+				    enemies[i].y += enemies[i].speed * speedMult;
 				} else if (enemies[i].y > h - 1) {
 				    enemies[i].y = -45;
 				}
@@ -300,7 +300,7 @@ function laserFire(){
 function moveLaser(){
     for(var i = 0; i < lasers.length; i++){
 		if (lasers[i].y > -11){
-		    lasers[i].y -= 10;
+		    lasers[i].y -= laserSpeed * speedMult;
 		} else if (lasers[i].y < -10){
 		    lasers.splice(i,1);
 		}
