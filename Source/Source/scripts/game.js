@@ -37,6 +37,7 @@ function init(){
 	    enemies.push(new Enemy(e1x, e1y, e1w, e1h, speed, e1x, type));
 	}
 	player = new Player(px,py);
+	lvl_init();
 	gameLoop();
 }
 function gameLoop(){

@@ -100,3 +100,14 @@ function updateStorage(){
     lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
     storageCalled = true;
 }
+function toggle_fallback() {
+	if (fallback === false) {
+		fallback = true;
+		speedMult = 2;
+		FPS = 30;
+	} else {
+		fallback = false;
+		speedMult = 1;
+		FPS = 60;
+	}
+}
