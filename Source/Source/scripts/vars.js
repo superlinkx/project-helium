@@ -39,11 +39,11 @@ var pw = 30,
     bgline = "rgb(0,255,0)",
 //sprites and sounds
     pSprite = new Image();
-    pSprite.src = b+"images/heliumclass1.png";
+    pSprite.src = b+"images/heliumclass1.svg";
 var e1Sprite = new Image();
-    e1Sprite.src = b+"images/enemy1.png";
+    e1Sprite.src = b+"images/enemy1.svg";
 var e2Sprite = new Image();
-    e2Sprite.src = b+"images/enemy2.png";
+    e2Sprite.src = b+"images/enemy2.svg";
 //keys
 var upKey = false,
     downKey = false,
