@@ -55,12 +55,12 @@ function gameLoop(){
 		moveEnemy();
 		moveLaser();
 		moveEnemyLaser();
-		drawEnemy();
-        laserFire();
-        drawLaser();
-		enemyFire();
-		drawEnemyLaser();		
+		drawLaser();
+        drawEnemy();
+		drawEnemyLaser();
 		playerDraw();
+		enemyFire();
+		laserFire();
         hitTest();
 		enemyLaserTest();
 		shipCollision();
