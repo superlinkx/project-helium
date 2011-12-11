@@ -44,10 +44,10 @@ function Player(x,y){
     this.h = 30;
 }
 function playerDraw(){
-    if (rightKey) player.x += 2;
-    if (leftKey) player.x -= 2;
-    if (upKey) player.y -= 2;
-    if (downKey) player.y += 2;
+    if (rightKey) player.x += 3;
+    if (leftKey) player.x -= 3;
+    if (upKey) player.y -= 3;
+    if (downKey) player.y += 3;
     playerBounds();
     ctx.drawImage(pSprite, player.x, player.y);
 }
