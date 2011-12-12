@@ -1,0 +1,6 @@
+#!/bin/bash
+cp -r ../Source/Source/css ../Source/Source/sound ../Source/Source/index.html ../Source/Source/images/ ../Source/Source/fonts/ ../Web\ App/scripts/ ../Chrome/Free\ App/;
+nano ../Chrome/Free\ App/manifest.json;
+rm -rf ../Chrome/Free\ App.zip;
+cd ../Chrome;
+zip -r Free\ App.zip Free\ App/;
