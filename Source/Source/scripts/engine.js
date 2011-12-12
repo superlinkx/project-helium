@@ -70,11 +70,15 @@ function shipCollision(){
     var pxw = player.x + player.w,
     pyh = player.y + player.h;
     for (var i = 0; i < enemies.length; i++){
-        if((player.x >= enemies[i].x && player.x <= (enemies[i].x + enemies[i].w)) || ((player.x + player.w) >= enemies[i].x && (player.x + player.w) <= (enemies[i].x + enemies[i].w))){
-            if((player.y >= enemies[i].y && player.y <= (enemies[i].y + enemies[i].h)) || ((player.y + player.h) >= enemies[i].y && (player.y + player.h) <= (enemies[i].y + enemies[i].h))){
-                checkLives();
-            }
-        }
+		for (var j = 0; j < player.w; j++){
+			if(player.x + j >= enemies[i].x && player.x + j <= enemies[i].x + enemies[i].w){
+				for (var k = 0; k < player.h; k++){
+				    if(player.y + k >= enemies[i].y && player.y + k <= enemies[i].y + enemies[i].h){
+				        checkLives();
+				    }
+				}
+			}
+		}
     }
 }
 //End Player
@@ -105,9 +109,9 @@ function enemyFire(){
 		switch (enemies[i].type){
 		    case 1: break;
 		    case 2:	if(!enemies[i].fired){
-				enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, 20));
-				enemies[i].fired = 1;
-				break;
+					enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, laserHeight));
+					enemies[i].fired = true;
+					break;
 				}
 		    default: break;
 		}
@@ -118,7 +122,7 @@ function drawEnemyLaser(){
 		for (var i=0; i < enemyLasers.length; i++){
 		    var laserGradient = ctx.createLinearGradient(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].x,enemyLasers[i].y + 20);
 		    laserGradient.addColorStop(0,'rgba(255,0,0,0.2)');
-            laserGradient.addColorStop(1,'rgba(255,0,0,0.8)')
+            laserGradient.addColorStop(1,'rgba(255,0,0,0.8)');
             ctx.fillStyle = laserGradient;
 		    ctx.fillRect(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].w,enemyLasers[i].h);
 		}
@@ -228,41 +232,41 @@ function moveEnemy(){
     }
 }
 function enemyLaserTest(){
-    var remove = false;
     for (var i = 0; i < enemyLasers.length; i++){
-        if (enemyLasers[i].x >= player.x && enemyLasers[i].x <= (player.x + player.w) || ((enemyLasers[i].x + enemyLasers[i].w) >= player.x && (enemyLasers[i].x + enemyLasers[i].w) <= (player.x + player.w))){
-		    if (enemyLasers[i].y >= player.y && enemyLasers[i].y <= (player.y + player.h)){
-				remove = true;
-				checkLives();
-		    }
-		}
-		if (remove == true){
-		    enemyLasers.splice(i,1);
-		    remove = false;
+		for (var j = 0; j < laserWidth; j++){
+			if (enemyLasers[i].x + j >= player.x  && enemyLasers[i].x + j <= (player.x + player.w)){
+				for (var k = 0; k < laserHeight; k++){
+					if (enemyLasers[i].y + k >= player.y && enemyLasers[i].y + k <= (player.y + player.h)){
+						checkLives();
+						enemyLasers.splice(i,1);
+						break;
+					}
+				}
+			}
 		}
     }
 }
 function hitTest(){
-    var remove = false;
     for (var i = 0; i < lasers.length; i++){
 		for(var j = 0; j < enemies.length; j++){
-		    if (lasers[i].x >= enemies[j].x && lasers[i].x <= (enemies[j].x + enemies[j].w) || ((lasers[i].x + lasers[i].w) >= enemies[j].x && (lasers[i].x + lasers[i].w) <= (enemies[j].x + enemies[j].w))){
-				if (lasers[i].y >= enemies[j].y && lasers[i].y <= (enemies[j].y + enemies[j].h)){
-					enemyKilled += 1;
-					remove = true;
-					enemies.splice(j,1);
-					sc0re += (10*sc0reMult);
-					path = randomPath();
-					e1x = currentPath(path);
-					type = randomType();
-					var speed = typeSpeed(type);
-					enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
+			for (var k = 0; k < laserWidth; k++){
+				if (lasers[i].x + k >= enemies[j].x && lasers[i].x + k <= (enemies[j].x + enemies[j].w)){
+					for (var l = 0; l < laserHeight; l++){
+						if (lasers[i].y + l >= enemies[j].y && lasers[i].y + l <= (enemies[j].y + enemies[j].h)){
+							enemyKilled += 1;
+							enemies.splice(j,1);
+							sc0re += (10*sc0reMult);
+							path = randomPath();
+							e1x = currentPath(path);
+							type = randomType();
+							var speed = typeSpeed(type);
+							enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
+							lasers.splice(i,1);
+							break;
+						}
+					}
 				}
 			}
-		}
-		if (remove == true){
-		    lasers.splice(i,1);
-		    remove = false;
 		}
     }
 }
@@ -287,7 +291,7 @@ function drawLaser(){
 }
 function laserFire(){
     if(laserKey == true && laserTime >= 5 && laserCount > 0){
-        lasers.push(new Laser(player.x + (player.w/2 - laserWidth/2), player.y, laserWidth, 20));
+        lasers.push(new Laser(player.x + (player.w/2 - laserWidth/2), player.y, laserWidth, laserHeight));
         laserTime = 0;
         laserCount--;
     }

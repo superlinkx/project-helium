@@ -61,9 +61,9 @@ function gameLoop(){
 		playerDraw();
 		enemyFire();
 		laserFire();
-        hitTest();
-		enemyLaserTest();
 		shipCollision();
+		enemyLaserTest();
+        hitTest();
 	}
 	if (!alive){
 		gameOver();
