@@ -1,5 +1,5 @@
 /**
-* @license Copyright 2011 Steven Holms <superlinkx@gmail.com>
+* Copyright 2011 Steven Holms <superlinkx@gmail.com>
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
 *   you may not use this file except in compliance with the License.
@@ -26,11 +26,11 @@ function backgroundDraw(){
     ctx.strokeStyle = bgline;
     for(i=60;i<=w;i+=60){
         ctx.moveTo(i,0);
-	ctx.lineTo(i,h);
+		ctx.lineTo(i,h);
     }
     for(i=bgpos;i<=h;i+=60){
         ctx.moveTo(0,i);
-	ctx.lineTo(w,i);
+		ctx.lineTo(w,i);
     }
     ctx.stroke();
     bgpos+=1;
@@ -44,10 +44,10 @@ function Player(x,y){
     this.h = 30;
 }
 function playerDraw(){
-    if (rightKey) player.x += 5;
-    if (leftKey) player.x -= 5;
-    if (upKey) player.y -= 5;
-    if (downKey) player.y += 5;
+    if (rightKey) player.x += pspeed * speedMult;
+    if (leftKey) player.x -= pspeed * speedMult;
+    if (upKey) player.y -= pspeed * speedMult;
+    if (downKey) player.y += pspeed * speedMult;
     playerBounds();
     ctx.drawImage(pSprite, player.x, player.y);
 }
@@ -70,11 +70,15 @@ function shipCollision(){
     var pxw = player.x + player.w,
     pyh = player.y + player.h;
     for (var i = 0; i < enemies.length; i++){
-        if((player.x >= enemies[i].x && player.x <= (enemies[i].x + enemies[i].w)) || ((player.x + player.w) >= enemies[i].x && (player.x + player.w) <= (enemies[i].x + enemies[i].w))){
-            if((player.y >= enemies[i].y && player.y <= (enemies[i].y + enemies[i].h)) || ((player.y + player.h) >= enemies[i].y && (player.y + player.h) <= (enemies[i].y + enemies[i].h))){
-                checkLives();
-            }
-        }
+		for (var j = 0; j < player.w; j++){
+			if(player.x + j >= enemies[i].x && player.x + j <= enemies[i].x + enemies[i].w){
+				for (var k = 0; k < player.h; k++){
+				    if(player.y + k >= enemies[i].y && player.y + k <= enemies[i].y + enemies[i].h){
+				        checkLives();
+				    }
+				}
+			}
+		}
     }
 }
 //End Player
@@ -91,52 +95,51 @@ function Enemy(x,y,w,h,speed,initx,type){
 }
 function drawEnemy(){
     for (var i = 0; i < enemies.length; i++) {
-	switch (enemies[i].type){
-	    case 1: ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
-		    break;
-	    case 2: ctx.drawImage(e2Sprite,enemies[i].x,enemies[i].y);
-		    break;
-	    default: ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
-	}
+		switch (enemies[i].type){
+		    case 1: ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
+			    break;
+		    case 2: ctx.drawImage(e2Sprite,enemies[i].x,enemies[i].y);
+			    break;
+		    default: ctx.drawImage(e1Sprite,enemies[i].x,enemies[i].y);
+		}
     }
 }
 function enemyFire(){
     for (var i = 0; i < enemies.length; i++) {
-	switch (enemies[i].type){
-	    case 1: break;
-	    case 2:
-		if(!enemies[i].fired){
-		   enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, 20));
-		   enemies[i].fired = 1;
-		   break;
+		switch (enemies[i].type){
+		    case 1: break;
+		    case 2:	if(!enemies[i].fired){
+					enemyLasers.push(new Laser(enemies[i].x + (enemies[i].w/2 - laserWidth/2), enemies[i].y, laserWidth, laserHeight));
+					enemies[i].fired = true;
+					break;
+				}
+		    default: break;
 		}
-	    default: break;
-	}
     } 
 }
 function drawEnemyLaser(){
     if (enemyLasers.length){
-	for (var i=0; i < enemyLasers.length; i++){
-	    var laserGradient = ctx.createLinearGradient(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].x,enemyLasers[i].y + 20);
-	    laserGradient.addColorStop(0,'rgba(255,0,0,0.2)');
-            laserGradient.addColorStop(1,'rgba(255,0,0,0.8)')
+		for (var i=0; i < enemyLasers.length; i++){
+		    var laserGradient = ctx.createLinearGradient(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].x,enemyLasers[i].y + 20);
+		    laserGradient.addColorStop(0,'rgba(255,0,0,0.2)');
+            laserGradient.addColorStop(1,'rgba(255,0,0,0.8)');
             ctx.fillStyle = laserGradient;
-	    ctx.fillRect(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].w,enemyLasers[i].h);
-	}
+		    ctx.fillRect(enemyLasers[i].x,enemyLasers[i].y,enemyLasers[i].w,enemyLasers[i].h);
+		}
     }
 }
 function moveEnemyLaser(){
     for(var i = 0; i < enemyLasers.length; i++){
-	enemyLasers[i].y += 10
-	if (enemyLasers[i].y > 810){
-	    enemyLasers.splice(i,1);
-	}
+		enemyLasers[i].y += laserSpeed * speedMult;
+		if (enemyLasers[i].y > 810){
+		    enemyLasers.splice(i,1);
+		}
     }
 }
 function randomType(){
     var random = Math.ceil(Math.random() * 2);
     if(random == 0){
-	random = 1;
+		random = 1;
     }
     return random;
 }
@@ -156,115 +159,115 @@ function randomPath(){
 }
 function currentPath(path){
     switch(path){
-	case 1: pathSize = (w/20);
-	    break;
-	case 2: pathSize = (w/20)*2;
-	    break;
-	case 3: pathSize = (w/20)*3;
-	    break;
-	case 4: pathSize = (w/20)*4;
-	    break;
-	case 5: pathSize = (w/20)*5;
-	    break;
-	case 6: pathSize = (w/20)*6;
-	    break;
-	case 7: pathSize = (w/20)*7;
-	    break;
-	case 8: pathSize = (w/20)*8;
-	    break;
-	case 9: pathSize = (w/20)*9;
-	    break;
-	case 10: pathSize = (w/20)*10;
-	    break;
-	case 11: pathSize = (w/20)*11;
-	    break;
-	case 12: pathSize = (w/20)*12;
-	    break;
-	case 13: pathSize = (w/20)*13;
-	    break;
-	case 14: pathSize = (w/20)*14;
-	    break;
-	case 15: pathSize = (w/20)*15;
-	    break;
-	case 16: pathSize = (w/20)*16;
-	    break;
-	case 17: pathSize = (w/20)*17;
-	    break;
-	case 18: pathSize = (w/20)*18;
-	    break;
-	case 19: pathSize = (w/20)*19;
-	    break;
-	case 20: pathSize = (w/20)*20;
-	    break;
-	default: return err;
+		case 1: pathSize = (w/20);
+		    break;
+		case 2: pathSize = (w/20)*2;
+		    break;
+		case 3: pathSize = (w/20)*3;
+		    break;
+		case 4: pathSize = (w/20)*4;
+		    break;
+		case 5: pathSize = (w/20)*5;
+		    break;
+		case 6: pathSize = (w/20)*6;
+		    break;
+		case 7: pathSize = (w/20)*7;
+		    break;
+		case 8: pathSize = (w/20)*8;
+		    break;
+		case 9: pathSize = (w/20)*9;
+		    break;
+		case 10: pathSize = (w/20)*10;
+		    break;
+		case 11: pathSize = (w/20)*11;
+		    break;
+		case 12: pathSize = (w/20)*12;
+		    break;
+		case 13: pathSize = (w/20)*13;
+		    break;
+		case 14: pathSize = (w/20)*14;
+		    break;
+		case 15: pathSize = (w/20)*15;
+		    break;
+		case 16: pathSize = (w/20)*16;
+		    break;
+		case 17: pathSize = (w/20)*17;
+		    break;
+		case 18: pathSize = (w/20)*18;
+		    break;
+		case 19: pathSize = (w/20)*19;
+		    break;
+		case 20: pathSize = (w/20)*20;
+		    break;
+		default: return err;
     }
     return pathSize;
 }
 function moveEnemy(){
     for (var i = 0; i < enemies.length; i++) {
-	switch(enemies[i].type){
-	    case 1:
-		enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
-		if (enemies[i].y < h) {
-		    enemies[i].y += enemies[i].speed;
-		} else if (enemies[i].y > h - 1) {
-		    enemies[i].y = -45;
+		switch(enemies[i].type){
+		    case 1:
+				enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
+				if (enemies[i].y < h) {
+				    enemies[i].y += enemies[i].speed * speedMult;
+				} else if (enemies[i].y > h - 1) {
+				    enemies[i].y = -45;
+				}
+				break;
+			case 2:
+				if (enemies[i].y < h){
+					enemies[i].y += enemies[i].speed * speedMult;
+				} else if (enemies[i].y > h - 1){
+				    enemies[i].y = -45;
+				}
+				break;
+			default:
+				enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
+				if (enemies[i].y < h) {
+				    enemies[i].y += enemies[i].speed * speedMult;
+				} else if (enemies[i].y > h - 1) {
+				    enemies[i].y = -45;
+				}
 		}
-		break;
-	    case 2:
-		if (enemies[i].y < h){
-		    enemies[i].y += enemies[i].speed;
-		} else if (enemies[i].y > h - 1){
-		    enemies[i].y = -45;
-		}
-		break;
-	    default:
-	    	enemies[i].x = e1xa*Math.sin((e1xf*enemies[i].y))+enemies[i].initx;
-		if (enemies[i].y < h) {
-		    enemies[i].y += enemies[i].speed;
-		} else if (enemies[i].y > h - 1) {
-		    enemies[i].y = -45;
-		}
-	}
     }
 }
 function enemyLaserTest(){
-    var remove = false;
     for (var i = 0; i < enemyLasers.length; i++){
-        if (enemyLasers[i].x >= player.x && enemyLasers[i].x <= (player.x + player.w) || ((enemyLasers[i].x + enemyLasers[i].w) >= player.x && (enemyLasers[i].x + enemyLasers[i].w) <= (player.x + player.w))){
-	    if (enemyLasers[i].y >= player.y && enemyLasers[i].y <= (player.y + player.h)){
-		remove = true;
-		checkLives();
-	    }
-	}
-	if (remove == true){
-	    enemyLasers.splice(i,1);
-	    remove = false;
-	}
+		for (var j = 0; j < laserWidth; j++){
+			if (enemyLasers[i].x + j >= player.x  && enemyLasers[i].x + j <= (player.x + player.w)){
+				for (var k = 0; k < laserHeight; k++){
+					if (enemyLasers[i].y + k >= player.y && enemyLasers[i].y + k <= (player.y + player.h)){
+						checkLives();
+						enemyLasers.splice(i,1);
+						break;
+					}
+				}
+			}
+		}
     }
 }
 function hitTest(){
-    var remove = false;
     for (var i = 0; i < lasers.length; i++){
-	for(var j = 0; j < enemies.length; j++){
-            if (lasers[i].x >= enemies[j].x && lasers[i].x <= (enemies[j].x + enemies[j].w) || ((lasers[i].x + lasers[i].w) >= enemies[j].x && (lasers[i].x + lasers[i].w) <= (enemies[j].x + enemies[j].w))){
-		if (lasers[i].y >= enemies[j].y && lasers[i].y <= (enemies[j].y + enemies[j].h)){
-		    enemyKilled += 1;
-                    remove = true;
-                    enemies.splice(j,1);
-		    sc0re += (10*sc0reMult);
-		    path = randomPath();
-		    e1x = currentPath(path);
-		    type = randomType();
-		    var speed = typeSpeed(type);
-		    enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
+		for(var j = 0; j < enemies.length; j++){
+			for (var k = 0; k < laserWidth; k++){
+				if (lasers[i].x + k >= enemies[j].x && lasers[i].x + k <= (enemies[j].x + enemies[j].w)){
+					for (var l = 0; l < laserHeight; l++){
+						if (lasers[i].y + l >= enemies[j].y && lasers[i].y + l <= (enemies[j].y + enemies[j].h)){
+							enemyKilled += 1;
+							enemies.splice(j,1);
+							sc0re += (10*sc0reMult);
+							path = randomPath();
+							e1x = currentPath(path);
+							type = randomType();
+							var speed = typeSpeed(type);
+							enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
+							lasers.splice(i,1);
+							break;
+						}
+					}
+				}
+			}
 		}
-            }
-	}
-	if (remove == true){
-	    lasers.splice(i,1);
-	    remove = false;
-	}
     }
 }
 //End Enemy
@@ -277,91 +280,40 @@ function Laser(x,y,w,h){
 }
 function drawLaser(){
     if (lasers.length){
-	for (var i=0; i < lasers.length; i++){
-	    var laserGradient = ctx.createLinearGradient(lasers[i].x,lasers[i].y,lasers[i].x,lasers[i].y + 20);
-	    laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
-            laserGradient.addColorStop(1,'rgba(255,0,0,0.2)')
+		for (var i=0; i < lasers.length; i++){
+		    var laserGradient = ctx.createLinearGradient(lasers[i].x,lasers[i].y,lasers[i].x,lasers[i].y + 20);
+		    laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
+            laserGradient.addColorStop(1,'rgba(255,0,0,0.2)');
             ctx.fillStyle = laserGradient;
-	    ctx.fillRect(lasers[i].x,lasers[i].y,lasers[i].w,lasers[i].h);
-	}
+			ctx.fillRect(lasers[i].x,lasers[i].y,lasers[i].w,lasers[i].h);
+		}
     }
 }
 function laserFire(){
     if(laserKey == true && laserTime >= 5 && laserCount > 0){
-        lasers.push(new Laser(player.x + (player.w/2 - laserWidth/2), player.y, laserWidth, 20));
+        lasers.push(new Laser(player.x + (player.w/2 - laserWidth/2), player.y, laserWidth, laserHeight));
         laserTime = 0;
         laserCount--;
     }
     laserTime += 1;
-    if(laserCount < laserLimit && !(laserFireTracker++ % laserTimeout)){
+    if(laserCount < laserLimit && !(laserFireTracker++ % (laserTimeout/speedMult))){
         laserCount++;
     }
     
 }
 function moveLaser(){
     for(var i = 0; i < lasers.length; i++){
-	if (lasers[i].y > -11){
-	    lasers[i].y -= 10;
-	} else if (lasers[i].y < -10){
-	    lasers.splice(i,1);
-	}
+		if (lasers[i].y > -11){
+		    lasers[i].y -= laserSpeed * speedMult;
+		} else if (lasers[i].y < -10){
+		    lasers.splice(i,1);
+		}
     }
 }
 //End Laser
 //Begin Menu
-function intro(){
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.fillRect(0,0,w,h);
-    ctx.fillStyle = '#f00';
-    ctx.font = '54px "Times New Roman"';
-    ctx.fillText('Project Helium', w/2 - 160, h/2);
-    ctx.font = '36px "Times New Roman"';
-    ctx.fillText('Press Enter to Play', w/2 - 130, h/2 + 50);
-    ctx.fillText('Use arrow keys to move', w/2 - 175, h/2 + 90);
-    ctx.fillText('Use space to shoot', w/2 - 130, h/2+130);
-}
-function gameOver(){
-    lives = 0;
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.fillRect(0,0,w,h);
-    ctx.fillStyle = '#f00'
-    ctx.fillText('Game Over!', (w/2)-63, h/2);
-    ctx.fillText('Press Enter to Continue...',(w/2)-133,(h/2)+80);
-    if(!storageCalled) updateStorage();
-    if (enterKey){
-	alive = true;
-	lives = 3;
-        sc0re = 0;
-	enemyKilled = 0
-        enemy1Speed = 3;
-	enemy2Speed = 4;
-	reset();
-    }
-}
-function fullscreen(){
-    if (document.getElementById("helium").webkitRequestFullScreen){
-        document.getElementById("helium").webkitRequestFullScreen();
-    }else{
-        alert('Browser not supported. You need to install the latest WebKit (for example Chrome 15) in order to use the full-screen API.');
-    }
-}
 //End Menu
 //Begin Score
-function scoreboard(){
-    ctx.font = '26px "Times New Roman"';
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.fillRect(0,0,w,60)
-    ctx.fillStyle = '#f00';
-    ctx.fillText('Score: ', 10, 55);
-    ctx.fillText(sc0re, 170, 55);
-    ctx.fillText('Lives:', 10, 20);
-    ctx.fillText(lives, 170, 20);
-    ctx.fillText('Level:', (w-170), 20);
-    if(lvl < 10) ctx.fillText(lvl, (w-20), 20);
-    if(lvl >= 10) ctx.fillText(lvl, (w-30), 20);
-    ctx.fillText('Shots:', (w-170), 55);
-    ctx.fillText(laserCount, (w-20), 55);
-}
 //End Score
 //Begin Engine
 function checkLives(){
@@ -381,48 +333,12 @@ function reset(){
     player.x = (w/2) - 15, player.y = h - 30, player.w = 30, player.h = 30;
     enemies.splice(0,enemies.length);
     for(i=0;i<enemyTotal;i++){
-	path = randomPath();
-	e1x = currentPath(path);
-	type = randomType();
-	var speed = typeSpeed(type);
-	enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
+		path = randomPath();
+		e1x = currentPath(path);
+		type = randomType();
+		var speed = typeSpeed(type);
+		enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
     }
-}
-function pauseGame(){
-    if(gamePaused){
-        game = window.setTimeout(gameLoop, 1000/FPS);
-        gamePaused = false;
-    }else{
-	window.clearTimeout(game);
-	gamePaused = true;
-	ctx.fillStyle = 'rgba(255,255,255,0.7)';
-	ctx.fillRect(0,0,w,h);
-	ctx.fillStyle = '#f00';
-	ctx.font = '54px "Times New Roman"';
-	ctx.fillText('Paused', w/2-70,h/2);
-	ctx.font = '36px "Times New Roman"';
-	ctx.fillText('Press / to Continue',w/2-130,h/2+60)
-    }
-}
-function gameStart(){
-    gameStarted = true;
-    reset();
-    canvas.removeEventListener('click', gameStart, false);
-}
-function updateStorage(){
-    if(localStorage["topScore"]){
-        if(parseInt(parseFloat(localStorage["topScore"])) < sc0re){
-            localStorage["topScore"] = sc0re;
-        }
-    }else{
-        localStorage["topScore"] = sc0re;
-    }
-    localStorage["lastScore"] = sc0re;
-    var topScore = document.getElementById('topScore');
-    var lastScore = document.getElementById('lastScore');
-    topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
-    lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
-    storageCalled = true;
 }
 //End Engine
 //Begin Controls

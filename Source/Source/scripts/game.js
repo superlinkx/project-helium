@@ -1,5 +1,5 @@
 /**
-* @license Copyright 2011 Steven Holms <superlinkx@gmail.com>
+* 	Copyright 2011 Steven Holms <superlinkx@gmail.com>
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
 *   you may not use this file except in compliance with the License.
@@ -20,14 +20,14 @@ function init(){
 	canvas.height = h;
 	canvas.addEventListener('keydown', keyDown, false);
 	canvas.addEventListener('keyup', keyUp, false);
-        var topScore = document.getElementById('topScore');
-        var lastScore = document.getElementById('lastScore');
-        if(localStorage["topScore"]){
-            topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
-        }
-        if(localStorage["lastScore"]){
-            lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
-        }
+    var topScore = document.getElementById('topScore');
+    var lastScore = document.getElementById('lastScore');
+    if(localStorage["topScore"]){
+        topScore.innerHTML = 'Your Highest Score Ever Was: '+localStorage["topScore"];
+    }
+    if(localStorage["lastScore"]){
+        lastScore.innerHTML = 'Your Latest Score Was: '+localStorage["lastScore"];
+    }
 	//enemy init
 	for (var i = 0; i < enemyTotal; i++) {
 	    path = randomPath();
@@ -37,11 +37,11 @@ function init(){
 	    enemies.push(new Enemy(e1x, e1y, e1w, e1h, speed, e1x, type));
 	}
 	player = new Player(px,py);
+	lvl_init();
 	gameLoop();
 }
 function gameLoop(){
 	ctx.clearRect(0,0,w,h);
-	//canvas.width = w;	
 	backgroundDraw();
 	if (enterKey){
 		gameStart();
@@ -55,15 +55,15 @@ function gameLoop(){
 		moveEnemy();
 		moveLaser();
 		moveEnemyLaser();
-		drawEnemy();
-                laserFire();
-                drawLaser();
-		enemyFire();
-		drawEnemyLaser();		
+		drawLaser();
+        drawEnemy();
+		drawEnemyLaser();
 		playerDraw();
-                hitTest();
-		enemyLaserTest();
+		enemyFire();
+		laserFire();
 		shipCollision();
+		enemyLaserTest();
+        hitTest();
 	}
 	if (!alive){
 		gameOver();
