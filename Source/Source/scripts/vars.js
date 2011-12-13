@@ -18,7 +18,7 @@ if(!b) var b = "";
 //error and debugging
 var err;
 // target frames per second
-var FPS = 30;
+var FPS = 60;
 //height/width constants 
 var w = 480;
 var h = 800;
@@ -37,13 +37,23 @@ var pw = 30,
 //level variables
     bgcolor = "rgb(0,0,0)",
     bgline = "rgb(0,255,0)",
+	lvl1 = null,
+	lvl2 = null,
+	lvl3 = null,
+	lvl4 = null,
+	lvl5 = null,
+	lvl6 = null,
+	lvl7 = null,
+	lvl8 = null,
+	lvl9 = null,
+	lvl10 = null,
 //sprites and sounds
     pSprite = new Image();
-    pSprite.src = b+"images/heliumclass1.png";
+    pSprite.src = b+"images/heliumclass1.svg";
 var e1Sprite = new Image();
-    e1Sprite.src = b+"images/enemy1.png";
+    e1Sprite.src = b+"images/enemy1.svg";
 var e2Sprite = new Image();
-    e2Sprite.src = b+"images/enemy2.png";
+    e2Sprite.src = b+"images/enemy2.svg";
 //keys
 var upKey = false,
     downKey = false,
@@ -55,23 +65,27 @@ var upKey = false,
     enemies = [],
     enemyLasers = [],
     enemyKilled = 0,
-    enemy1Speed = 3,
-    enemy2Speed = 4,
+    enemy1Speed = 1,
+    enemy2Speed = 2,
     enemyLaserTime = 0,
     enemyTotal = 8,
     path = null,
     pathSize = null,
     e1xa = 50,		//amplitude
     e1xf = (2*Math.PI)/240,	//frequency
+//player
+	pspeed = 5;
 //lasers
     lasers = [],
     laserKey = false,
     laserTime = 0,
     laserWidth = 4,
+	laserHeight = 20,
     laserCount = 4,
     laserLimit = 4,
     laserFireTracker = 0,
     laserTimeout = 20,
+	laserSpeed = 10,
 //scoring
     sc0re = 0,
     sc0reMult = 1,
@@ -83,4 +97,7 @@ var upKey = false,
 //canvas element vars
     canvas = null,
     body = null,
-    ctx = null;
+    ctx = null,
+//fallback
+	fallback = false,
+	speedMult = 1;
