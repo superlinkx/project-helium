@@ -70,7 +70,7 @@ function shipCollision(){
     var pxw = player.x + player.w,
     pyh = player.y + player.h;
     for (var i = 0; i < enemies.length; i++){
-		if(player.x + player.w >= enemies[i].x && player.x <= enemies[i].x + enemies[i].w && player.y <= enemies[i].y + enemies[i].h && player.y + player.h >= enemies[i].y){
+		if((player.x + player.w >= enemies[i].x)&&(player.x <= enemies[i].x + enemies[i].w)&&(player.y <= enemies[i].y + enemies[i].h)&&(player.y + player.h >= enemies[i].y)){
 	        checkLives();
 		}
     }
