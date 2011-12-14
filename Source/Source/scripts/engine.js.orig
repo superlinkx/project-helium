@@ -70,8 +70,14 @@ function shipCollision(){
     var pxw = player.x + player.w,
     pyh = player.y + player.h;
     for (var i = 0; i < enemies.length; i++){
-		if(player.x + player.w >= enemies[i].x && player.x <= enemies[i].x + enemies[i].w && player.y <= enemies[i].y + enemies[i].h && player.y + player.h >= enemies[i].y){
-	        checkLives();
+		for (var j = 0; j < player.w; j++){
+			if(player.x + j >= enemies[i].x && player.x + j <= enemies[i].x + enemies[i].w){
+				for (var k = 0; k < player.h; k++){
+				    if(player.y + k >= enemies[i].y && player.y + k <= enemies[i].y + enemies[i].h){
+				        checkLives();
+				    }
+				}
+			}
 		}
     }
 }
@@ -227,27 +233,15 @@ function moveEnemy(){
 }
 function enemyLaserTest(){
     for (var i = 0; i < enemyLasers.length; i++){
-		if(enemyLasers[i].x + enemyLasers[i].w >= player.x && enemyLasers[i].x <= player.x + player.w && enemyLasers[i].y >= player.y && enemyLasers[i].y + enemyLasers[i].h <= player.y + player.h){
-			checkLives();
-			enemyLasers.splice(i,1);
-			break;
-		}
-    }
-}
-function hitTest(){
-    for (var i = 0; i < lasers.length; i++){
-		for(var j = 0; j < enemies.length; j++){
-			if(lasers[i].x + lasers[i].w >= enemies[j].x && lasers[i].x <= enemies[j].x + enemies[j].w && lasers[i].y <= enemies[j].y + enemies[j].h && lasers[i].y + lasers[i].h >= enemies[j].y){
-				enemyKilled += 1;
-				enemies.splice(j,1);
-				sc0re += (10*sc0reMult);
-				path = randomPath();
-				e1x = currentPath(path);
-				type = randomType();
-				var speed = typeSpeed(type);
-				enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, e1x, type));
-				lasers.splice(i,1);
-				break;
+		for (var j = 0; j < laserWidth; j++){
+			if (enemyLasers[i].x + j >= player.x  && enemyLasers[i].x + j <= (player.x + player.w)){
+				for (var k = 0; k < laserHeight; k++){
+					if (enemyLasers[i].y + k >= player.y && enemyLasers[i].y + k <= (player.y + player.h)){
+						checkLives();
+						enemyLasers.splice(i,1);
+						break;
+					}
+				}
 			}
 		}
     }
