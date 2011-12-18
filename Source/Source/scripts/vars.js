@@ -20,8 +20,8 @@ var err;
 // target frames per second
 var FPS = 60;
 //height/width constants 
-var w = 480;
-var h = 800;
+var width = 480;
+var height = 800;
 var pw = 30,
     ph = 30,
     e1w = 30,
@@ -30,8 +30,8 @@ var pw = 30,
     x = 0,
     y = 0,
     bgpos = 0,
-    px = (w/2)-(pw/2),
-    py = (h-ph),
+    px = (width/2)-(pw/2),
+    py = (height-ph),
     e1x = 25,
     e1y = -45,
 //level variables

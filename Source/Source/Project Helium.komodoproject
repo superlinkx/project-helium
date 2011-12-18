@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Komodo Project File - DO NOT EDIT -->
 <project id="67716f3a-eefd-4546-8846-632d3b460633" kpf_version="5" name="Project Helium.komodoproject">
+<file id="1b6e9054-2665-481b-8715-cd4584d3ada1" idref="67716f3a-eefd-4546-8846-632d3b460633" name="index.html" url="index.html">
+</file>
+<livefolder id="818c2235-5346-429f-93f9-86e53482e675" idref="67716f3a-eefd-4546-8846-632d3b460633" name="css" url="css">
+</livefolder>
+<livefolder id="8571d909-5a9e-46bf-a223-3743c1f1e375" idref="67716f3a-eefd-4546-8846-632d3b460633" name="fonts" url="fonts">
+</livefolder>
+<livefolder id="a7494adf-99bc-409e-af91-48b94e557246" idref="67716f3a-eefd-4546-8846-632d3b460633" name="images" url="images">
+</livefolder>
+<livefolder id="b9209fa1-f0e9-42d5-af21-54e14a29e132" idref="67716f3a-eefd-4546-8846-632d3b460633" name="scripts" url="scripts">
+</livefolder>
+<file id="b996c669-39f5-4e23-8908-592ab27c1f57" idref="67716f3a-eefd-4546-8846-632d3b460633" name="test.html" url="test.html">
+</file>
+<file id="bb05277e-9155-4edc-8a3d-3ee7df8cd49e" idref="67716f3a-eefd-4546-8846-632d3b460633" name="README.txt" url="README.txt">
+</file>
 </project>

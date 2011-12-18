@@ -16,8 +16,8 @@
 function init(){
 	canvas = document.getElementById('helium');	
 	ctx = canvas.getContext('2d');
-	canvas.width = w;
-	canvas.height = h;
+	canvas.width = width;
+	canvas.height = height;
 	canvas.addEventListener('keydown', keyDown, false);
 	canvas.addEventListener('keyup', keyUp, false);
     var topScore = document.getElementById('topScore');
@@ -31,17 +31,17 @@ function init(){
 	//enemy init
 	for (var i = 0; i < enemyTotal; i++) {
 	    path = randomPath();
-	    e1x = currentPath(path);
 	    type = randomType();
+		e1x = Path(path);
 	    var speed = typeSpeed(type);
-	    enemies.push(new Enemy(e1x, e1y, e1w, e1h, speed, e1x, type));
+	    enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, type));
 	}
 	player = new Player(px,py);
 	lvl_init();
 	gameLoop();
 }
 function gameLoop(){
-	ctx.clearRect(0,0,w,h);
+	ctx.clearRect(0,0,width,height);
 	backgroundDraw();
 	if (enterKey){
 		gameStart();
@@ -52,18 +52,16 @@ function gameLoop(){
 	if (alive && gameStarted && lives > 0){
 		lvlchecker();
 		lvlReader();
-		moveEnemy();
 		moveLaser();
-		moveEnemyLaser();
+		moveEnemy();
 		drawLaser();
         drawEnemy();
-		drawEnemyLaser();
-		playerDraw();
+		player.draw();
 		enemyFire();
-		laserFire();
-		shipCollision();
+		player.fire();
+		player.collision();
+		hitTest();
 		enemyLaserTest();
-        hitTest();
 	}
 	if (!alive){
 		gameOver();
