@@ -25,19 +25,6 @@ margin: 0px;
 padding: 5px 0px 5px 0px;
 }
 a{
-/*float: left;
-display: block;
-width: 175px;
-text-align: center;
-border: 2px solid;
-border-color: #e1e1e1;
-border-radius: 5px;
--moz-border-radius: 5px;
-background-color: #7e3f3f;
-text-decoration: none;
-color: #e1e1e1;
-margin-right: 10px;
-font-family: 'VT323', sans-serif;*/
 text-decoration: none;
 color: black;
 }
@@ -57,6 +44,7 @@ box-shadow: rgba(0,0,0,1) 0px 15px 60px 0px;
 width: 480px;
 height: 800px;
 margin: 0px auto;
+cursor: pointer;
 }
 #stats{
     width: 480px;
@@ -92,11 +80,15 @@ text-align: center;
 .button {
     float: left;
     border: solid;
-    border-color: #09C;
-    background-color: #09C;
+    border-color: #8f8f8f;
+    background-color: #8f8f8f;
     color: #f00;
-    border-radius: 4px;
+    border-radius: 8px;
+    cursor: pointer;
     width: 120px;
     height: 45px;
-    margin: 0 57px;
+    margin: 10px 57px;
+}
+.button a {
+    color: #c0c0c0;
 }

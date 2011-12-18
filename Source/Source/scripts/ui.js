@@ -15,22 +15,22 @@
 */
 function intro(){
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.fillRect(0,0,w,h);
+    ctx.fillRect(0,0,width,height);
     ctx.fillStyle = '#f00';
     ctx.font = '54px "Times New Roman"';
-    ctx.fillText('Project Helium', w/2 - 160, h/2);
+    ctx.fillText('Project Helium', width/2 - 160, height/2);
     ctx.font = '36px "Times New Roman"';
-    ctx.fillText('Press Enter to Play', w/2 - 130, h/2 + 50);
-    ctx.fillText('Use arrow keys to move', w/2 - 175, h/2 + 90);
-    ctx.fillText('Use space to shoot', w/2 - 130, h/2+130);
+    ctx.fillText('Press Enter to Play', width/2 - 130, height/2 + 50);
+    ctx.fillText('Use arrow keys to move', width/2 - 175, height/2 + 90);
+    ctx.fillText('Use space to shoot', width/2 - 130, height/2+130);
 }
 function gameOver(){
     lives = 0;
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.fillRect(0,0,w,h);
+    ctx.fillRect(0,0,width,height);
     ctx.fillStyle = '#f00'
-    ctx.fillText('Game Over!', (w/2)-63, h/2);
-    ctx.fillText('Press Enter to Continue...',(w/2)-133,(h/2)+80);
+    ctx.fillText('Game Over!', (width/2)-63, height/2);
+    ctx.fillText('Press Enter to Continue...',(width/2)-133,(height/2)+80);
     if(!storageCalled) updateStorage();
     if (enterKey){
 		alive = true;
@@ -52,17 +52,17 @@ function fullscreen(){
 function scoreboard(){
     ctx.font = '26px "Times New Roman"';
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.fillRect(0,0,w,60)
+    ctx.fillRect(0,0,width,60)
     ctx.fillStyle = '#f00';
     ctx.fillText('Score: ', 10, 55);
     ctx.fillText(sc0re, 170, 55);
     ctx.fillText('Lives:', 10, 20);
     ctx.fillText(lives, 170, 20);
-    ctx.fillText('Level:', (w-170), 20);
-    if(lvl < 10) ctx.fillText(lvl, (w-20), 20);
-    if(lvl >= 10) ctx.fillText(lvl, (w-30), 20);
-    ctx.fillText('Shots:', (w-170), 55);
-    ctx.fillText(laserCount, (w-20), 55);
+    ctx.fillText('Level:', (width-170), 20);
+    if(lvl < 10) ctx.fillText(lvl, (width-20), 20);
+    if(lvl >= 10) ctx.fillText(lvl, (width-30), 20);
+    ctx.fillText('Shots:', (width-170), 55);
+    ctx.fillText(laserCount, (width-20), 55);
 }
 function pauseGame(){
     if(gamePaused){
@@ -72,12 +72,12 @@ function pauseGame(){
 		window.clearTimeout(game);
 		gamePaused = true;
 		ctx.fillStyle = 'rgba(255,255,255,0.7)';
-		ctx.fillRect(0,0,w,h);
+		ctx.fillRect(0,0,width,height);
 		ctx.fillStyle = '#f00';
 		ctx.font = '54px "Times New Roman"';
-		ctx.fillText('Paused', w/2-70,h/2);
+		ctx.fillText('Paused', width/2-70,height/2);
 		ctx.font = '36px "Times New Roman"';
-		ctx.fillText('Press / to Continue',w/2-130,h/2+60)
+		ctx.fillText('Press / to Continue',width/2-130,height/2+60)
     }
 }
 function gameStart(){
