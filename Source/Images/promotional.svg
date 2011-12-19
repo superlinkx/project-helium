@@ -20,25 +20,25 @@
    inkscape:export-ydpi="90">
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="280.42239"
-     inkscape:cy="94.78482"
+     inkscape:zoom="1"
+     inkscape:cx="188.05819"
+     inkscape:cy="42.859131"
      inkscape:document-units="px"
-     inkscape:current-layer="webslicer-layer"
+     inkscape:current-layer="layer3"
      showgrid="true"
      inkscape:showpageshadow="false"
-     inkscape:snap-grids="true"
-     inkscape:snap-page="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-page="true"
      showguides="true"
      inkscape:guide-bbox="true"
      width="440px"
      inkscape:window-width="1280"
-     inkscape:window-height="718"
+     inkscape:window-height="744"
      inkscape:window-x="0"
      inkscape:window-y="26"
      inkscape:window-maximized="1"
@@ -50,14 +50,6 @@
        empspacing="5"
        id="grid3401"
        type="xygrid" />
-    <sodipodi:guide
-       id="guide3403"
-       position="220,280"
-       orientation="1,0" />
-    <sodipodi:guide
-       id="guide3405"
-       position="300,140"
-       orientation="0,1" />
   </sodipodi:namedview>
   <defs
      id="defs4" />
@@ -74,10 +66,22 @@
     </rdf:RDF>
   </metadata>
   <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Background">
+    <rect
+       style="fill:#808080"
+       id="rect3039"
+       width="440"
+       height="280"
+       x="0"
+       y="0" />
+  </g>
+  <g
      transform="translate(0,-772.36213)"
      id="layer1"
      inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     inkscape:label="Images">
     <g
        transform="matrix(1.0074954,0,0,1.0174316,311.4885,771.59663)"
        id="g3143">
@@ -360,7 +364,7 @@
     <g
        inkscape:label="Layer 1"
        id="layer1-7"
-       transform="matrix(0.9998268,0,0,0.99839314,156.58655,-73.793175)">
+       transform="matrix(0.9998268,0,0,0.99839314,312.53156,1.8535075)">
       <path
          sodipodi:type="arc"
          style="color:#000000;fill:none;stroke:#000000;stroke-width:0.61591756px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -443,7 +447,7 @@
          transform="matrix(0.40428218,0,0,0.34867196,27.522867,1017.506)" />
     </g>
     <flowRoot
-       transform="translate(12.84375,733.4865)"
+       transform="translate(-141.29687,665.97478)"
        style="font-size:144px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        id="flowRoot3041"
        xml:space="preserve"><flowRegion
@@ -458,7 +462,8 @@
   <g
      inkscape:groupmode="layer"
      inkscape:label="Web Slicer"
-     id="webslicer-layer">
+     id="webslicer-layer"
+     style="display:none">
     <rect
        height="280"
        width="440"
