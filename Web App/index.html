@@ -23,7 +23,9 @@
 			<p>Welcome to Project Helium. Use up,down,left,right to control the ship.</p>
 			<br />
 			<div id="canvasContainer">
-				<canvas id="helium" tabindex="1"></canvas>
+				<canvas id="helium"></canvas>
+				<img id="restart" src="images/restart.svg" onclick="javascript:restartGame();" />
+				<img id="pause" src="images/pause.svg" onclick="javascript:pauseGame();" />
 			</div>
 			<div id="stats">
 				<p class="button"><a id="fullscreen" onclick="javascript:fullscreen()">Full Screen</a></p>
@@ -31,6 +33,7 @@
 				<br style="clear: both;" />
 				<p id="topScore"></p>
 				<p id="lastScore"></p>
+				<p id="err"></p>
 			</div>
 		</div>
 		<br />
