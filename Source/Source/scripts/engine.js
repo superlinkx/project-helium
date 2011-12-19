@@ -21,9 +21,13 @@ function backgroundDraw(){
 	ctx.fillRect(0,0,width,height);
 	ctx.beginPath();
 	ctx.strokeStyle = bgline;
-	for(i=60;i<=width;i+=60){
+	for(i=.5;i<=width+.5;i+=60){
 		ctx.moveTo(i,0);
 		ctx.lineTo(i,height);
+		if(i===width+.5){
+			ctx.moveTo(i-1,0);
+			ctx.lineTo(i-1,height);
+		}
 	}
 	for(i=bgpos;i<=height;i+=60){
 	ctx.moveTo(0,i);
@@ -301,10 +305,6 @@ function moveLaser(){
 	}
 }
 //End Laser
-//Begin Menu
-//End Menu
-//Begin Score
-//End Score
 //Begin Engine
 function checkLives(){
 	lives -= 1;
