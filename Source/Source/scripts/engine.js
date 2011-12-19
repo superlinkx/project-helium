@@ -10,8 +10,6 @@
 *	See the License for the specific language governing permissions and
 *	limitations under the License.
 */
-//Begin Level
-//End Level
 //Begin Background
 function backgroundDraw(){
 	if(bgpos==60){
