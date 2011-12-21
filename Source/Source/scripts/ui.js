@@ -34,8 +34,8 @@ function gameOver(){
 	}
 }
 function fullscreen(){
-	if(document.getElementById("helium").webkitRequestFullScreen){
-		document.getElementById("helium").webkitRequestFullScreen();
+	if(document.getElementById("canvasContainer").webkitRequestFullScreen){
+		document.getElementById("canvasContainer").webkitRequestFullScreen();
 	}else{
 		alert('Browser not supported. You need to install the latest WebKit Browser (for example Chrome 15) in order to use the full-screen API.');
 	}
