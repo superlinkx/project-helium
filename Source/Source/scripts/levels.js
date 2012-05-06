@@ -15,7 +15,7 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function lvl_init() {
+function lvl_init(){
 	lvl1 = new Level([1,2,8,1,"rgb(0,0,0)","rgb(0,255,0)"]);
 	lvl2 = new Level([2,3,9,1,"rgb(0,0,0)","rgb(0,0,255)"]);
 	lvl3 = new Level([3,4,10,1,"rgb(0,0,0)","rgb(255,0,0)"]);
@@ -44,16 +44,16 @@ function lvlReader(){
 	bgline = currentLevel.bgline;
 }
 function lvlchecker(){
-	if (enemyKilled < 100) lvl = 1;
-	if (100 <= enemyKilled && enemyKilled < 200) lvl = 2;
-	if (200 <= enemyKilled && enemyKilled < 300) lvl = 3;
-	if (300 <= enemyKilled && enemyKilled < 400) lvl = 4;
-	if (400 <= enemyKilled && enemyKilled < 500) lvl = 5;
-	if (500 <= enemyKilled && enemyKilled < 600) lvl = 6;
-	if (600 <= enemyKilled && enemyKilled < 700) lvl = 7;
-	if (700 <= enemyKilled && enemyKilled < 800) lvl = 8;
-	if (800 <= enemyKilled && enemyKilled < 900) lvl = 9;
-	if (900 <= enemyKilled) lvl = 10;
+	if(enemyKilled < 100) lvl = 1;
+	if(100 <= enemyKilled && enemyKilled < 200) lvl = 2;
+	if(200 <= enemyKilled && enemyKilled < 300) lvl = 3;
+	if(300 <= enemyKilled && enemyKilled < 400) lvl = 4;
+	if(400 <= enemyKilled && enemyKilled < 500) lvl = 5;
+	if(500 <= enemyKilled && enemyKilled < 600) lvl = 6;
+	if(600 <= enemyKilled && enemyKilled < 700) lvl = 7;
+	if(700 <= enemyKilled && enemyKilled < 800) lvl = 8;
+	if(800 <= enemyKilled && enemyKilled < 900) lvl = 9;
+	if(900 <= enemyKilled) lvl = 10;
 	switch(lvl){
 		case 1: currentLevel = lvl1;
 				break;

@@ -2,5 +2,5 @@
 ./game-compiler;
 ./app-update;
 ./site-update;
-hg add;
+hg addremove;
 hg commit
