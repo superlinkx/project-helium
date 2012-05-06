@@ -16,10 +16,10 @@
 */
 /*Main Stylesheet*/
 @font-face{
-    font-family: "Ubuntu";
-    font-style: normal;
-    font-weight: normal;
-    src: local('Ubuntu Regular'), local('Ubuntu'), url('fonts/ubuntu/ubuntu-regular.ttf') format('truetype');
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: normal;
+	src: local('Ubuntu Regular'), local('Ubuntu'), url('fonts/ubuntu/ubuntu-regular.ttf') format('truetype');
 }
 body{
 background-color: #929292;

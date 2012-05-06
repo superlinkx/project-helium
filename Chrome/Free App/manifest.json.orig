@@ -1,0 +1,14 @@
+{
+  "name": "Project Helium Beta",
+  "description": "A legendary 2D shooter!",
+  "version": "0.10.0.1",
+  "app": {
+    "launch": {
+      "local_path": "index.html"
+    }
+  },
+  "icons": {
+    "16": "16logo.png",
+    "128": "images/128logo.png"
+  }
+}
