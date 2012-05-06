@@ -27,6 +27,19 @@ margin: 0px;
 padding: 5px 0px 5px 0px;
 }
 a{
+/*float: left;
+display: block;
+width: 175px;
+text-align: center;
+border: 2px solid;
+border-color: #e1e1e1;
+border-radius: 5px;
+-moz-border-radius: 5px;
+background-color: #7e3f3f;
+text-decoration: none;
+color: #e1e1e1;
+margin-right: 10px;
+font-family: 'VT323', sans-serif;*/
 text-decoration: none;
 color: black;
 }
