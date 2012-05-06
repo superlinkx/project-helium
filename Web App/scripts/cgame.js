@@ -1,17 +1,19 @@
 /*
  Copyright 2011 Steven Holms <superlinkx@gmail.com>
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+ MIT License:
 
- http://www.apache.org/licenses/LICENSE-2.0
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+ modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+ is furnished to do so, subject to the following conditions:
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 if(!b)var b="";var err,FPS=60,w=480,h=800,pw=30,ph=30,e1w=30,e1h=30;x=0;y=0;bgpos=0;px=w/2-pw/2;py=h-ph;e1x=25;e1y=-45;bgcolor="rgb(0,0,0)";bgline="rgb(0,255,0)";lvl1=null;lvl2=null;lvl3=null;lvl4=null;lvl5=null;lvl6=null;lvl7=null;lvl8=null;lvl9=null;lvl10=null;pSprite=new Image;pSprite.src=b+"images/heliumclass1.svg";var e1Sprite=new Image;e1Sprite.src=b+"images/enemy1.svg";var e2Sprite=new Image;e2Sprite.src=b+"images/enemy2.svg";
 var upKey=!1,downKey=!1,rightKey=!1,leftKey=!1,enterKey=!1,gamePaused=!1,enemies=[],enemyLasers=[],enemyKilled=0,enemy1Speed=1,enemy2Speed=2,enemyLaserTime=0,enemyTotal=8,path=null,pathSize=null,e1xa=50,e1xf=2*Math.PI/240,pspeed=5;lasers=[];laserKey=!1;laserTime=0;laserWidth=4;laserHeight=20;laserCount=4;laserLimit=4;laserFireTracker=0;laserTimeout=20;laserSpeed=10;sc0re=0;sc0reMult=1;alive=!0;lives=3;gameStarted=!1;lvl=1;storageCalled=!1;canvas=null;body=null;ctx=null;fallback=!1;speedMult=1;function lvl_init(){lvl1=new Level([1,2,8,1,"rgb(0,0,0)","rgb(0,255,0)"]);lvl2=new Level([2,3,9,1,"rgb(0,0,0)","rgb(0,0,255)"]);lvl3=new Level([3,4,10,1,"rgb(0,0,0)","rgb(255,0,0)"]);lvl4=new Level([4,5,11,1,"rgb(0,0,0)","rgb(0,255,255)"]);lvl5=new Level([5,6,12,1,"rgb(0,0,0)","rgb(255,255,0)"]);lvl6=new Level([6,7,13,1,"rgb(0,0,0)","rgb(255,0,255)"]);lvl7=new Level([7,8,14,1,"rgb(0,0,0)","rgb(255,255,255)"]);lvl8=new Level([8,9,15,1,"rgb(255,255,255)","rgb(0,0,0)"]);lvl9=new Level([9,10,16,1,"rgb(255,255,255)",
