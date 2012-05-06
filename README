@@ -1,0 +1,35 @@
+Project Helium is copyrighted by Steven Holms <superlinkx@gmail.com> and is under MIT License
+and the Creative Commons 3.0 content license. Use outside of these licenses is prohibited.
+
+Basic Tree:
+
+1. Chrome
+    1. Free App
+    2. Free App.zip
+2. Source
+    1. Dummy App
+        1. fonts
+        2. images
+        3. scripts
+        4. sound
+            1. effects
+            2. theme
+    2. Source
+        1. fonts
+        2. images
+        3. scripts
+        4. sound
+            1. effects
+            2. theme
+        5. css
+    3. Tests
+3. Tools
+4. Web App
+    1. fonts
+    2. images
+    3. scripts
+    4. sound
+        1. effects
+        2. theme
+    5. css
+
