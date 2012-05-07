@@ -73,7 +73,7 @@ inputs=$path"vars.js "$path"levels.js "$path"engine.js "$path"ui.js "$path"game.
 	full_levels=$level_load$level1$level2$level3$level4$level5$level6$level7$level8$level9$level10
 
 #### UI ####
-	ui=$ui_path"ui.js "
+	ui=$ui_path"main.js "
 	full_ui=$ui
 
 #### Game Init ####
