@@ -29,12 +29,12 @@ inputs=$path"vars.js "$path"levels.js "$path"engine.js "$path"ui.js "$path"game.
 	#### Paths ####
 	parent_path="../Source/NewSource/scripts/"
 	variables_path=$parent_path"engine/"
-	levels_path=$parent_path"levels/"
+	levels_path=$parent_path"game/levels/"
 	engine_path=$parent_path"engine/"
-	ui_path=$parent_path"ui/"
+	ui_path=$parent_path"game/ui/"
 	game_path=$parent_path"game/"
-	enemies_path=$parent_path"enemies/"
-	player_path=$parent_path"player/"
+	enemies_path=$parent_path"engine/enemies/"
+	player_path=$parent_path"engine/player/"
 
 #### Engine ####
 	engine_variables=$variables_path"vars.js "

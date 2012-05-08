@@ -16,5 +16,6 @@
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 //How to use
-//This is an optional file for declaring a remotely hosted html file. In order to do so, put the url to the deploayed Web App for var b.
+//This is an optional file for declaring a remotely hosted html file.
+//In order to do so, put the url to the deploayed Web App for var b.
 var b = "http://superlinkx.dyndns.org/projects/hydrogen/apps/helium/"
