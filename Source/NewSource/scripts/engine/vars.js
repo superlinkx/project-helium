@@ -76,6 +76,7 @@ var upKey = false,
 //enemies
 	enemies = [],
 	enemyLasers = [],
+	enemyMovement = [defaultMove=function(){this.x+=1}],
 	enemyKilled = 0,
 	enemy1Speed = 1,
 	enemy2Speed = 2,
