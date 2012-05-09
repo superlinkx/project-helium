@@ -15,3 +15,16 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+var type3 = {
+	h: 30,
+	w: 30,
+	thisSpeed: 1,
+	typeNum: 3,
+	move: function(){
+		if(this.y <= height){
+			this.y += this.speed * speedMult;
+		}else if(this.y > height){
+			this.y = -45;
+		}
+	}
+};
