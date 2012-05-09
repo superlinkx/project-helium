@@ -32,10 +32,19 @@ function hitTest(){
 				enemies.splice(j,1);
 				sc0re += (10*sc0reMult);
 				path = randomPath();
-				type = randomType();
+				typeNum = randomType();
+				switch(typeNum){
+					case 1: type = type1;
+						break;
+					case 2: type = type2;
+						break;
+					case 3: type = type3;
+						break;
+					default: type = type1;
+						break;
+				}
 				e1x = Path(path);
-				var speed = typeSpeed(type);
-				enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, type));
+				enemies.push(new Enemy(e1x, -45, type));
 				lasers.splice(i,1);
 				break;
 			}

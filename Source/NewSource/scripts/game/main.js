@@ -37,10 +37,19 @@ function init(){
 	//enemy init
 	for(var i = 0; i < enemyTotal; i++){
 		path = randomPath();
-		type = randomType();
+		typeNum = randomType();
+		switch(typeNum){
+			case 1: type = type1;
+				break;
+			case 2: type = type2;
+				break;
+			case 3: type = type3;
+				break;
+			default: type = type1;
+				break;
+		}
 		e1x = Path(path);
-		var speed = typeSpeed(type);
-		enemies.push(new Enemy(e1x, -45, e1w, e1h, speed, type));
+		enemies.push(new Enemy(e1x, -45, type));
 	}
 	player = new Player(px,py);
 	gameLoop();

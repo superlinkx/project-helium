@@ -43,8 +43,7 @@ inputs=$path"vars.js "$path"levels.js "$path"engine.js "$path"ui.js "$path"game.
 	engine_controls=$engine_path"controls.js "
 	engine_collisions=$engine_path"collisions.js "
 	engine_lasers=$engine_path"lasers.js "
-	engine_resets=$engine_path"resets.js "
-	full_engine=$engine_variables$engine_background$engine_controls$engine_collisions$engine_lasers$engine_resets$engine_main
+	full_engine=$engine_variables$engine_background$engine_controls$engine_collisions$engine_lasers$engine_main
 
 #### Enemies ####
 	enemies_main=$enemies_path"main.js "
@@ -78,7 +77,9 @@ inputs=$path"vars.js "$path"levels.js "$path"engine.js "$path"ui.js "$path"game.
 
 #### Game Init ####
 	game_main=$game_path"main.js "
+	game_resets=$game_path"resets.js "
 	full_game=$game_main
+	
 
 #### Input files ####
 	inputs=$full_engine$full_enemies$full_player$full_levels$full_ui$full_game

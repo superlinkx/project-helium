@@ -15,41 +15,16 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function Enemy(x,y,w,h,speed,type){
+function Enemy(x,y,type){
 	this.x = x;
 	this.y = y;
-	this.w = w;
-	this.h = h;
-	this.speed = speed;
+	this.w = type.w;
+	this.h = type.h;
+	this.speed = type.thisSpeed;
 	this.initx = x;
-	this.type = type;
+	this.type = type.typeNum;
 	this.fired = 0;
-	this.move = function(){
-		switch(this.type){
-			case 1:
-				this.x = e1xa*Math.sin((e1xf*this.y))+this.initx;
-				if(this.y <= height){
-					this.y += this.speed * speedMult;
-				}else if(this.y > height){
-					this.y = -45;
-				}
-				break;
-			case 2:
-				if(this.y <= height){
-					this.y += this.speed * speedMult;
-				}else if(this.y > height){
-					this.y = -45;
-				}
-				break;
-			default:
-				this.x = e1xa*Math.sin((e1xf*this.y))+this.initx;
-				if(this.y <= h){
-					this.y += this.speed * speedMult;
-				}else if(this.y > h){
-					this.y = -45;
-				}
-		}
-	}
+	this.move = type.move;
 	this.fire = function(){
 		if(!this.fired){
 			enemyLasers.push(new Laser(this.x + (this.w/2 - laserWidth/2), this.y, laserWidth, laserHeight, "enemy"))
@@ -65,4 +40,5 @@ function Enemy(x,y,w,h,speed,type){
 			default: ctx.drawImage(e1Sprite,this.x,this.y,this.w,this.h);
 				break;
 		}
-	}}
+	}
+}
