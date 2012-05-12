@@ -1,5 +1,5 @@
 /**
-* 	Copyright 2011 Steven Holms <superlinkx@gmail.com>
+* Copyright 2011 Steven Holms <superlinkx@gmail.com>
 *
 *	MIT License:
 *	
@@ -15,4 +15,44 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-lvl10 = new Level([10,11,17,1,"rgb(255,255,255)","rgb(255,0,0)"]);
+var game, player, background;
+var enemies = [];
+//This should go in levels
+var level = {
+	enemies: 10,
+};
+var bginit = {
+	color: "rgb(0,0,0)",
+	lineColor: "rgb(0,255,0)",
+	gridSize: 60,
+	increment: .5
+};
+window.onload = function(){
+	var init = {
+		width: 480,
+		height: 800,
+		canvas: document.getElementById("game")
+	};
+	game = new Engine(init);
+	background = new Background(bginit,game);
+	player = new Player(ptype1,game);
+	for(i=0; i<level.enemies; i++){
+		enemies[i] = new Enemy(paths,etype1,game);
+		enemies[i].position();
+	}
+	document.addEventListener('keydown', player.keyDown, false);
+	document.addEventListener('keyup', player.keyUp, false);
+	gameLoop();
+};
+function gameLoop(){
+	game.context.clearRect(0,0,game.width,game.height);
+	background.grid();
+	player.move();
+	player.bounds();
+	player.draw();
+	for(i=0; i<level.enemies; i++){
+		enemies[i].move();
+		enemies[i].draw();
+	}
+	var gameloop = window.setTimeout("gameLoop()", 1000 / game.fps);
+}

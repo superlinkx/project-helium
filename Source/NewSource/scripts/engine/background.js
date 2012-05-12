@@ -1,40 +1,30 @@
-/**
-* Copyright 2011 Steven Holms <superlinkx@gmail.com>
-*
-*	MIT License:
-*	
-* Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
-* files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
-* modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
-* is furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
-* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-function backgroundDraw(){
-	if(bgpos==60){
-		bgpos = 0;
-	}
-	ctx.fillStyle = bgcolor;
-	ctx.fillRect(0,0,width,height);
-	ctx.beginPath();
-	ctx.strokeStyle = bgline;
-	for(i=.5;i<=width+.5;i+=60){
-		ctx.moveTo(i,0);
-		ctx.lineTo(i,height);
-		if(i===width+.5){
-			ctx.moveTo(i-1,0);
-			ctx.lineTo(i-1,height);
+function Background(type,game){
+	var position = 0;
+	var color = type.color;
+	var lineColor = type.lineColor;
+	var gridSize = type.gridSize;
+	var increment = type.increment;
+	this.grid = function(){
+		if(position===gridSize){
+			position = 0;
 		}
-	}
-	for(i=bgpos;i<=height;i+=60){
-	ctx.moveTo(0,i);
-	ctx.lineTo(width,i);
-	}
-	ctx.stroke();
-	bgpos+=1;
+		game.context.fillStyle = color;
+		game.context.fillRect(0,0,game.width,game.height);
+	  game.context.beginPath();
+		game.context.strokeStyle = lineColor;
+		for(i=increment;i<=game.width+increment;i+=gridSize){
+			game.context.moveTo(i,0);
+			game.context.lineTo(i,game.height);
+			if(i===game.width+increment){
+				game.context.moveTo(i-1,0);
+				game.context.lineTo(i-1,game.height);
+			}
+		}
+		for(i=position;i<=game.height;i+=gridSize){
+			game.context.moveTo(0,i);
+			game.context.lineTo(game.width,i);
+		}
+		game.context.stroke();
+		position+=1;
+	};
 }

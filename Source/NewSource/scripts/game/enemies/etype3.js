@@ -1,5 +1,5 @@
 /**
-* 	Copyright 2011 Steven Holms <superlinkx@gmail.com>
+* Copyright 2011 Steven Holms <superlinkx@gmail.com>
 *
 *	MIT License:
 *	
@@ -15,4 +15,25 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-lvl8 = new Level([8,9,15,1,"rgb(255,255,255)","rgb(0,0,0)"]);
+var etype3 = {
+	width: 30,
+	height: 30,
+	speed: 1,
+	speedMult: 1,
+	sprite: new Image(),
+	amplitude: 50,
+	frequency: (2*Math.PI)/240,
+	move: function(initx,x,y,width,height,speed,speedMult){
+		x = this.amplitude*Math.sin((this.frequency*y))+initx;
+		if(y <= game.height){
+			y += speed * this.speedMult;
+		} else if(y > game.height){
+			y = -45;
+		}
+		var values = [];
+		values["x"] = x;
+		values["y"] = y;
+		return values;
+	}
+};
+etype3.sprite.src = global_path+"images/enemy3.svg";

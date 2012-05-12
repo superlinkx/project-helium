@@ -15,36 +15,6 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function reset(){
-	storageCalled = false;
-	lasers.splice(0,lasers.length);
-	enemyLasers.splice(0,lasers.length);
-	enemyLasers.length = 0;
-	laserFireTracker = 0;
-	laserCount = 4;
-	player.x = (width/2) - 15, player.y = height - 30, player.w= 30, player.h = 30;
-	enemies.splice(0,enemies.length);
-	for(var i = 0; i < enemyTotal; i++){
-		path = randomPath();
-		typeNum = randomType();
-		switch(typeNum){
-			case 1: type = type1;
-				break;
-			case 2: type = type2;
-				break;
-			case 3: type = type3;
-				break;
-			default: type = type1;
-				break;
-		}
-		e1x = Path(path);
-		enemies.push(new Enemy(e1x, -45, type));
-	}
-}
-function checkLives(){
-	lives -= 1;
-	reset();
-	if(lives == 0){
-		alive = false;
-	}
-}
+var paths = {
+	totalPaths: 20,
+};
