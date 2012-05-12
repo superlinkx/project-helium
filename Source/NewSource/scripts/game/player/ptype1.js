@@ -1,5 +1,5 @@
 /**
-* 	Copyright 2011 Steven Holms <superlinkx@gmail.com>
+* Copyright 2011 Steven Holms <superlinkx@gmail.com>
 *
 *	MIT License:
 *	
@@ -15,4 +15,13 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-lvl2 = new Level([2,3,9,1,"rgb(0,0,0)","rgb(0,0,255)"]);
+var ptype1 = {
+	x: 225,
+	y: 770,
+	width: 30,
+	height: 30,
+	speed: 5,
+	speedMult: 1,
+	sprite: new Image(),
+};
+ptype1.sprite.src = global_path+"images/heliumclass1.svg";

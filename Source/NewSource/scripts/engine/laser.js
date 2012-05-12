@@ -1,5 +1,5 @@
 /**
-* 	Copyright 2011 Steven Holms <superlinkx@gmail.com>
+* Copyright 2011 Steven Holms <superlinkx@gmail.com>
 *
 *	MIT License:
 *	
@@ -15,4 +15,6 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-lvl4 = new Level([4,5,11,1,"rgb(0,0,0)","rgb(0,255,255)"]);
+function Laser(type,game){
+	
+}

@@ -15,22 +15,13 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function keyDown(e){
-	e.preventDefault();
-	if(e.keyCode == 39) rightKey = true;
-	else if(e.keyCode == 37) leftKey = true;
-	if(e.keyCode == 38) upKey = true;
-	else if(e.keyCode == 40) downKey = true;
-	if(e.keyCode == 32) laserKey = true;
-	if(e.keyCode == 13) enterKey = true;
-	if(e.keyCode == 191) pauseGame();
-}
-function keyUp(e){
-	e.preventDefault();
-	if(e.keyCode == 39) rightKey = false;
-	else if(e.keyCode == 37) leftKey = false;
-	if(e.keyCode == 38) upKey = false;
-	else if(e.keyCode == 40) downKey = false;
-	if(e.keyCode == 32) laserKey = false;
-	if(e.keyCode == 13) enterKey = false;
+function Engine(game){
+	//Canvas Inits
+	this.width = game.width;
+	this.height = game.height;
+	this.fps = game.fps;
+	this.canvas = game.canvas;
+	this.context = this.canvas.getContext("2d");
+	this.canvas.width = this.width;
+	this.canvas.height = this.height;
 }

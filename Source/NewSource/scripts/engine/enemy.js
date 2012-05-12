@@ -15,16 +15,35 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-var type3 = {
-	h: 30,
-	w: 30,
-	thisSpeed: 1,
-	typeNum: 3,
-	move: function(){
-		if(this.y <= height){
-			this.y += this.speed * speedMult;
-		}else if(this.y > height){
-			this.y = -45;
-		}
+function Enemy(paths,type,game){
+	//Dimensions
+	var width = type.width;
+	var height = type.height;
+	//Sprite
+	var sprite = type.sprite;
+	//Speed
+	var speed = type.speed;
+	this.speedMult = type.speedMult;
+	//Position
+	var x, initx, y, path;
+	var totalPaths = paths.totalPaths;
+	this.position = function(){
+		path = Math.floor(Math.random() * (totalPaths - 1));
+		x = (game.width/totalPaths)*path;
+		initx = x;
+		y = 0
 	}
-};
+	//Movement
+	this.move = function(){
+		var values = type.move(initx,x,y,game.width,game.height,speed,this.speedMult);
+		x = values["x"];
+		y = values["y"];
+	};
+	this.getCoords = function(){
+		return "x: "+x+" y: "+y+" initx: "+initx+" speed: "+speed+" path: "+path;
+	}
+	//Draw
+	this.draw = function(){
+		game.context.drawImage(sprite, x, y, width, height);
+	}
+}

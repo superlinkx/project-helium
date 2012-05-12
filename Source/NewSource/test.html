@@ -1,57 +1,38 @@
 <!DOCTYPE html>
-<!-- Copyright 2011 Steven Holms <superlinkx@gmail.com>
-*
-*	MIT License:
-*	
-* Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
-* files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
-* modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
-* is furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
-* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->
 <html>
 	<head>
+		<!-- Copyright 2011 Steven Holms <superlinkx@gmail.com>
+		*
+		*	MIT License:
+		*	
+		* Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+		* files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+		* modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+		* is furnished to do so, subject to the following conditions:
+		*
+		* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+		*
+		* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+		* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+		* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+		* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->
 		<meta charset="utf-8" />
 		<title>Project Helium *TEST*</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="scripts/jquery.min.js"></script>
 		<!-- Engine -->
-		<script type="text/javascript" src="scripts/engine/vars.js"></script>
-		<script type="text/javascript" src="scripts/engine/main.js"></script>
+		<script type="text/javascript" src="scripts/engine/engine.js"></script>
+		<script type="text/javascript" src="scripts/engine/player.js"></script>
+		<script type="text/javascript" src="scripts/engine/enemy.js"></script>
 		<script type="text/javascript" src="scripts/engine/background.js"></script>
-		<script type="text/javascript" src="scripts/engine/collisions.js"></script>
-		<script type="text/javascript" src="scripts/engine/controls.js"></script>
-		<script type="text/javascript" src="scripts/engine/lasers.js"></script>
-		<!-- Player -->
-		<script type="text/javascript" src="scripts/engine/player/main.js"></script>
-		<!-- Enemies -->
-		<script type="text/javascript" src="scripts/engine/enemies/main.js"></script>
-		<script type="text/javascript" src="scripts/engine/enemies/paths.js"></script>
-		<script type="text/javascript" src="scripts/engine/enemies/type1.js"></script>
-		<script type="text/javascript" src="scripts/engine/enemies/type2.js"></script>
-		<script type="text/javascript" src="scripts/engine/enemies/type3.js"></script>
-		<!-- Levels -->
-		<script type="text/javascript" src="scripts/game/levels/load.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level1.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level2.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level3.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level4.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level5.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level6.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level7.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level8.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level9.js"></script>
-		<script type="text/javascript" src="scripts/game/levels/level10.js"></script>
-		<!-- UI -->
-		<script type="text/javascript" src="scripts/game/ui/main.js"></script>
-		<!-- Game Declarations -->
-		<script type="text/javascript" src="scripts/game/resets.js"></script>
-		<script type="text/javascript" src="scripts/game/main.js"></script>
+		<!-- Game -->
+		<script type="text/javascript">
+				var global_path = "";
+		</script>
+		<script type="text/javascript" src="scripts/game/enemies/etype1.js"></script>
+		<script type="text/javascript" src="scripts/game/enemies/paths.js"></script>
+		<script type="text/javascript" src="scripts/game/player/ptype1.js"></script>
+		<script type="text/javascript" src="scripts/game/game.js"></script>
 	</head>
 	<body>
 		<div id="body">
@@ -59,7 +40,7 @@
 			<p>Welcome to Project Helium. Use up,down,left,right to control the ship.</p>
 			<br />
 			<div id="canvasContainer">
-				<canvas id="helium"></canvas>
+				<canvas id="game"></canvas>
 				<img id="restart" src="images/restart.svg" onclick="javascript:restartGame();" />
 				<img id="pause" src="images/pause.svg" onclick="javascript:pauseGame();" />
 			</div>
