@@ -15,6 +15,15 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function Laser(type,game){
-	
+function Weapon(init,type,game){
+  var x = init.x;
+  var y = init.y;
+  var direction = type.direction;
+  var speed = type.speed;
+  var speedMult = type.speedMult;
+  var width = type.width;
+  var height = type.height;
+  this.move = type.move();
+  this.draw = type.draw();
+  this.collision = type.collision();
 }
