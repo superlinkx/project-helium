@@ -57,10 +57,6 @@ function Player(type,game){
 	this.collision = function(){
 		
 	};
-	//Fire
-	this.fire = function(){
-		
-	};
 	//Controls
 	this.keyDown = function(e){
 		e.preventDefault();
@@ -68,7 +64,10 @@ function Player(type,game){
 		else if(e.keyCode == 37) leftKey = true;
 		if(e.keyCode == 38) upKey = true;
 		else if(e.keyCode == 40) downKey = true;
-		if(e.keyCode == 32) laserKey = true;
+		if(e.keyCode == 32){
+			laserKey = true;
+			type.fire(x,y);
+		}
 		if(e.keyCode == 13) enterKey = true;
 		if(e.keyCode == 191) pauseKey = true;
 	}

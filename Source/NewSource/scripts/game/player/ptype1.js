@@ -23,5 +23,12 @@ var ptype1 = {
 	speed: 5,
 	speedMult: 1,
 	sprite: new Image(),
+	weapons: [],
+	fire: function(x,y){
+		var init = {};
+		init["x"] = x;
+		init["y"] = y;
+		this.weapons.push(new Weapon(init,playerLaser,game));
+	}
 };
 ptype1.sprite.src = global_path+"images/heliumclass1.svg";
