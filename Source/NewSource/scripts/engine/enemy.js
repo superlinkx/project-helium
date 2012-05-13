@@ -39,9 +39,6 @@ function Enemy(paths,type,game){
 		x = values["x"];
 		y = values["y"];
 	};
-	this.getCoords = function(){
-		return "x: "+x+" y: "+y+" initx: "+initx+" speed: "+speed+" path: "+path;
-	}
 	//Draw
 	this.draw = function(){
 		game.context.drawImage(sprite, x, y, width, height);
