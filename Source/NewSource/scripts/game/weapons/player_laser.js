@@ -15,13 +15,28 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-var playerLaser = {
-	direction: "up",
-	speed: 10,
-	speedMult: 1,
-	width: 2,
-	height: 8,
-	move: function(){},
-	draw: function(){},
-	collision: function(){}
+function playerLaser(init,engine){
+	var x = init.x;
+	var y = init.y;
+	var direction = "up";
+	var speed = 10;
+	var speedMult = 1;
+	var width = 2;
+	var height = 8;
+	var exist = true;
+	this.move = function(){
+		if(this.y>-(engine.height)){
+			this.y += speed * speedMult;
+		} else {
+			exist = false;
+		}
+	};
+	this.draw = function(){
+		var laserGradient = context.createLinearGradient(this.x,this.y,this.x,this.y + 20);
+		laserGradient.addColorStop(0,'rgba(255,0,0,0.8)');
+		laserGradient.addColorStop(1,'rgba(255,0,0,0.2)');
+		context.fillStyle = laserGradient;
+		context.fillRect(this.x,this.y,width,height);
+	},
+	this.collision = function(){}
 };

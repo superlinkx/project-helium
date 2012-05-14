@@ -15,7 +15,7 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-var game, player, background;
+var game, player, background, gameloop;
 var enemies = [];
 //This should go in levels
 var level = {
@@ -28,22 +28,20 @@ var bginit = {
 	increment: .5
 };
 window.onload = function(){
-	var init = {
-		width: 480,
-		height: 800,
-		canvas: document.getElementById("game")
-	};
-	game = new Engine(init);
+	init();
+	gameLoop();
+};
+function init(){
+	game = new Engine();
 	background = new Background(bginit,game);
-	player = new Player(ptype1,game);
+	player = new PlayerType1(game);
 	for(i=0; i<level.enemies; i++){
 		enemies[i] = new Enemy(paths,etype1,game);
 		enemies[i].position();
 	}
 	document.addEventListener('keydown', player.keyDown, false);
 	document.addEventListener('keyup', player.keyUp, false);
-	gameLoop();
-};
+}
 function gameLoop(){
 	game.context.clearRect(0,0,game.width,game.height);
 	background.grid();
@@ -54,5 +52,5 @@ function gameLoop(){
 		enemies[i].move();
 		enemies[i].draw();
 	}
-	var gameloop = window.setTimeout("gameLoop()", 1000 / game.fps);
+	gameloop = window.setTimeout("gameLoop()", 1000 / game.fps);
 }
