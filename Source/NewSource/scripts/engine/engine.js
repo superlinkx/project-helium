@@ -15,12 +15,12 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function Engine(game){
+function Engine(){
 	//Canvas Inits
-	this.width = game.width;
-	this.height = game.height;
-	this.fps = game.fps;
-	this.canvas = game.canvas;
+	this.width = 480;
+	this.height = 800;
+	this.fps = 60;
+	this.canvas = document.getElementById("game");
 	this.context = this.canvas.getContext("2d");
 	this.canvas.width = this.width;
 	this.canvas.height = this.height;
