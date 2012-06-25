@@ -57,7 +57,7 @@ function PlayerType1(engine){
 		var init = {};
 		init["x"] = x;
 		init["y"] = y;
-		this.weapons.push(new Weapon(init,engine));
+		weapons.push(new Weapon(init,engine));
 	}
 	//Controls
 	this.keyDown = function(e){
