@@ -1,6 +1,7 @@
 /**
 * Copyright 2011 Steven Holms <superlinkx@gmail.com>
-*
+* Copyright 2012 Reuben Lifshay <rlifshay+gc@gmail.com>
+* 
 *	MIT License:
 *	
 * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
