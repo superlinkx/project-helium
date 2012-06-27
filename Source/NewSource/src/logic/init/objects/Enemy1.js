@@ -1,10 +1,11 @@
-function Enemy1(){
-	this.sheet = new Image();
-	this.sheet.src = "res/img/test.png";
-	this.panelSizeX = 64;
-	this.panelSizeY = 64;
-	this.panelsX = 10;
-	this.panelsY = 6;
-	this.animationsCount = 20;
+enemy1sheet = {
+	id: "enemy1",
+	srcImage: "res/img/test.png",
+	panelSizeX: 64,
+	panelSizeY: 64,
+	panelsX: 10,
+	panelsY: 6
 }
-var enemy1 = new Enemy1();
+enemy1 = {
+	
+}
