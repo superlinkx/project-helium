@@ -1,5 +1,6 @@
 function Sheet(sheetData) {
   var data = sheetData;
+  this.id = data.id;
 	this.panelSizeX = data.panelSizeX;
 	this.panelSizeY = data.panelSizeY;
 	this.panelsX = data.panelsX;
