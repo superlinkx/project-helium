@@ -1,0 +1,91 @@
+#!/bin/bash
+# Copyright 2011 Steven Holms <superlinkx@gmail.com>
+#
+#	MIT License:
+#	
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+# modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+# is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+# OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+####################
+#### Old Source ####
+####################
+
+path="../Source/Source/scripts/"
+inputs=$path"vars.js "$path"levels.js "$path"engine.js "$path"ui.js "$path"game.js"
+
+####################
+#### New Source ####
+####################
+<<CommentOut
+	#### Paths ####
+	parent_path="../Source/NewSource/scripts/"
+	variables_path=$parent_path"engine/"
+	levels_path=$parent_path"game/levels/"
+	engine_path=$parent_path"engine/"
+	ui_path=$parent_path"game/ui/"
+	game_path=$parent_path"game/"
+	enemies_path=$parent_path"engine/enemies/"
+	player_path=$parent_path"engine/player/"
+
+#### Engine ####
+	engine_variables=$variables_path"vars.js "
+	engine_main=$engine_path"main.js "
+	engine_background=$engine_path"background.js "
+	engine_controls=$engine_path"controls.js "
+	engine_collisions=$engine_path"collisions.js "
+	engine_lasers=$engine_path"lasers.js "
+	full_engine=$engine_variables$engine_background$engine_controls$engine_collisions$engine_lasers$engine_main
+
+#### Enemies ####
+	enemies_main=$enemies_path"main.js "
+	enemies_paths=$enemies_path"paths.js "
+	enemies_type1=$enemies_path"type1.js "
+	enemies_type2=$enemies_path"type2.js "
+	enemies_type3=$enemies_path"type3.js "
+	full_enemies=$enemies_main$enemies_paths$enemies_type1$enemies_type2$enemies_type3
+
+#### Player ####
+	player_main=$player_path"main.js "
+	full_player=$player_main
+
+#### Levels ####
+	level_load=$levels_path"load.js "
+	level1=$levels_path"level1.js "
+	level2=$levels_path"level2.js "
+	level3=$levels_path"level3.js "
+	level4=$levels_path"level4.js "
+	level5=$levels_path"level5.js "
+	level6=$levels_path"level6.js "
+	level7=$levels_path"level7.js "
+	level8=$levels_path"level8.js "
+	level9=$levels_path"level9.js "
+	level10=$levels_path"level10.js "
+	full_levels=$level_load$level1$level2$level3$level4$level5$level6$level7$level8$level9$level10
+
+#### UI ####
+	ui=$ui_path"main.js "
+	full_ui=$ui
+
+#### Game Init ####
+	game_main=$game_path"main.js "
+	game_resets=$game_path"resets.js "
+	full_game=$game_main
+	
+
+#### Input files ####
+	inputs=$full_engine$full_enemies$full_player$full_levels$full_ui$full_game
+CommentOut
+#################
+#### Compile ####
+#################
+echo $inputs
+java -jar compiler.jar --js $inputs --compilation_level SIMPLE_OPTIMIZATIONS --js_output_file ../Web\ App/scripts/cgame.js
