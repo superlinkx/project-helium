@@ -19,7 +19,14 @@ function Sprite(sheetId,spriteData){
 	//Properties
 	var data = spriteData; //data about sprite object
 	var animationsCount = data.animationsCount; //
-	var animations = [];
+	var animations = data.animations;
+	this.state = {
+		currAnimation: 0,
+		currFrame: 0,
+		pausedState: true };
 	
 	//Methods
+	this.getSheetId = function(){
+		return sheetId;
+	};
 }
