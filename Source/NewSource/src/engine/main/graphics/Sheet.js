@@ -1,11 +1,30 @@
+/**
+* Copyright 2011 Steven Holms <superlinkx@gmail.com>
+*
+*	MIT License:
+*	
+* Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+* files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+* modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+* is furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 function Sheet(sheetData) {
-  var data = sheetData;
-	this.panelSizeX = data.panelSizeX;
-	this.panelSizeY = data.panelSizeY;
-	this.panelsX = data.panelsX;
-	this.panelsY = data.panelsY;
-	this.srcImage = data.srcImage;
+	//Properties
+  var data = sheetData; //grab sheet data
+	this.panelSizeX = data.panelSizeX; //panel size along x axis
+	this.panelSizeY = data.panelSizeY; //panel size along y axis
+	this.panelsX = data.panelsX; //number of panels on a row
+	this.panelsY = data.panelsY; //number of panels on a column
+	this.srcImage = data.srcImage; //sheet location
 	
-	this.image = new Image();
-	this.image.src = this.srcImage;
+	//Methods
+	this.image = new Image(); //create new image object to store sheet in
+	this.image.src = this.srcImage; //locate image at sheet location
 }
