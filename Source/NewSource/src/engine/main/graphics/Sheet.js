@@ -18,6 +18,7 @@
 function Sheet(sheetData) {
 	//Properties
   var data = sheetData; //grab sheet data
+	this.id = data.id; //get sheet id
 	this.panelSizeX = data.panelSizeX; //panel size along x axis
 	this.panelSizeY = data.panelSizeY; //panel size along y axis
 	this.panelsX = data.panelsX; //number of panels on a row
