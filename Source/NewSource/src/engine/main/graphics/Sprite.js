@@ -19,14 +19,16 @@
 function Sprite(sheetId,spriteData){
 	//Properties
 	var data = spriteData; //data about sprite object
-	var animationsCount = data.animationsCount; //
+	var animationsCount = data.animationsCount; //how many animations in sprite sheet
 	var animations = data.animations;
+	//State information (current animation, frame, paused/not paused)
 	this.state = {
 		currAnimation: 0,
 		currFrame: 0,
 		pausedState: true };
-	
+
 	//Methods
+	//Get current sheet id
 	this.getSheetId = function(){
 		return sheetId;
 	};
