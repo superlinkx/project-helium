@@ -16,14 +16,22 @@
 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function MainEngine(){
+function MainEngine(timeout){
+	//Properties
 	var canvas = null;
+	var engineLoopInterval = null;
 	this.Sprites = new Sprites(); //Add Sprites sub-class to Main Engine
-	
+	//Methods
 	this.setCanvas = function(newCanvas){
 		canvas = newCanvas;
 	};
 	this.getCanvas = function(){
 		return canvas;
 	};
+	this.startEngine = function(){
+		engineLoopInterval = setInterval(engineLoop, timeout);
+	};
+	var engineLoop = function(){
+		
+	}
 }
